@@ -15,7 +15,7 @@ const PORTFOLIO_DATA = {
     affiliation: "3+ Años // IDEA UNO",
     specialty: "Laravel · React · AWS · Docker",
     bounty: "APIS RESTFUL, CLOUD & CI/CD",
-    location: "Ñuñoa, Santiago, Chile",
+    location: "Santiago, Chile",
     totalRam: 16,
     bio: [
       "Con 3 años de experiencia en desarrollo de software, especializado en Laravel y con proyectos realizados en Flask y .NET. Domino tecnologías como Laravel, React, AWS Lambda, Serverless Framework, JavaScript y Docker.",
@@ -131,11 +131,6 @@ const PORTFOLIO_DATA = {
       label: "EMAIL // CONTACTO DIRECTO",
       value: "ignaciovs.dev@gmail.com",
       url: "mailto:ignaciovs.dev@gmail.com"
-    },
-    {
-      label: "TELÉFONO // MÓVIL CHILE",
-      value: "(+56) 999058318 · Ñuñoa, Santiago",
-      url: "tel:+56999058318"
     },
     {
       label: "CURRÍCULUM // FORMATO PDF OFICIAL",
@@ -417,9 +412,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initBreachProtocol();
   initClockAndTickers();
   initSystemControls();
-
-  const activePanel = document.querySelector(".deck-panel.active");
-  if (activePanel) animateContainerTexts(activePanel);
 });
 
 /* ============================================================================
@@ -1403,426 +1395,128 @@ function initSystemControls() {
 
 
 /* ============================================================================
-   8. PANTALLA DE INGRESO: MATRIZ DE INTRUSIÓN (NIVEL 1 + PISTAS NARRATIVAS)
+   8. PANTALLA DE INGRESO: MODAL DE CARGA Y SINCRONIZACIÓN DE TERMINAL
    ============================================================================ */
 const GATE_STORAGE_KEY = "cp2077_intrusion_passed_v1";
 
-// Matriz 3x3 exacta del documento:
-// 55 1C BD
-// E9 55 7A
-// 1C FF 55
-const GATE_MATRIX_DATA = [
-  ["55", "1C", "BD"],
-  ["E9", "55", "7A"],
-  ["1C", "FF", "55"]
+const BOOT_SEQUENCE_STEPS = [
+  { pct: 18, status: "VERIFICANDO CREDENCIALES...", log: "> [OK] Handshake cifrado establecido con nodo central Santiago_CL." },
+  { pct: 42, status: "CARGANDO PERFIL DE OPERADOR...", log: "> [OK] Expediente cargado: Ignacio Andrés Veliz Seguel (Full Stack / Cloud)." },
+  { pct: 68, status: "MONTANDO ARQUITECTURAS...", log: "> [OK] Módulos activos: Laravel · React · Python · AWS · Docker · CI/CD." },
+  { pct: 90, status: "DESBLOQUEANDO INTERFAZ...", log: "> [OK] Repositorios GitHub (@markawaii) y telemetría sincronizados." },
+  { pct: 100, status: "ACCESO CONCEDIDO // BIENVENIDO", log: "> [READY] Enlace neural completado (100%). Iniciando portafolio..." }
 ];
-const GATE_TARGET_SEQ = ["55", "1C", "FF"];
 
-let gateState = {
-  mode: "matrix", // 'matrix' | 'caesar' | 'hex'
-  failures: 0,
-  selectedSeq: [],
-  selectedIndices: [],
-  solved: false
-};
+let bootTimers = [];
+let bootCompleted = false;
+
+function clearBootTimers() {
+  bootTimers.forEach((t) => clearTimeout(t));
+  bootTimers = [];
+}
 
 function initIntrusionGate() {
   const gateOverlay = document.getElementById("intrusion-gate");
-  const reopenBtn = document.getElementById("reopen-gate-btn");
   const skipBtn = document.getElementById("skip-intrusion-btn");
-  const enterGuestBtn = document.getElementById("btn-enter-guest");
-  const autoDecryptBtn = document.getElementById("btn-auto-decrypt");
-  const requestAssistBtn = document.getElementById("btn-request-assist");
-  const clearMatrixBtn = document.getElementById("gate-clear-matrix-btn");
-  const modeTabs = document.getElementById("challenge-mode-tabs");
-  const caesarForm = document.getElementById("caesar-form");
-  const hexForm = document.getElementById("hex-form");
 
   if (!gateOverlay) return;
 
-  // Mostrar siempre el NetWatch Gateway al cargar o recargar la página (Ctrl + R)
+  // Mostrar siempre el modal de carga al entrar o recargar (Ctrl + R)
   localStorage.removeItem(GATE_STORAGE_KEY);
   openIntrusionGate();
 
-  // Botón en el Hub para volver a abrir la pantalla de intrusión cuando quiera
-  if (reopenBtn) {
-    reopenBtn.addEventListener("click", () => {
+  if (skipBtn) {
+    skipBtn.addEventListener("click", () => {
       sfx.click();
-      openIntrusionGate();
-    });
-  }
-
-  // Saltar intrusión / Entrar como invitado
-  const handleEnterAsGuest = () => {
-    sfx.click();
-    appendGateLog("> Bypassing challenge... Entering as GUEST.", "log-line-warn");
-    localStorage.setItem(GATE_STORAGE_KEY, "guest");
-    updateClearanceBadge("guest");
-    setTimeout(() => {
-      gateOverlay.classList.add("hidden");
-      const activePanel = document.querySelector(".deck-panel.active");
-      if (activePanel) animateContainerTexts(activePanel);
-    }, 220);
-  };
-
-  if (skipBtn) skipBtn.addEventListener("click", handleEnterAsGuest);
-  if (enterGuestBtn) enterGuestBtn.addEventListener("click", handleEnterAsGuest);
-
-  // Cambiar entre los 3 modos de desafío (1. Breach 3x3, 2. Caesar, 3. Hex)
-  if (modeTabs) {
-    modeTabs.addEventListener("click", (e) => {
-      const btn = e.target.closest(".mode-pill");
-      if (!btn) return;
-      sfx.click();
-      document.querySelectorAll(".mode-pill").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      gateState.mode = btn.dataset.mode;
-      document.querySelectorAll(".puzzle-view").forEach((v) => v.classList.remove("active"));
-      const activeView = document.getElementById(`puzzle-view-${gateState.mode}`);
-      if (activeView) {
-        activeView.classList.add("active");
-        animateContainerTexts(activeView, ".chain-label, .cipher-label, .cipher-sub");
-      }
-
-      appendGateLog(`> Switched intrusion module to [${gateState.mode.toUpperCase()}].`, "log-line-cyan");
-      renderGateHints();
-      renderGateMatrix();
-    });
-  }
-
-  if (clearMatrixBtn) {
-    clearMatrixBtn.addEventListener("click", () => {
-      sfx.click();
-      gateState.selectedSeq = [];
-      gateState.selectedIndices = [];
-      renderGateMatrix();
-    });
-  }
-
-  // Formulario César (TFDVSJUZ -> SECURITY)
-  if (caesarForm) {
-    caesarForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const input = document.getElementById("caesar-input");
-      if (!input) return;
-      const val = input.value.trim().toUpperCase();
-      if (!val) return;
-
-      if (val === "SECURITY") {
-        triggerGateSuccess("CAESAR TOKEN VERIFIED: SECURITY");
-      } else {
-        registerGateFailure(`Invalid token "${val}". Decryption failed.`);
-      }
-    });
-  }
-
-  // Formulario Hex (41 43 43 45 53 53 -> ACCESS)
-  if (hexForm) {
-    hexForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const input = document.getElementById("hex-input");
-      if (!input) return;
-      const val = input.value.trim().toUpperCase();
-      if (!val) return;
-
-      if (val === "ACCESS") {
-        triggerGateSuccess("HEX PACKET DECODED: ACCESS");
-      } else {
-        registerGateFailure(`Invalid ASCII translation "${val}".`);
-      }
-    });
-  }
-
-  // Botón AUTO-DECRYPT
-  if (autoDecryptBtn) {
-    autoDecryptBtn.addEventListener("click", () => {
-      sfx.click();
-      runGateAutoDecrypt();
-    });
-  }
-
-  // Botón REQUEST SYSTEM ASSIST (avanza al siguiente umbral de ayuda: 2 -> 4 -> 5)
-  if (requestAssistBtn) {
-    requestAssistBtn.addEventListener("click", () => {
-      sfx.click();
-      if (gateState.failures < 2) {
-        gateState.failures = 2;
-      } else if (gateState.failures < 4) {
-        gateState.failures = 4;
-      } else {
-        gateState.failures = 5;
-      }
-      appendGateLog("> ASSISTANCE MODULE REQUESTED BY OPERATOR.", "log-line-warn");
-      updateGateTelemetryAndHints();
-      renderGateMatrix();
+      finishBootGate();
     });
   }
 }
 
 function openIntrusionGate() {
   const gateOverlay = document.getElementById("intrusion-gate");
+  const linesEl = document.getElementById("boot-terminal-lines");
+  const pctPill = document.getElementById("boot-percent-pill");
+  const statusText = document.getElementById("boot-status-text");
+  const progressNum = document.getElementById("boot-progress-num");
+  const progressFill = document.getElementById("boot-progress-fill");
   const headerState = document.getElementById("gate-header-state");
-  const connStatus = document.getElementById("gate-conn-status");
-  const fwStatus = document.getElementById("gate-fw-status");
-  const rescueBar = document.getElementById("gate-rescue-bar");
-  const logsEl = document.getElementById("gate-system-logs");
-  const caesarInput = document.getElementById("caesar-input");
-  const hexInput = document.getElementById("hex-input");
 
-  gateState.failures = 0;
-  gateState.selectedSeq = [];
-  gateState.selectedIndices = [];
-  gateState.solved = false;
+  if (!gateOverlay) return;
 
-  if (gateOverlay) {
-    gateOverlay.classList.remove("hidden");
-    animateContainerTexts(
-      gateOverlay,
-      "#gate-title, .intrusion-subtitle, .puzzle-view.active .chain-label, .puzzle-view.active .cipher-label, .puzzle-view.active .cipher-sub"
-    );
-  }
+  clearBootTimers();
+  bootCompleted = false;
+
+  gateOverlay.classList.remove("hidden");
+  if (linesEl) linesEl.innerHTML = "";
+  if (pctPill) pctPill.textContent = "0%";
+  if (progressNum) progressNum.textContent = "0%";
+  if (progressFill) progressFill.style.width = "0%";
+  if (statusText) statusText.textContent = "INICIALIZANDO ENLACE NEURAL...";
   if (headerState) {
-    headerState.textContent = "DECRYPTION REQUIRED";
+    headerState.textContent = "SINCRONIZANDO PERFIL...";
     headerState.classList.remove("granted");
   }
-  if (connStatus) {
-    connStatus.textContent = "UNAUTHORIZED ACCESS";
-    connStatus.className = "kv-val text-red";
-  }
-  if (fwStatus) {
-    fwStatus.textContent = "FIREWALL ACTIVE";
-    fwStatus.className = "kv-val text-yellow";
-  }
-  if (rescueBar) rescueBar.classList.add("hidden");
-  if (caesarInput) caesarInput.value = "";
-  if (hexInput) hexInput.value = "";
 
-  if (logsEl) {
-    logsEl.innerHTML = "";
-  }
+  animateContainerTexts(
+    gateOverlay,
+    "#gate-title, .boot-kicker, .boot-name, .boot-role"
+  );
 
-  updateGateTelemetryAndHints();
-  renderGateMatrix();
-}
+  const stepInterval = 420;
 
-function renderGateMatrix() {
-  const gridEl = document.getElementById("gate-matrix-grid");
-  const slotsEl = document.getElementById("gate-selected-slots");
-  const targetChainEl = document.getElementById("gate-target-chain");
-  if (!gridEl) return;
+  BOOT_SEQUENCE_STEPS.forEach((step, idx) => {
+    const t = setTimeout(() => {
+      if (bootCompleted) return;
+      sfx.hover();
 
-  // Actualizar nodos de la cadena objetivo (55 -> 1C -> FF)
-  if (targetChainEl) {
-    targetChainEl.querySelectorAll(".chain-node").forEach((nodeEl, idx) => {
-      if (gateState.selectedSeq[idx] === GATE_TARGET_SEQ[idx]) {
-        nodeEl.classList.add("matched");
-      } else {
-        nodeEl.classList.remove("matched");
-      }
-    });
-  }
+      if (pctPill) pctPill.textContent = `${step.pct}%`;
+      if (progressNum) progressNum.textContent = `${step.pct}%`;
+      if (progressFill) progressFill.style.width = `${step.pct}%`;
+      if (statusText) statusText.textContent = step.status;
 
-  // Actualizar slots seleccionados
-  if (slotsEl) {
-    slotsEl.innerHTML = [0, 1, 2]
-      .map((i) => {
-        const val = gateState.selectedSeq[i];
-        return `<span class="sel-slot ${val ? "filled" : ""}">${val || "--"}</span>`;
-      })
-      .join("");
-  }
-
-  // Renderizar celdas 3x3
-  gridEl.innerHTML = "";
-  let cellIdx = 0;
-  for (let r = 0; r < 3; r++) {
-    for (let c = 0; c < 3; c++) {
-      const idx = cellIdx++;
-      const val = GATE_MATRIX_DATA[r][c];
-      const isSelected = gateState.selectedIndices.includes(idx);
-
-      // Si lleva >= 2 fallos, resaltar el nodo inicial [55] (índice 0)
-      // Si lleva >= 4 fallos, resaltar toda la ruta sugerida: (0,0)=55 -> (0,1)=1C -> (2,1)=FF
-      let isHintGlow = false;
-      if (!isSelected) {
-        if (gateState.failures >= 4 && (idx === 0 || idx === 1 || idx === 7)) {
-          isHintGlow = true;
-        } else if (gateState.failures >= 2 && idx === 0 && gateState.selectedSeq.length === 0) {
-          isHintGlow = true;
-        }
+      if (linesEl) {
+        const lineDiv = document.createElement("div");
+        lineDiv.className = `boot-log-line ${step.pct === 100 ? "ok" : ""}`;
+        lineDiv.textContent = step.log;
+        linesEl.appendChild(lineDiv);
+        typeElementText(lineDiv, step.log, { duration: 300 });
       }
 
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = `gate-cell ${isSelected ? "selected" : ""} ${isHintGlow ? "hint-glow" : ""}`;
-      btn.textContent = val;
-      btn.disabled = isSelected || gateState.solved;
-
-      btn.addEventListener("click", () => handleGateCellClick(idx, val));
-      gridEl.appendChild(btn);
-    }
-  }
-}
-
-function handleGateCellClick(idx, val) {
-  if (gateState.solved) return;
-  sfx.click();
-
-  const expectedVal = GATE_TARGET_SEQ[gateState.selectedSeq.length];
-  gateState.selectedSeq.push(val);
-  gateState.selectedIndices.push(idx);
-  renderGateMatrix();
-
-  // Verificar si el nodo presionado coincide con el paso actual de 55 -> 1C -> FF
-  if (val !== expectedVal) {
-    setTimeout(() => {
-      registerGateFailure(`Sequence corrupted at node [${val}]. Expected [${expectedVal}].`);
-      gateState.selectedSeq = [];
-      gateState.selectedIndices = [];
-      renderGateMatrix();
-    }, 180);
-    return;
-  }
-
-  appendGateLog(`> Node [${val}] locked (${gateState.selectedSeq.length}/3).`, "log-line-cyan");
-
-  if (gateState.selectedSeq.length === GATE_TARGET_SEQ.length) {
-    triggerGateSuccess();
-  }
-}
-
-function registerGateFailure(reasonText) {
-  sfx.emp();
-  gateState.failures += 1;
-
-  const shell = document.querySelector(".intrusion-shell");
-  if (shell) {
-    shell.classList.remove("fail-shake");
-    void shell.offsetWidth;
-    shell.classList.add("fail-shake");
-  }
-
-  appendGateLog(`> ACCESS DENIED: ${reasonText}`, "log-line-err");
-  appendGateLog(`> TRACE INCREASED [Level ${gateState.failures}/5]`, "log-line-warn");
-
-  updateGateTelemetryAndHints();
-  renderGateMatrix();
-}
-
-function updateGateTelemetryAndHints() {
-  const traceLabel = document.getElementById("gate-trace-label");
-  const traceFill = document.getElementById("gate-trace-fill");
-  const assistTag = document.getElementById("assist-status-tag");
-  const rescueBar = document.getElementById("gate-rescue-bar");
-
-  const f = gateState.failures;
-  const pct = Math.min(100, Math.max(8, (f / 5) * 100));
-
-  if (traceFill) {
-    traceFill.style.width = `${pct}%`;
-    traceFill.style.background = f >= 4 ? "var(--cp-red)" : f >= 2 ? "var(--cp-yellow)" : "var(--cp-cyan)";
-  }
-
-  if (traceLabel) {
-    const levelName = f === 0 ? "LOW" : f < 3 ? "MODERATE" : f < 5 ? "HIGH" : "CRITICAL";
-    traceLabel.textContent = `${levelName} (${Math.min(f, 5)} / 5)`;
-    traceLabel.className = f >= 4 ? "text-red" : f >= 2 ? "text-yellow" : "text-cyan";
-  }
-
-  if (assistTag) {
-    assistTag.textContent = f >= 4 ? "BYPASS ACTIVE" : f >= 2 ? "ASSIST ENABLED" : "STANDBY";
-  }
-
-  if (rescueBar) {
-    if (f >= 5) {
-      rescueBar.classList.remove("hidden");
-    } else {
-      rescueBar.classList.add("hidden");
-    }
-  }
-
-  renderGateHints();
-}
-
-function renderGateHints() {
-  // Las pistas visuales se aplican directamente sobre las celdas de la matriz 3x3 (hint-glow)
-}
-
-function runGateAutoDecrypt() {
-  if (gateState.solved || gateState.autoRunning) return;
-  gateState.autoRunning = true;
-
-  if (gateState.mode === "matrix") {
-    gateState.selectedSeq = [];
-    gateState.selectedIndices = [];
-    renderGateMatrix();
-
-    const targetSteps = [
-      { idx: 0, val: "55" },
-      { idx: 1, val: "1C" },
-      { idx: 7, val: "FF" }
-    ];
-
-    targetSteps.forEach((step, i) => {
-      setTimeout(() => {
-        sfx.click();
-        gateState.selectedSeq.push(step.val);
-        gateState.selectedIndices.push(step.idx);
-        renderGateMatrix();
-        if (i === targetSteps.length - 1) {
-          setTimeout(() => {
-            gateState.autoRunning = false;
-            triggerGateSuccess();
-          }, 280);
+      if (step.pct === 100) {
+        if (headerState) {
+          headerState.textContent = "ENLACE ESTABLECIDO";
+          headerState.classList.add("granted");
         }
-      }, (i + 1) * 280);
-    });
-  } else {
-    const isCaesar = gateState.mode === "caesar";
-    const inp = document.getElementById(isCaesar ? "caesar-input" : "hex-input");
-    const word = isCaesar ? "SECURITY" : "ACCESS";
-    if (inp) inp.value = "";
+        const tDone = setTimeout(() => {
+          finishBootGate();
+        }, 480);
+        bootTimers.push(tDone);
+      }
+    }, (idx + 1) * stepInterval);
 
-    Array.from(word).forEach((ch, i) => {
-      setTimeout(() => {
-        sfx.hover();
-        if (inp) inp.value += ch;
-        if (i === word.length - 1) {
-          setTimeout(() => {
-            gateState.autoRunning = false;
-            triggerGateSuccess();
-          }, 260);
-        }
-      }, (i + 1) * 110);
-    });
-  }
+    bootTimers.push(t);
+  });
 }
 
-function triggerGateSuccess() {
-  gateState.solved = true;
+function finishBootGate() {
+  if (bootCompleted) return;
+  bootCompleted = true;
+  clearBootTimers();
   sfx.success();
 
   const gateOverlay = document.getElementById("intrusion-gate");
-
   localStorage.setItem(GATE_STORAGE_KEY, "granted");
   updateClearanceBadge("granted");
 
-  setTimeout(() => {
-    if (gateOverlay) gateOverlay.classList.add("hidden");
-    const activePanel = document.querySelector(".deck-panel.active");
-    if (activePanel) animateContainerTexts(activePanel);
-  }, 500);
-}
+  if (gateOverlay) {
+    gateOverlay.classList.add("hidden");
+  }
 
-function appendGateLog(text, cls = "") {
-  const logsEl = document.getElementById("gate-system-logs");
-  if (!logsEl) return;
-  const div = document.createElement("div");
-  if (cls) div.className = cls;
-  div.textContent = text;
-  logsEl.appendChild(div);
-  logsEl.scrollTop = logsEl.scrollHeight;
+  const activePanel = document.querySelector(".deck-panel.active");
+  if (activePanel) {
+    animateContainerTexts(activePanel);
+  }
 }
 
 function updateClearanceBadge(mode) {
@@ -1866,7 +1560,7 @@ const BLACKWALL_FILES = [
     sequence: ["1C", "55", "BD", "E9"],
     title: "Expediente Clasificado // Contacto Directo & Repositorios",
     content:
-      "Operador: Ignacio Andrés Veliz Seguel (30 años · Ñuñoa, Santiago, Chile) · Email: ignaciovs.dev@gmail.com · Móvil: (+56) 999058318 · GitHub: github.com/markawaii · LinkedIn: linkedin.com/in/ingveliz."
+      "Operador: Ignacio Andrés Veliz Seguel (Santiago, Chile) · Email: ignaciovs.dev@gmail.com · GitHub: github.com/markawaii · LinkedIn: linkedin.com/in/ingveliz."
   }
 ];
 

@@ -1541,13 +1541,19 @@ body.emp-glitch {
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(7, 8, 12, 0.96);
+  background: rgba(5, 5, 7, 0.92);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+/* El Gateway inicial cubre el 100% de la pantalla en negro sólido hasta desbloquear el portafolio */
+#intrusion-gate {
+  background: #050507;
+  backdrop-filter: none;
 }
 
 .intrusion-overlay.hidden {
@@ -2139,29 +2145,111 @@ body.emp-glitch {
    AJUSTES DE SIMPLICIDAD Y LEGIBILIDAD (INTRUSION COMPACTA + ESPACIADO)
    ============================================================================ */
 .intrusion-shell {
-  max-width: 660px;
+  max-width: 620px;
 }
 
-.intrusion-single-stage {
+.boot-modal-stage {
   padding: 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
-.intrusion-intro-row {
+.boot-identity-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.boot-avatar {
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border: 1px solid var(--cp-cyan-border);
+  flex-shrink: 0;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+.boot-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--cp-cyan);
+  letter-spacing: 1.2px;
+}
+
+.boot-name {
+  font-size: 1.32rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.8px;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.boot-role {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.boot-terminal-box {
+  background: var(--bg-input);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--cp-red);
+  padding: 14px 16px;
+  height: 146px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  overflow: hidden;
+}
+
+.boot-log-line {
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.boot-log-line.cyan {
+  color: var(--cp-cyan);
+}
+
+.boot-log-line.green {
+  color: var(--cp-breach-lime);
+}
+
+.boot-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.boot-progress-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--cp-cyan);
 }
 
-.intrusion-subtitle {
-  font-size: 1.02rem;
-  color: var(--text-secondary);
-  line-height: 1.45;
-  max-width: 400px;
+.boot-progress-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.boot-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--cp-cyan);
+  box-shadow: 0 0 10px rgba(94, 234, 247, 0.45);
+  transition: width 0.08s linear;
 }
 
 .gate-trace-pill {
@@ -2171,6 +2259,8 @@ body.emp-glitch {
   background: rgba(94, 234, 247, 0.08);
   border: 1px solid var(--cp-cyan-border);
   color: var(--cp-cyan);
+  min-width: 48px;
+  text-align: center;
 }
 
 .gate-console-line {

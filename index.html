@@ -14,89 +14,47 @@
   <div class="cp-backdrop" aria-hidden="true"></div>
 
   <!-- =========================================================================
-       PANTALLA DE ACCESO: MATRIZ DE INTRUSIÓN (LIMPIA, DIRECTA Y ENFOCADA)
+       MODAL DE CARGA INICIAL: TERMINAL BOOT SEQUENCE (AUTOMÁTICO Y SIMPLE)
        ========================================================================= -->
   <div id="intrusion-gate" class="intrusion-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
-    <div class="intrusion-shell">
+    <div class="intrusion-shell boot-modal-shell">
 
       <!-- Barra superior concisa -->
       <header class="intrusion-topbar">
         <div class="intrusion-brand">
           <span class="status-dot-red"></span>
-          <span id="gate-title">NETWATCH GATEWAY // CONTROL DE ACCESO</span>
+          <span id="gate-title">NETWATCH GATEWAY // INICIALIZANDO TERMINAL</span>
         </div>
         <div class="intrusion-topbar-right">
-          <span id="gate-trace-label" class="gate-trace-pill">TRACE: 0 / 5</span>
+          <span id="boot-percent-pill" class="gate-trace-pill">0%</span>
           <button type="button" id="skip-intrusion-btn" class="gate-skip-btn">
             SALTAR [ENTRAR ↗]
           </button>
         </div>
       </header>
 
-      <div class="intrusion-single-stage">
-        <!-- Selector sutil por si quiere alternar entre Matriz, César o Hex -->
-        <div class="intrusion-intro-row">
-          <p class="intrusion-subtitle">
-            Conexión entrante detectada. Completa la secuencia de acceso para desbloquear el portafolio.
-          </p>
-          <div class="challenge-mode-tabs" id="challenge-mode-tabs">
-            <button type="button" class="mode-pill active" data-mode="matrix">BREACH 3×3</button>
-            <button type="button" class="mode-pill" data-mode="caesar">CÉSAR</button>
-            <button type="button" class="mode-pill" data-mode="hex">HEX</button>
+      <div class="boot-modal-stage">
+        <!-- Identidad del portafolio mientras carga -->
+        <div class="boot-identity-row">
+          <img src="https://avatars.githubusercontent.com/u/101842633?v=4" alt="Ignacio Veliz" class="boot-avatar" />
+          <div>
+            <div class="boot-kicker">CREDENCIALES VERIFICADAS // ACCESO AUTOMÁTICO</div>
+            <div class="boot-name">IGNACIO ANDRÉS VELIZ SEGUEL</div>
+            <div class="boot-role">Analista Desarrollador · Full-Stack Developer</div>
           </div>
         </div>
 
-        <!-- MODO 1: SECUENCIA BREACH PROTOCOL 3x3 (POR DEFECTO) -->
-        <div id="puzzle-view-matrix" class="puzzle-view active">
-          <div class="target-chain-box">
-            <span class="chain-label">OBJETIVO — SELECCIONA EN ORDEN:</span>
-            <div class="target-chain-nodes" id="gate-target-chain">
-              <span class="chain-node" data-step="0">55</span>
-              <span class="chain-arrow">→</span>
-              <span class="chain-node" data-step="1">1C</span>
-              <span class="chain-arrow">→</span>
-              <span class="chain-node" data-step="2">FF</span>
-            </div>
+        <!-- Consola de arranque con altura fija (cero saltos) -->
+        <div id="boot-terminal-lines" class="boot-terminal-box" aria-live="polite"></div>
+
+        <!-- Barra de progreso automática -->
+        <div class="boot-progress-wrap">
+          <div class="boot-progress-meta">
+            <span id="boot-status-text">CARGANDO MÓDULOS DEL PORTAFOLIO...</span>
+            <span id="boot-progress-num">0%</span>
           </div>
-
-          <div id="gate-matrix-grid" class="gate-matrix-3x3" aria-label="Matriz de Intrusión 3x3"></div>
-        </div>
-
-        <!-- MODO 2: CÉSAR SIMPLE (TFDVSJUZ -> SECURITY) -->
-        <div id="puzzle-view-caesar" class="puzzle-view">
-          <div class="cipher-display-box">
-            <div class="cipher-label">TOKEN ENCRIPTADO (CIFRADO CÉSAR)</div>
-            <div class="cipher-code">TFDVSJUZ</div>
-            <div class="cipher-sub">Pista: Retrocede cada letra 1 posición en el abecedario</div>
-          </div>
-          <form id="caesar-form" class="cipher-input-row" autocomplete="off">
-            <input type="text" id="caesar-input" name="cp_cipher_c" class="cipher-input" placeholder="ESCRIBE LA RESPUESTA..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly');" />
-            <button type="submit" class="cyber-btn">DESBLOQUEAR</button>
-          </form>
-        </div>
-
-        <!-- MODO 3: HEX -> TEXTO (41 43 43 45 53 53 -> ACCESS) -->
-        <div id="puzzle-view-hex" class="puzzle-view">
-          <div class="cipher-display-box">
-            <div class="cipher-label">PAQUETE HEXADECIMAL CAPTURADO</div>
-            <div class="cipher-code">41 43 43 45 53 53</div>
-            <div class="cipher-sub">Convierte los bytes hexadecimales a texto ASCII</div>
-          </div>
-          <form id="hex-form" class="cipher-input-row" autocomplete="off">
-            <input type="text" id="hex-input" name="cp_cipher_h" class="cipher-input" placeholder="ESCRIBE EL TEXTO..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly');" />
-            <button type="submit" class="cyber-btn">DESBLOQUEAR</button>
-          </form>
-        </div>
-
-        <!-- Pie con ayuda y Auto-Decrypt -->
-        <div class="intrusion-footer-actions">
-          <button type="button" id="btn-request-assist" class="cp-util-btn">
-            SOLICITAR PISTA (ASSIST)
-          </button>
-          <div id="gate-rescue-bar" class="rescue-inline">
-            <button type="button" id="btn-auto-decrypt" class="cyber-btn btn-cyan">
-              ⚡ AUTO-DESENCRIPTAR
-            </button>
+          <div class="boot-progress-track">
+            <div id="boot-progress-fill" class="boot-progress-fill"></div>
           </div>
         </div>
       </div>
@@ -149,9 +107,6 @@
 
       <!-- Controles mínimos a la derecha -->
       <div class="hub-controls-right">
-        <button id="reopen-gate-btn" class="cp-util-btn" title="Ver desafío de intrusión inicial">
-          INTRUSION
-        </button>
         <button id="sfx-toggle" class="cp-util-btn" title="Activar/Desactivar sonidos">
           <span id="sfx-label">SFX: ON</span>
         </button>
@@ -191,7 +146,7 @@
             <div class="scanner-data-table">
               <div class="data-row">
                 <span class="data-key">UBICACIÓN</span>
-                <span class="data-val" id="hud-location">Ñuñoa, Santiago, Chile</span>
+                <span class="data-val" id="hud-location">Santiago, Chile</span>
               </div>
               <div class="data-row">
                 <span class="data-key">EXPERIENCIA</span>
