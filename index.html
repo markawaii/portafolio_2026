@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IGNACIO VELIZ // FULL-STACK DEVELOPER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Retícula técnica de fondo estilo Hub Menu de Cyberpunk 2077 -->
+  <div class="cp-backdrop" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       PANTALLA DE ACCESO: MATRIZ DE INTRUSIÓN (LIMPIA, DIRECTA Y ENFOCADA)
+       ========================================================================= -->
+  <div id="intrusion-gate" class="intrusion-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="intrusion-shell">
+
+      <!-- Barra superior concisa -->
+      <header class="intrusion-topbar">
+        <div class="intrusion-brand">
+          <span class="status-dot-red"></span>
+          <span id="gate-title">NETWATCH GATEWAY // CONTROL DE ACCESO</span>
+        </div>
+        <div class="intrusion-topbar-right">
+          <span id="gate-trace-label" class="gate-trace-pill">TRACE: 0 / 5</span>
+          <button type="button" id="skip-intrusion-btn" class="gate-skip-btn">
+            SALTAR [ENTRAR ↗]
+          </button>
+        </div>
+      </header>
+
+      <div class="intrusion-single-stage">
+        <!-- Selector sutil por si quiere alternar entre Matriz, César o Hex -->
+        <div class="intrusion-intro-row">
+          <p class="intrusion-subtitle">
+            Conexión entrante detectada. Completa la secuencia de acceso para desbloquear el portafolio.
+          </p>
+          <div class="challenge-mode-tabs" id="challenge-mode-tabs">
+            <button type="button" class="mode-pill active" data-mode="matrix">BREACH 3×3</button>
+            <button type="button" class="mode-pill" data-mode="caesar">CÉSAR</button>
+            <button type="button" class="mode-pill" data-mode="hex">HEX</button>
+          </div>
+        </div>
+
+        <!-- MODO 1: SECUENCIA BREACH PROTOCOL 3x3 (POR DEFECTO) -->
+        <div id="puzzle-view-matrix" class="puzzle-view active">
+          <div class="target-chain-box">
+            <span class="chain-label">OBJETIVO — SELECCIONA EN ORDEN:</span>
+            <div class="target-chain-nodes" id="gate-target-chain">
+              <span class="chain-node" data-step="0">55</span>
+              <span class="chain-arrow">→</span>
+              <span class="chain-node" data-step="1">1C</span>
+              <span class="chain-arrow">→</span>
+              <span class="chain-node" data-step="2">FF</span>
+            </div>
+          </div>
+
+          <div id="gate-matrix-grid" class="gate-matrix-3x3" aria-label="Matriz de Intrusión 3x3"></div>
+        </div>
+
+        <!-- MODO 2: CÉSAR SIMPLE (TFDVSJUZ -> SECURITY) -->
+        <div id="puzzle-view-caesar" class="puzzle-view">
+          <div class="cipher-display-box">
+            <div class="cipher-label">TOKEN ENCRIPTADO (CIFRADO CÉSAR)</div>
+            <div class="cipher-code">TFDVSJUZ</div>
+            <div class="cipher-sub">Pista: Retrocede cada letra 1 posición en el abecedario</div>
+          </div>
+          <form id="caesar-form" class="cipher-input-row" autocomplete="off">
+            <input type="text" id="caesar-input" name="cp_cipher_c" class="cipher-input" placeholder="ESCRIBE LA RESPUESTA..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly');" />
+            <button type="submit" class="cyber-btn">DESBLOQUEAR</button>
+          </form>
+        </div>
+
+        <!-- MODO 3: HEX -> TEXTO (41 43 43 45 53 53 -> ACCESS) -->
+        <div id="puzzle-view-hex" class="puzzle-view">
+          <div class="cipher-display-box">
+            <div class="cipher-label">PAQUETE HEXADECIMAL CAPTURADO</div>
+            <div class="cipher-code">41 43 43 45 53 53</div>
+            <div class="cipher-sub">Convierte los bytes hexadecimales a texto ASCII</div>
+          </div>
+          <form id="hex-form" class="cipher-input-row" autocomplete="off">
+            <input type="text" id="hex-input" name="cp_cipher_h" class="cipher-input" placeholder="ESCRIBE EL TEXTO..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly');" />
+            <button type="submit" class="cyber-btn">DESBLOQUEAR</button>
+          </form>
+        </div>
+
+        <!-- Pie con ayuda y Auto-Decrypt -->
+        <div class="intrusion-footer-actions">
+          <button type="button" id="btn-request-assist" class="cp-util-btn">
+            SOLICITAR PISTA (ASSIST)
+          </button>
+          <div id="gate-rescue-bar" class="rescue-inline">
+            <button type="button" id="btn-auto-decrypt" class="cyber-btn btn-cyan">
+              ⚡ AUTO-DESENCRIPTAR
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CONTENEDOR PRINCIPAL DEL PORTAFOLIO (HUB LIMPIO DE IGNACIO VELIZ)
+       ========================================================================= -->
+  <div class="hud-container">
+
+    <!-- ================= BARRA SUPERIOR ÚNICA Y LIMPIA ================= -->
+    <header class="cp-hub-header">
+      <div class="hub-operator-id">
+        <img src="https://avatars.githubusercontent.com/u/101842633?v=4" alt="Ignacio Veliz" class="hub-mini-avatar" />
+        <div>
+          <div class="op-name">IGNACIO VELIZ</div>
+          <div class="op-role">FULL-STACK DEVELOPER</div>
+        </div>
+      </div>
+
+      <!-- Pestañas del Hub -->
+      <nav class="cp-hub-nav" id="daemon-tabs" aria-label="Menú Principal">
+        <button class="daemon-tab active" data-tab="dossier">
+          <span class="tab-code">01</span>
+          <span class="daemon-name">PERFIL</span>
+        </button>
+        <button class="daemon-tab" data-tab="gigs">
+          <span class="tab-code">02</span>
+          <span class="daemon-name">PROYECTOS</span>
+        </button>
+        <button class="daemon-tab" data-tab="cyberware">
+          <span class="tab-code">03</span>
+          <span class="daemon-name">STACK</span>
+        </button>
+        <button class="daemon-tab" data-tab="breach">
+          <span class="tab-code">04</span>
+          <span class="daemon-name">TOKEN GEN</span>
+        </button>
+        <button class="daemon-tab" data-tab="blackwall">
+          <span class="tab-code">05</span>
+          <span class="daemon-name">/blackwall/</span>
+        </button>
+        <button class="daemon-tab" data-tab="holocall">
+          <span class="tab-code">06</span>
+          <span class="daemon-name">CONTACTO</span>
+        </button>
+      </nav>
+
+      <!-- Controles mínimos a la derecha -->
+      <div class="hub-controls-right">
+        <button id="reopen-gate-btn" class="cp-util-btn" title="Ver desafío de intrusión inicial">
+          INTRUSION
+        </button>
+        <button id="sfx-toggle" class="cp-util-btn" title="Activar/Desactivar sonidos">
+          <span id="sfx-label">SFX: ON</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= PANTALLA PRINCIPAL ================= -->
+    <main class="cp-terminal-frame">
+
+      <!-- ==================== 01: PERFIL ==================== -->
+      <article id="tab-dossier" class="deck-panel active">
+        <div class="cp-section-header">
+          <div>
+            <div class="cp-kicker">01 // EXPEDIENTE PROFESIONAL</div>
+            <h1 class="cp-title">IGNACIO ANDRÉS VELIZ SEGUEL</h1>
+          </div>
+          <div class="cp-status-tag">
+            <span class="status-led"></span> ANALISTA DESARROLLADOR // FULL-STACK
+          </div>
+        </div>
+
+        <div class="dossier-grid">
+          <!-- Columna Izquierda: Tarjeta de Identidad Limpia -->
+          <div class="cp-box operator-card">
+            <div class="operator-identity-row">
+              <div class="reticle-frame">
+                <div class="scan-beam"></div>
+                <img src="https://avatars.githubusercontent.com/u/101842633?v=4" alt="Ignacio Veliz Seguel" class="operator-avatar" />
+              </div>
+              <div>
+                <div class="op-card-label">PERFIL VERIFICADO</div>
+                <div class="op-card-name" id="profile-name">IGNACIO VELIZ</div>
+                <div class="op-card-sub" id="profile-role">Analista Desarrollador</div>
+              </div>
+            </div>
+
+            <div class="scanner-data-table">
+              <div class="data-row">
+                <span class="data-key">UBICACIÓN</span>
+                <span class="data-val" id="hud-location">Ñuñoa, Santiago, Chile</span>
+              </div>
+              <div class="data-row">
+                <span class="data-key">EXPERIENCIA</span>
+                <span class="data-val val-cyan" id="profile-affiliation">3+ Años // IDEA UNO</span>
+              </div>
+              <div class="data-row">
+                <span class="data-key">ESPECIALIDAD</span>
+                <span class="data-val" id="profile-specialty">Laravel · React · AWS · Docker</span>
+              </div>
+              <div class="data-row">
+                <span class="data-key">FORMACIÓN</span>
+                <span class="data-val">Ing. en Informática (DUOC UC)</span>
+              </div>
+            </div>
+
+            <div class="operator-actions">
+              <button class="cyber-btn full-width" data-goto-tab="gigs">VER PROYECTOS &amp; SISTEMAS →</button>
+              <a href="./Ignacio_Veliz_CV.pdf" target="_blank" rel="noopener" class="cyber-btn btn-cyan full-width" style="text-align: center; text-decoration: none;">
+                DESCARGAR CV (PDF) [↗]
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Sobre mí + Experiencia -->
+          <div class="dossier-right">
+            <div class="cp-box">
+              <div class="cp-box-header">
+                <span>RESUMEN PROFESIONAL</span>
+              </div>
+              <div class="cp-box-body">
+                <div id="bio-paragraphs" class="shard-body"></div>
+              </div>
+            </div>
+
+            <div class="cp-box">
+              <div class="cp-box-header">
+                <span>EXPERIENCIA LABORAL &amp; EDUCACIÓN</span>
+              </div>
+              <div class="cp-box-body">
+                <div id="experience-timeline" class="cyber-timeline"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ==================== 02: PROYECTOS ==================== -->
+      <article id="tab-gigs" class="deck-panel">
+        <div class="cp-section-header">
+          <div>
+            <div class="cp-kicker">02 // REPOSITORIOS &amp; SISTEMAS</div>
+            <h2 class="cp-title">PROYECTOS &amp; EXPERIENCIA TÉCNICA</h2>
+          </div>
+          <div class="filter-pills" id="project-filters">
+            <button class="filter-pill active" data-filter="all">TODOS</button>
+            <button class="filter-pill" data-filter="webapp">FULL-STACK / LARAVEL</button>
+            <button class="filter-pill" data-filter="systems">CLOUD / DEVOPS</button>
+            <button class="filter-pill" data-filter="ui">INTERFACES UI</button>
+          </div>
+        </div>
+
+        <div id="projects-grid" class="projects-grid"></div>
+      </article>
+
+      <!-- ==================== 03: TECH STACK ==================== -->
+      <article id="tab-cyberware" class="deck-panel">
+        <div class="cp-section-header">
+          <div>
+            <div class="cp-kicker">03 // CAPACIDADES TÉCNICAS</div>
+            <h2 class="cp-title">STACK TECNOLÓGICO</h2>
+          </div>
+        </div>
+
+        <div id="cyberware-grid" class="cyberware-categories"></div>
+      </article>
+
+      <!-- ==================== 04: BREACH PROTOCOL (TOKEN GENERATOR) ==================== -->
+      <article id="tab-breach" class="deck-panel">
+        <div class="cp-section-header">
+          <div>
+            <div class="cp-kicker">INTRUSION SYSTEM // ICEBREAKER v2.4</div>
+            <h2 class="cp-title">PROTOCOLO DE INVASIÓN</h2>
+          </div>
+          <div class="breach-top-actions">
+            <button id="toggle-auto-breach-btn" class="cp-util-btn">
+              AUTO-ROTACIÓN: <span id="token-countdown">15.0s</span>
+            </button>
+            <button id="reset-breach-btn" class="cyber-btn">↻ NUEVO TOKEN</button>
+          </div>
+        </div>
+
+        <div class="breach-clean-layout">
+          <!-- Columna Izquierda: Algoritmo en vivo recorriendo la Matriz 5x5 al azar -->
+          <div class="cp-box breach-matrix-panel">
+            <div class="cp-box-header">
+              <span>MATRIZ HEXADECIMAL</span>
+            </div>
+
+            <div class="cp-box-body matrix-panel-body">
+              <div id="hex-matrix" class="hex-matrix" aria-label="Matriz de Código 5x5"></div>
+
+              <div class="buffer-compact-row">
+                <div class="buffer-compact-top">
+                  <span>BÚFER DE SECUENCIA</span>
+                  <span id="buffer-status">0 / 6</span>
+                </div>
+                <div id="buffer-slots" class="buffer-slots"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Token Generado con el mismo estilo Cyberpunk Terminal (.cp-box) del landing -->
+          <div class="cp-box breach-token-panel">
+            <div class="cp-box-header">
+              <span>TOKEN CRIPTOGRÁFICO GENERADO</span>
+              <span id="token-status-badge" class="cp-token-status">SCANNING...</span>
+            </div>
+
+            <div class="cp-box-body token-panel-body">
+              <!-- Barra superior de configuración de longitud (angular, estilo terminal) -->
+              <div class="cp-token-toolbar">
+                <div class="cp-toolbar-info">
+                  <span class="cp-toolbar-label">ALGORITMO // SECUENCIA ÚNICA</span>
+                  <span class="cp-toolbar-sub">Sin caracteres ambiguos · Seguro para URI y Terminal</span>
+                </div>
+
+                <div class="cp-length-control">
+                  <span class="cp-len-label">LONGITUD</span>
+                  <div class="cp-stepper">
+                    <button type="button" id="len-minus-btn" class="cp-step-btn" aria-label="Disminuir longitud">−</button>
+                    <span id="token-length-val" class="cp-step-val">24</span>
+                    <button type="button" id="len-plus-btn" class="cp-step-btn" aria-label="Aumentar longitud">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Caja del Token + Botón Angular COPY -->
+              <div class="cp-token-row">
+                <div class="cp-token-display">
+                  <code id="breach-token-output" class="ref-token-code">b7ZyVKVZaG-U.qPX_ScSX_Q8</code>
+                </div>
+                <button id="copy-token-btn" type="button" class="cp-copy-btn" title="Copiar Token">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                    <rect x="9" y="9" width="13" height="13"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span id="copy-token-label">COPIAR</span>
+                </button>
+              </div>
+
+              <!-- Barra de Fuerza y Bits de Entropía (rectangular, estilo terminal) -->
+              <div class="cp-entropy-block">
+                <div class="cp-entropy-meta">
+                  <span id="strength-label" class="cp-strength-txt">STRENGTH: EXCELLENT</span>
+                  <span id="entropy-bits-label" class="cp-bits-txt">142 BITS OF ENTROPY</span>
+                </div>
+                <div class="cp-bar-track">
+                  <div id="strength-fill" class="cp-bar-fill"></div>
+                </div>
+              </div>
+
+              <!-- Temporizador de rotación automática del token -->
+              <div class="rotation-footer">
+                <div class="token-timer-meta">
+                  <span>PRÓXIMO TOKEN AUTOMÁTICO</span>
+                  <span>ROTACIÓN CADA 15 SEGUNDOS</span>
+                </div>
+                <div class="token-timer-track">
+                  <div id="token-timer-bar" class="token-timer-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ==================== 05: /blackwall/ (ARCHIVOS OPCIONALES) ==================== -->
+      <article id="tab-blackwall" class="deck-panel">
+        <div class="cp-section-header">
+          <div>
+            <div class="cp-kicker">05 // DIRECTORIO SECRETO OPCIONAL</div>
+            <h2 class="cp-title">ARCHIVOS ENCRIPTADOS (/blackwall/)</h2>
+          </div>
+          <div class="cp-status-tag" id="blackwall-status-tag">
+            3 ARCHIVOS BLOQUEADOS
+          </div>
+        </div>
+
+        <div id="blackwall-grid" class="projects-grid"></div>
+      </article>
+
+      <!-- ==================== 06: CONTACTO ==================== -->
+      <article id="tab-holocall" class="deck-panel">
+        <div class="cp-section-header">
+          <div>
+            <div class="cp-kicker">06 // COMUNICACIONES</div>
+            <h2 class="cp-title">CONTACTO Y ENLACES</h2>
+          </div>
+        </div>
+
+        <div class="holocall-layout">
+          <div class="cp-box">
+            <div class="cp-box-header">
+              <span>ENLACES DIRECTOS</span>
+            </div>
+            <div class="cp-box-body">
+              <div id="contact-links" class="channels-list"></div>
+            </div>
+          </div>
+
+          <form id="holocall-form" class="cp-box comms-form" autocomplete="off">
+            <div class="cp-box-header">
+              <span>ENVIAR MENSAJE</span>
+            </div>
+            <div class="cp-box-body form-stack">
+              <div class="form-group">
+                <label for="sender-handle">NOMBRE O EMPRESA</label>
+                <input type="text" id="sender-handle" name="cp_field_sender_x" required placeholder="Tu nombre o empresa" autocomplete="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly');" />
+              </div>
+              <div class="form-group">
+                <label for="sender-email">EMAIL</label>
+                <input type="email" id="sender-email" name="cp_field_contact_y" required placeholder="nombre@empresa.com" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly');" />
+              </div>
+              <div class="form-group">
+                <label for="sender-msg">MENSAJE</label>
+                <textarea id="sender-msg" name="cp_field_payload_z" rows="4" required placeholder="Escribe tu mensaje aquí..." autocomplete="off" spellcheck="false"></textarea>
+              </div>
+              <button type="submit" class="cyber-btn full-width">
+                ENVIAR MENSAJE
+              </button>
+              <div id="form-feedback" class="form-feedback hidden"></div>
+            </div>
+          </form>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- ================= PIE DE PÁGINA DISCRETO ================= -->
+    <footer class="cp-footer-bar">
+      <div class="footer-shortcuts">
+        <span class="shortcut-item"><kbd>1</kbd>–<kbd>6</kbd> Secciones</span>
+        <span class="shortcut-item"><kbd>R</kbd> Nuevo Token</span>
+        <span class="shortcut-item"><kbd>M</kbd> Audio</span>
+      </div>
+      <div class="footer-status">
+        Ignacio Veliz © 2026
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- =========================================================================
+       MODAL DE DESENCRIPTACIÓN BLACKWALL: MATRIZ HEXADECIMAL (FILA ↔ COLUMNA)
+       ========================================================================= -->
+  <div id="blackwall-breach-modal" class="intrusion-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="bw-modal-title">
+    <div class="intrusion-shell bw-modal-shell">
+
+      <!-- Cabecera del Modal -->
+      <header class="intrusion-topbar">
+        <div class="intrusion-brand">
+          <span class="status-dot-red"></span>
+          <span id="bw-modal-title">BREACH PROTOCOL // DESENCRIPTACIÓN DE ARCHIVO</span>
+        </div>
+        <div class="intrusion-topbar-right">
+          <span id="bw-modal-axis-pill" class="gate-trace-pill">PASO 1: SELECCIONA EN FILA 1</span>
+          <button type="button" id="bw-modal-close-btn" class="gate-skip-btn">
+            CERRAR [ESC ✕]
+          </button>
+        </div>
+      </header>
+
+      <!-- Cuerpo del Modal: Izquierda (Matriz Hexadecimal con cruce de Filas y Columnas) | Derecha (Pasos y Búfer) -->
+      <div class="bw-modal-grid">
+
+        <!-- Izquierda: Matriz Hexadecimal 5x5 con resaltado de Fila y Columna estilo Cyberpunk 2077 -->
+        <div class="cp-box">
+          <div class="cp-box-header">
+            <span>MATRIZ HEXADECIMAL</span>
+          </div>
+          <div class="cp-box-body bw-matrix-wrap">
+            <div id="bw-modal-matrix" class="bw-interactive-matrix" aria-label="Matriz Hexadecimal Interactiva"></div>
+          </div>
+        </div>
+
+        <!-- Derecha: Búfer + Serie de Pasos necesarios para desbloquear -->
+        <div class="bw-modal-right">
+          <!-- Búfer de Entrada -->
+          <div class="cp-box">
+            <div class="cp-box-header">
+              <span>BÚFER DE MEMORIA</span>
+              <span id="bw-modal-buffer-count">0 / 5</span>
+            </div>
+            <div class="cp-box-body">
+              <div id="bw-modal-buffer-slots" class="bw-modal-buffer"></div>
+            </div>
+          </div>
+
+          <!-- Serie de Pasos / Secuencia Requerida -->
+          <div class="cp-box">
+            <div class="cp-box-header">
+              <span>SECUENCIA REQUERIDA</span>
+              <span id="bw-modal-file-code">BW-01</span>
+            </div>
+            <div class="cp-box-body bw-steps-body">
+              <div id="bw-modal-sequence-nodes" class="bw-seq-nodes"></div>
+
+              <div id="bw-modal-step-guide" class="bw-step-guide">
+                <!-- Lista de pasos generada dinámicamente -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones de acción del modal en una sola fila alineada -->
+          <div class="bw-modal-actions">
+            <button type="button" id="bw-modal-reset-btn" class="cp-util-btn">
+              ↻ REINICIAR
+            </button>
+            <button type="button" id="bw-modal-hint-btn" class="cp-util-btn">
+              VER RUTA (PISTA)
+            </button>
+            <button type="button" id="bw-modal-autodecrypt-btn" class="cyber-btn btn-cyan">
+              ⚡ AUTO-DESENCRIPTAR
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
