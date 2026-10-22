@@ -6,20 +6,36 @@
  * personales, proyectos, habilidades y enlaces de contacto.
  */
 
+let currentLanguage = localStorage.getItem("portfolio-language") || "es";
+
+const PROJECT_EN = {
+  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "Self-hosted platform I designed and built to manage and gamify Twitch communities through a multichannel bot, virtual economy, games, OBS overlays, WebSockets and local text-to-speech.", impact: "5 specialized components: API, bot, worker, frontend and text-to-speech." },
+  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "Desktop Git client I designed and built in Spanish with staging, history, remote synchronization, secure multi-account management and visual block-based conflict resolution.", impact: "" },
+  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "Lead developer of an enterprise platform for managing templates and automating document generation, validation and processing.", impact: "Unified document generation, validation and processing in one workflow." },
+  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "Maintenance and evolution of a legacy enterprise middleware that centralizes integrations and information flows between internal systems.", impact: "Centralizes contracts, HR processes and data exchange between systems." },
+  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "Technical lead and principal developer for a configurable workflow engine, coordinating frontend and backend work planning and delivery.", impact: "Coordinated leadership across 2 technical disciplines: frontend and backend." },
+  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "Principal developer modernizing a legacy hiring system through CI/CD, digital-signature and workflow integrations, technical-debt reduction and deployment stabilization.", impact: "3 modernized areas: CI/CD, digital signatures and workflow engine." },
+  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "Principal developer of a centralized platform for shared company services, including a news API and integrations with Instagram, LinkedIn and Google Chat.", impact: "4 centralized channels: news, Instagram, LinkedIn and Google Chat." }
+};
+
 const PORTFOLIO_DATA = {
   profile: {
     name: "IGNACIO VELIZ",
     role: "Analista Desarrollador · Full-Stack Developer",
     level: 50,
     streetCred: 50,
-    affiliation: "3+ Años // IDEA UNO",
+    affiliation: "4+ Años // IDEA UNO",
     specialty: "Laravel · React · AWS · Docker",
     bounty: "APIS RESTFUL, CLOUD & CI/CD",
     location: "Santiago, Chile",
     totalRam: 16,
     bio: [
-      "Con 3 años de experiencia en desarrollo de software, especializado en Laravel y con proyectos realizados en Flask y .NET. Domino tecnologías como Laravel, React, AWS Lambda, Serverless Framework, JavaScript y Docker.",
+      "Con más de 4 años de experiencia en desarrollo de software, especializado en Laravel y con proyectos realizados en Flask y .NET. Domino tecnologías como Laravel, React, AWS Lambda, Serverless Framework, JavaScript y Docker.",
       "He liderado y participado en proyectos reales internos y externos en IDEA UNO, fortaleciendo mis habilidades técnicas, de liderazgo y trabajo colaborativo con Jira y Confluence. Actualmente finalizo mis estudios de Ingeniería en Informática en DUOC UC (modalidad vespertina), complementando formación académica con experiencia práctica en producción."
+    ],
+    bioEn: [
+      "Full-stack developer with more than 4 years of professional experience, specializing in Laravel and with production work in Flask and .NET. My stack includes React, AWS Lambda, Serverless Framework, JavaScript and Docker.",
+      "I have led and contributed to real internal and client projects at IDEA UNO, combining hands-on engineering with planning, task assignment and collaboration through Jira and Confluence. I am currently completing an evening degree in Computer Engineering at DUOC UC."
     ],
     attributes: [
       { name: "DESARROLLO BACKEND (Laravel / Flask / .NET)", score: "20 / 20", percent: 100 },
@@ -45,44 +61,123 @@ const PORTFOLIO_DATA = {
 
   projects: [
     {
-      id: "SYS-01",
-      title: "ECOSISTEMA EMPRESARIAL & APIS RESTFUL",
-      category: "webapp",
-      threat: "PRODUCCIÓN // LARAVEL & REACT",
-      desc: "Liderazgo y desarrollo de plataformas web y servicios API RESTful internos y externos en IDEA UNO, integrando seguridad con JWT/OAuth2, actualización de versiones y vistas responsivas.",
-      stack: ["PHP", "Laravel", "React", "JavaScript", "JWT / OAuth2", "Bootstrap"],
-      demoUrl: "https://github.com/markawaii",
-      repoUrl: "https://github.com/markawaii"
+      id: "OWN-01",
+      period: { start: "2026-03-17", end: "actual", label: "MAR 2026 — ACTUAL" },
+      impact: "5 componentes especializados: API, bot, worker, frontend y síntesis de voz.",
+      title: "STREAMIXOR // PLATAFORMA PARA COMUNIDADES DE TWITCH",
+      category: "personal",
+      threat: "PROYECTO PROPIO // FULL-STACK & REAL-TIME",
+      desc: "Proyecto diseñado y desarrollado íntegramente por mí: plataforma autohospedada para administrar y gamificar comunidades de Twitch mediante bot multicanal, economía virtual, juegos, overlays para OBS, WebSockets y síntesis de voz local.",
+      stack: ["FastAPI", "React", "TypeScript", "MariaDB", "Redis", "Docker", "Twitch API", "Piper TTS"],
+      highlights: [
+        "Arquitectura separada en API, bot, worker, frontend y servicio de síntesis de voz.",
+        "Eventos en tiempo real para Twitch y OBS mediante WebSockets y Redis Streams.",
+        "CI/CD, pruebas automatizadas, healthchecks, respaldos y recuperación productiva."
+      ],
+      demoUrl: "",
+      repoUrl: "https://github.com/markawaii/cl_streamixor_app"
     },
     {
-      id: "SYS-02",
-      title: "ARQUITECTURA CLOUD SERVERLESS & MICROSERVICIOS",
-      category: "systems",
-      threat: "AWS // PYTHON & .NET",
-      desc: "Diseño e implementación de funciones y servicios backend escalables desplegados sobre AWS Lambda mediante Serverless Framework, combinando ecosistemas en Python (Flask) y C# (.NET).",
-      stack: ["Python", "Flask", "C#", ".NET", "AWS Lambda", "Serverless Framework"],
-      demoUrl: "https://github.com/markawaii",
-      repoUrl: "https://github.com/markawaii"
+      id: "OWN-02",
+      period: { start: "2026-10-14", end: "actual", label: "OCT 2026 — ACTUAL" },
+      impact: "",
+      title: "RAMIFICA // CLIENTE GIT DE ESCRITORIO",
+      category: "personal",
+      threat: "PROYECTO PROPIO // TAURI & RUST",
+      desc: "Proyecto diseñado y desarrollado íntegramente por mí: cliente Git de escritorio en español con staging, historial, sincronización remota, gestión segura de múltiples cuentas y resolución visual de conflictos por bloques.",
+      stack: ["Tauri", "Rust", "TypeScript", "Git CLI", "Keyring nativo", "GitHub Actions"],
+      highlights: [
+        "Operaciones Git reales con staging, commits, fetch, pull seguro y push.",
+        "Editor visual para resolver conflictos de merge, rebase, cherry-pick y revert.",
+        "Credenciales protegidas por el llavero del sistema y builds multiplataforma."
+      ],
+      demoUrl: "",
+      repoUrl: "https://github.com/markawaii/cl_ramifica_app"
     },
     {
-      id: "SYS-03",
-      title: "INFRAESTRUCTURA DOCKER & PIPELINES CI/CD",
-      category: "systems",
-      threat: "DEVOPS // PRODUCCIÓN & QA",
-      desc: "Configuración, contenerización y levantamiento de ambientes productivos y de aseguramiento de calidad (QA) con Docker, automatizando despliegues con Bitbucket Pipelines y GitHub Actions.",
-      stack: ["Docker", "CI/CD", "GitHub Actions", "Bitbucket Pipelines", "AWS", "Postman"],
-      demoUrl: "https://github.com/markawaii",
-      repoUrl: "https://github.com/markawaii"
+      id: "CORP-01",
+      period: { start: "2024-10-01", end: "actual", label: "OCT 2024 — ACTUAL" },
+      impact: "Unificó generación, validación y procesamiento documental en un mismo flujo.",
+      title: "ARCOPRIME // GESTOR DE PLANTILLAS",
+      category: "enterprise",
+      threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
+      desc: "Desarrollador principal de una plataforma empresarial para administrar plantillas y automatizar la generación, validación y procesamiento de documentos. Responsable de la evolución funcional, lógica backend e integración con servicios relacionados.",
+      stack: ["PHP", "Laravel", "JavaScript", "MySQL", "Docker", "Procesamiento documental"],
+      highlights: [
+        "Diseño y evolución del flujo de administración de plantillas reutilizables.",
+        "Validación de datos, generación documental y procesamiento asíncrono.",
+        "Integración con almacenamiento y servicios empresariales relacionados."
+      ],
+      demoUrl: "",
+      repoUrl: ""
     },
     {
-      id: "SYS-04",
-      title: "CYBERPUNK TERMINAL // INTERACTIVE PORTFOLIO",
-      category: "ui",
-      threat: "FRONTEND // UI ENGINE",
-      desc: "Portafolio interactivo inspirado en las terminales de Cyberpunk 2077 con Matriz Hexadecimal Breach Protocol (cruce de filas y columnas), sintetizador WebAudio API y generador criptográfico de tokens.",
-      stack: ["JavaScript", "HTML5", "CSS3 Clip-Path", "Web Audio API"],
-      demoUrl: "https://github.com/markawaii",
-      repoUrl: "https://github.com/markawaii"
+      id: "CORP-02",
+      period: { start: "2024-01-01", end: "actual", label: "ENE 2024 — ACTUAL" },
+      impact: "Centraliza contratos, recursos humanos e intercambio de datos entre sistemas.",
+      title: "ARCOPRIME // MIDDLEWARE DE INTEGRACIONES",
+      category: "enterprise",
+      threat: "CLIENTE: ARCOPRIME // PROYECTO HEREDADO",
+      desc: "Participación en la mantención y evolución de un middleware empresarial heredado que centraliza integraciones y flujos de información entre sistemas internos. Trabajo sobre modernización tecnológica, procesos de contratación y servicios de recursos humanos.",
+      stack: ["PHP", "Laravel", "APIs REST", "MySQL", "Docker", "Integraciones empresariales"],
+      highlights: [
+        "Comprensión y evolución segura de una base de código heredada en producción.",
+        "Centralización de contratos e intercambio de información entre sistemas.",
+        "Modernización progresiva de Laravel y mantenimiento de compatibilidad operativa."
+      ],
+      demoUrl: "",
+      repoUrl: ""
+    },
+    {
+      id: "CORP-03",
+      period: { start: "2025-07-01", end: "actual", label: "JUL 2025 — ACTUAL" },
+      impact: "Liderazgo coordinado de 2 frentes técnicos: frontend y backend.",
+      title: "ARCOPRIME // MOTOR DE WORKFLOWS",
+      category: "enterprise",
+      threat: "CLIENTE: ARCOPRIME // LÍDER TÉCNICO",
+      desc: "Lideré el desarrollo del producto y coordiné al equipo frontend y backend mediante definición y asignación de tareas. Participé como desarrollador principal en un motor para configurar, ejecutar y supervisar workflows, integraciones y procesos automatizados.",
+      stack: ["Laravel", "React", "TypeScript", "Redis", "Laravel Horizon", "Docker"],
+      highlights: [
+        "Liderazgo técnico de frontend y backend, planificación y asignación de tareas.",
+        "Ejecución supervisada de workflows con colas, estados e historial de procesos.",
+        "Integraciones mediante webhooks, tareas programadas y servicios externos."
+      ],
+      demoUrl: "",
+      repoUrl: ""
+    },
+    {
+      id: "CORP-04",
+      period: { start: "2025-01-01", end: "actual", label: "ENE 2025 — ACTUAL" },
+      impact: "3 ejes modernizados: CI/CD, firma digital y motor de workflows.",
+      title: "CONTRATACIÓN RED // MODERNIZACIÓN E INTEGRACIONES",
+      category: "enterprise",
+      threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
+      desc: "Desarrollador principal de un sistema heredado para procesos de contratación. Implementé mejoras de CI/CD, integración con un proveedor de firma digital y un motor de workflows, además de reducir deuda técnica y estabilizar sus despliegues.",
+      stack: ["Python", "Flask", "React", "JavaScript", "Firma digital", "Workflows", "CI/CD"],
+      highlights: [
+        "Integración del proceso de contratación con firma digital y workflows.",
+        "Mejora del pipeline entre desarrollo, QA y producción.",
+        "Reducción de deuda técnica y estabilización de un sistema heredado."
+      ],
+      demoUrl: "",
+      repoUrl: ""
+    },
+    {
+      id: "CORP-05",
+      period: { start: "2022-10-01", end: "2023-12-31", label: "OCT 2022 — DIC 2023" },
+      impact: "4 canales centralizados: noticias, Instagram, LinkedIn y Google Chat.",
+      title: "IDEA UNO // API GLOBAL DE SERVICIOS",
+      category: "enterprise",
+      threat: "PROYECTO INTERNO: IDEA UNO // DESARROLLADOR PRINCIPAL",
+      desc: "Desarrollador principal de una plataforma para centralizar servicios reutilizados por distintos sistemas de la empresa y mantenerlos desde un único lugar. Incluye una API de noticias e integraciones con Instagram, LinkedIn y Google Chat.",
+      stack: ["PHP", "Laravel", "APIs REST", "API de noticias", "OAuth", "Instagram", "LinkedIn", "Google Chat", "Docker"],
+      highlights: [
+        "API de noticias con agregación RSS, proveedores y consulta por categorías.",
+        "Centralización de servicios comunes para reducir duplicación entre proyectos.",
+        "Integraciones sociales y de mensajería con flujos OAuth y procesos automatizados."
+      ],
+      demoUrl: "",
+      repoUrl: ""
     }
   ],
 
@@ -234,6 +329,11 @@ function typeElementText(el, delayMs = 0, durationMs = null) {
   const fullText = (el.dataset.twText ?? el.textContent).replace(/\s+/g, " ").trim();
   if (!fullText) return;
   el.dataset.twText = fullText;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    el.textContent = fullText;
+    return;
+  }
 
   const dur = durationMs || Math.min(1850, Math.max(520, fullText.length * 22));
 
@@ -405,10 +505,14 @@ document.addEventListener("DOMContentLoaded", () => {
   initIntrusionGate();
   renderProfileAndHUD();
   renderProjects("all");
+  renderProjectTimeline();
+  initProjectDetailsModal();
   renderCyberware();
   renderContacts();
   initBlackwallSection();
   initDaemonNavigation();
+  initProjectViewToggle();
+  initDeveloperTools();
   initBreachProtocol();
   initClockAndTickers();
   initSystemControls();
@@ -460,7 +564,8 @@ function renderProfileAndHUD() {
 
   const bioContainer = document.getElementById("bio-paragraphs");
   if (bioContainer) {
-    bioContainer.innerHTML = profile.bio.map((p) => `<p>${p}</p>`).join("");
+    const bio = currentLanguage === "en" ? profile.bioEn : profile.bio;
+    bioContainer.innerHTML = bio.map((p) => `<p>${p}</p>`).join("");
   }
 
   const timelineContainer = document.getElementById("experience-timeline");
@@ -511,27 +616,34 @@ function renderProjects(filter = "all", animate = false) {
 
   grid.innerHTML = items
     .map(
-      (gig) => `
+      (gig) => {
+      const copy = getLocalizedProject(gig);
+      return `
       <div class="gig-card">
         <div>
           <div class="gig-top">
             <span class="gig-code">PROJECT_ID // ${gig.id}</span>
-            <span class="gig-threat">${gig.threat}</span>
+            <span class="gig-threat">${copy.threat}</span>
           </div>
-          <h3 class="gig-title">${gig.title}</h3>
-          <p class="gig-desc">${gig.desc}</p>
+          <h3 class="gig-title">${copy.title}</h3>
+          <div class="gig-period">${copy.periodLabel}</div>
+          <p class="gig-desc">${copy.desc}</p>
+          ${copy.impact ? `<p class="gig-impact"><strong>${currentLanguage === "en" ? "VERIFIABLE IMPACT" : "IMPACTO VERIFICABLE"}:</strong> ${copy.impact}</p>` : ""}
         </div>
         <div>
           <div class="gig-stack">
             ${gig.stack.map((tech) => `<span class="stack-chip">${tech}</span>`).join("")}
           </div>
           <div class="gig-links">
-            <a href="${gig.demoUrl}" target="_blank" rel="noopener" class="gig-link">LIVE_DEMO [↗]</a>
-            <a href="${gig.repoUrl}" target="_blank" rel="noopener" class="gig-link">SOURCE_CODE [&lt;/&gt;]</a>
+            <button type="button" class="gig-link gig-details-btn" data-project-details="${gig.id}">${currentLanguage === "en" ? "VIEW DETAILS" : "VER DETALLES"} [+]</button>
+            ${gig.demoUrl ? `<a href="${gig.demoUrl}" target="_blank" rel="noopener" class="gig-link">LIVE_DEMO [↗]</a>` : ""}
+            ${gig.repoUrl
+              ? `<a href="${gig.repoUrl}" target="_blank" rel="noopener" class="gig-link">SOURCE_CODE [&lt;/&gt;]</a>`
+              : `<span class="gig-link gig-link-private">${currentLanguage === "en" ? "PRIVATE CODE // PROTECTED INFORMATION" : "CÓDIGO PRIVADO // INFORMACIÓN PROTEGIDA"}</span>`}
           </div>
         </div>
       </div>
-    `
+    `; }
     )
     .join("");
 
@@ -546,6 +658,151 @@ function renderProjects(filter = "all", animate = false) {
   if (animate) {
     animateContainerTexts(grid);
   }
+
+  grid.querySelectorAll("[data-project-details]").forEach((btn) => {
+    btn.addEventListener("click", () => openProjectDetailsModal(btn.dataset.projectDetails));
+  });
+}
+
+function renderProjectTimeline() {
+  const timeline = document.getElementById("projects-timeline");
+  if (!timeline) return;
+  timeline.innerHTML = [...PORTFOLIO_DATA.projects]
+    .sort((a, b) => b.period.start.localeCompare(a.period.start))
+    .map((project) => {
+      const copy = getLocalizedProject(project);
+      return `
+      <article class="project-timeline-item">
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <div class="timeline-period">${copy.periodLabel}</div>
+        <div class="timeline-project-card">
+          <div class="gig-code">${project.id} // ${copy.threat}</div>
+          <h3>${copy.title}</h3>
+          <p>${copy.desc}</p>
+          ${copy.impact ? `<p class="gig-impact"><strong>${currentLanguage === "en" ? "VERIFIABLE IMPACT" : "IMPACTO VERIFICABLE"}:</strong> ${copy.impact}</p>` : ""}
+          <button type="button" class="gig-link gig-details-btn" data-project-details="${project.id}">${currentLanguage === "en" ? "VIEW DETAILS" : "VER DETALLES"} [+]</button>
+        </div>
+      </article>`; })
+    .join("");
+  timeline.querySelectorAll("[data-project-details]").forEach((button) => {
+    button.addEventListener("click", () => openProjectDetailsModal(button.dataset.projectDetails));
+  });
+}
+
+function getLocalizedProject(project) {
+  if (currentLanguage !== "en") return { ...project, periodLabel: project.period.label };
+  const role = project.threat
+    .replace("PROYECTO PROPIO", "PERSONAL PROJECT")
+    .replace("CLIENTE", "CLIENT")
+    .replace("PROYECTO INTERNO", "INTERNAL PROJECT")
+    .replace("DESARROLLADOR PRINCIPAL", "LEAD DEVELOPER")
+    .replace("PROYECTO HEREDADO", "LEGACY PROJECT")
+    .replace("LÍDER TÉCNICO", "TECH LEAD");
+  const periodLabel = project.period.label
+    .replace("ENE", "JAN")
+    .replace("MAR", "MAR")
+    .replace("JUL", "JUL")
+    .replace("OCT", "OCT")
+    .replace("DIC", "DEC")
+    .replace("ACTUAL", "PRESENT");
+  return { ...project, ...PROJECT_EN[project.id], threat: role, periodLabel };
+}
+
+function initProjectViewToggle() {
+  const grid = document.getElementById("projects-grid");
+  const timeline = document.getElementById("projects-timeline");
+  document.querySelectorAll("[data-project-view]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const showTimeline = button.dataset.projectView === "timeline";
+      grid.classList.toggle("hidden", showTimeline);
+      timeline.classList.toggle("hidden", !showTimeline);
+      document.querySelectorAll("[data-project-view]").forEach((item) => item.classList.toggle("active", item === button));
+    });
+  });
+  if (new URLSearchParams(window.location.search).get("view") === "timeline") {
+    document.getElementById("tab-button-gigs")?.click();
+    document.querySelector('[data-project-view="timeline"]')?.click();
+  }
+}
+
+let projectModalTrigger = null;
+
+function initProjectDetailsModal() {
+  const modal = document.getElementById("project-details-modal");
+  const closeBtn = document.getElementById("project-modal-close-btn");
+  if (!modal || !closeBtn) return;
+
+  closeBtn.addEventListener("click", closeProjectDetailsModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeProjectDetailsModal();
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (modal.classList.contains("hidden")) return;
+    if (event.key === "Escape") {
+      closeProjectDetailsModal();
+      return;
+    }
+    if (event.key !== "Tab") return;
+
+    const focusable = modal.querySelectorAll("button, a[href]");
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+}
+
+function openProjectDetailsModal(projectId) {
+  const project = PORTFOLIO_DATA.projects.find((item) => item.id === projectId);
+  const modal = document.getElementById("project-details-modal");
+  if (!project || !modal) return;
+
+  projectModalTrigger = document.activeElement;
+  document.getElementById("project-modal-code").textContent = `DOSSIER // ${project.id}`;
+  const copy = getLocalizedProject(project);
+  document.getElementById("project-modal-title").textContent = copy.title;
+  document.getElementById("project-modal-role").textContent = copy.threat;
+  document.getElementById("project-modal-summary").textContent = copy.desc;
+  document.getElementById("project-modal-highlights").innerHTML = project.highlights
+    .map((item) => `<li>${item}</li>`)
+    .join("");
+  document.getElementById("project-modal-stack").innerHTML = project.stack
+    .map((tech) => `<span class="stack-chip">${tech}</span>`)
+    .join("");
+
+  const repoLink = document.getElementById("project-modal-repo");
+  if (project.repoUrl) {
+    repoLink.href = project.repoUrl;
+    repoLink.classList.remove("hidden");
+  } else {
+    repoLink.removeAttribute("href");
+    repoLink.classList.add("hidden");
+  }
+
+  modal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  document.querySelector(".hud-container")?.setAttribute("inert", "");
+  document.getElementById("project-modal-close-btn").focus();
+  sfx.click();
+}
+
+function closeProjectDetailsModal() {
+  const modal = document.getElementById("project-details-modal");
+  if (!modal || modal.classList.contains("hidden")) return;
+  modal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+  document.querySelector(".hud-container")?.removeAttribute("inert");
+  if (projectModalTrigger && typeof projectModalTrigger.focus === "function") {
+    projectModalTrigger.focus();
+  }
+  projectModalTrigger = null;
 }
 
 const projectFiltersEl = document.getElementById("project-filters");
@@ -623,17 +880,34 @@ function renderContacts() {
   const feedback = document.getElementById("form-feedback");
 
   if (form && feedback) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      sfx.success();
       const handle = document.getElementById("sender-handle").value;
+      const email = document.getElementById("sender-email").value;
+      const message = document.getElementById("sender-msg").value;
+      const submitButton = document.getElementById("contact-submit-btn");
+      submitButton.disabled = true;
+      submitButton.textContent = currentLanguage === "en" ? "SENDING..." : "ENVIANDO...";
       feedback.classList.remove("hidden");
-      setTypedText(
-        feedback,
-        `>> TRANSMISIÓN ENVIADA DESDE [${handle.toUpperCase()}]. IGNACIO VELIZ RESPONDERÁ PRONTO.`,
-        1150
-      );
-      form.reset();
+      try {
+        const response = await fetch("https://formsubmit.co/ajax/ignaciovs.dev@gmail.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ name: handle, email, message, _subject: `Portafolio — ${handle}`, _template: "table" })
+        });
+        if (!response.ok) throw new Error("No se pudo enviar el formulario");
+        feedback.textContent = currentLanguage === "en" ? ">> MESSAGE SENT SUCCESSFULLY." : ">> MENSAJE ENVIADO CORRECTAMENTE.";
+        form.reset();
+        sfx.success();
+      } catch {
+        feedback.textContent = currentLanguage === "en" ? ">> DELIVERY FAILED. OPENING YOUR EMAIL CLIENT AS A BACKUP." : ">> FALLÓ EL ENVÍO. ABRIENDO TU CLIENTE DE CORREO COMO RESPALDO.";
+        const subject = encodeURIComponent(`Contacto desde el portafolio — ${handle}`);
+        const body = encodeURIComponent(`Nombre / empresa: ${handle}\nEmail: ${email}\n\n${message}`);
+        window.location.href = `mailto:ignaciovs.dev@gmail.com?subject=${subject}&body=${body}`;
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = currentLanguage === "en" ? "SEND MESSAGE" : "ENVIAR MENSAJE";
+      }
     });
   }
 }
@@ -652,20 +926,28 @@ function initDaemonNavigation() {
 
     sfx.click();
 
-    tabs.forEach((t) => t.classList.remove("active"));
-    targetTab.classList.add("active");
+    tabs.forEach((t) => {
+      const isActive = t === targetTab;
+      t.classList.toggle("active", isActive);
+      t.setAttribute("aria-selected", String(isActive));
+      t.tabIndex = isActive ? 0 : -1;
+    });
 
     const ramCost = parseInt(targetTab.dataset.ram || "2", 10);
     updateRamDisplay(ramCost);
 
-    panels.forEach((p) => p.classList.remove("active"));
+    panels.forEach((p) => {
+      p.classList.remove("active");
+      p.hidden = true;
+    });
     const activePanel = document.getElementById(`tab-${tabName}`);
     if (activePanel) {
       activePanel.classList.add("active");
+      activePanel.hidden = false;
       animateContainerTexts(activePanel);
     }
 
-    if (tabName === "breach") {
+    if (tabName === "breach" && document.querySelector(".tool-tab.active")?.dataset.tool === "token") {
       startAutonomousBreachCycle();
     } else {
       clearInterval(breachState.stepTimer);
@@ -682,6 +964,20 @@ function initDaemonNavigation() {
     tab.addEventListener("click", () => activateTab(tab.dataset.tab));
   });
 
+  document.getElementById("daemon-tabs")?.addEventListener("keydown", (event) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const tabList = Array.from(tabs);
+    const currentIndex = tabList.indexOf(document.activeElement);
+    let nextIndex = currentIndex;
+    if (event.key === "Home") nextIndex = 0;
+    if (event.key === "End") nextIndex = tabList.length - 1;
+    if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % tabList.length;
+    if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + tabList.length) % tabList.length;
+    tabList[nextIndex].focus();
+    activateTab(tabList[nextIndex].dataset.tab);
+  });
+
   document.querySelectorAll("[data-goto-tab]").forEach((btn) => {
     btn.addEventListener("click", () => activateTab(btn.dataset.gotoTab));
   });
@@ -693,6 +989,173 @@ function initDaemonNavigation() {
     const map = { "1": "dossier", "2": "gigs", "3": "cyberware", "4": "breach", "5": "blackwall", "6": "holocall" };
     if (map[e.key]) activateTab(map[e.key]);
   });
+}
+
+/* ============================================================================
+   6. HERRAMIENTAS DE DESARROLLO
+   ============================================================================ */
+function initDeveloperTools() {
+  const toolTabs = Array.from(document.querySelectorAll(".tool-tab"));
+  const toolPanels = Array.from(document.querySelectorAll(".tool-panel"));
+  if (!toolTabs.length) return;
+
+  const activateTool = (toolName, moveFocus = false) => {
+    toolTabs.forEach((tab) => {
+      const isActive = tab.dataset.tool === toolName;
+      tab.classList.toggle("active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+      if (isActive && moveFocus) tab.focus();
+    });
+    toolPanels.forEach((panel) => {
+      const isActive = panel.id === `tool-${toolName}`;
+      panel.classList.toggle("active", isActive);
+      panel.hidden = !isActive;
+    });
+
+    if (toolName === "token") {
+      startAutonomousBreachCycle();
+    } else {
+      clearInterval(breachState.stepTimer);
+      clearInterval(breachState.countdownInterval);
+    }
+    sfx.click();
+  };
+
+  toolTabs.forEach((tab) => tab.addEventListener("click", () => activateTool(tab.dataset.tool)));
+  document.querySelector(".tools-nav")?.addEventListener("keydown", (event) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const current = toolTabs.indexOf(document.activeElement);
+    let next = current < 0 ? 0 : current;
+    if (event.key === "Home") next = 0;
+    if (event.key === "End") next = toolTabs.length - 1;
+    if (event.key === "ArrowRight") next = (next + 1) % toolTabs.length;
+    if (event.key === "ArrowLeft") next = (next - 1 + toolTabs.length) % toolTabs.length;
+    activateTool(toolTabs[next].dataset.tool, true);
+  });
+
+  const calculateRutDv = (rutNumber) => {
+    let sum = 0;
+    let multiplier = 2;
+    String(rutNumber).split("").reverse().forEach((digit) => {
+      sum += Number(digit) * multiplier;
+      multiplier = multiplier === 7 ? 2 : multiplier + 1;
+    });
+    const result = 11 - (sum % 11);
+    return result === 11 ? "0" : result === 10 ? "K" : String(result);
+  };
+
+  const formatRut = (rutNumber, dv) =>
+    `${Number(rutNumber).toLocaleString("es-CL")}-${String(dv).toUpperCase()}`;
+
+  document.getElementById("generate-rut-btn")?.addEventListener("click", () => {
+    const random = new Uint32Array(1);
+    crypto.getRandomValues(random);
+    const rutNumber = 5000000 + (random[0] % 20000000);
+    document.getElementById("rut-generated-output").textContent = formatRut(rutNumber, calculateRutDv(rutNumber));
+    sfx.success();
+  });
+
+  document.getElementById("validate-rut-btn")?.addEventListener("click", () => {
+    const input = document.getElementById("rut-input");
+    const result = document.getElementById("rut-validation-result");
+    const cleaned = input.value.replace(/[^0-9kK]/g, "").toUpperCase();
+    if (cleaned.length < 2) {
+      setUtilityFeedback(result, "Ingresa un RUT válido para comprobar.", false);
+      return;
+    }
+    const number = cleaned.slice(0, -1);
+    const dv = cleaned.slice(-1);
+    const valid = calculateRutDv(number) === dv;
+    setUtilityFeedback(result, valid ? `RUT válido: ${formatRut(number, dv)}` : "RUT inválido: el dígito verificador no coincide.", valid);
+  });
+
+  document.getElementById("generate-uuid-btn")?.addEventListener("click", () => {
+    const bytes = new Uint8Array(16);
+    crypto.getRandomValues(bytes);
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+    document.getElementById("uuid-output").textContent = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+    sfx.success();
+  });
+
+  const transformJson = (spacing) => {
+    const input = document.getElementById("json-input");
+    const result = document.getElementById("json-result");
+    try {
+      input.value = JSON.stringify(JSON.parse(input.value), null, spacing);
+      setUtilityFeedback(result, "JSON válido y procesado correctamente.", true);
+    } catch (error) {
+      setUtilityFeedback(result, `JSON inválido: ${error.message}`, false);
+    }
+  };
+  document.getElementById("format-json-btn")?.addEventListener("click", () => transformJson(2));
+  document.getElementById("minify-json-btn")?.addEventListener("click", () => transformJson(0));
+
+  document.getElementById("generate-hash-btn")?.addEventListener("click", async () => {
+    const value = document.getElementById("hash-input").value;
+    const output = document.getElementById("hash-output");
+    if (!value) {
+      output.textContent = "Ingresa texto para generar el hash.";
+      return;
+    }
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+    output.textContent = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    sfx.success();
+  });
+
+  document.getElementById("encode-base64-btn")?.addEventListener("click", () => {
+    const value = document.getElementById("base64-input").value;
+    const bytes = new TextEncoder().encode(value);
+    let binary = "";
+    bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+    document.getElementById("base64-output").textContent = btoa(binary);
+    setUtilityFeedback(document.getElementById("base64-result"), "Texto codificado correctamente.", true);
+  });
+
+  document.getElementById("decode-base64-btn")?.addEventListener("click", () => {
+    const result = document.getElementById("base64-result");
+    try {
+      const binary = atob(document.getElementById("base64-input").value.trim());
+      const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+      document.getElementById("base64-output").textContent = new TextDecoder().decode(bytes);
+      setUtilityFeedback(result, "Base64 decodificado correctamente.", true);
+    } catch {
+      setUtilityFeedback(result, "El contenido no es Base64 válido.", false);
+    }
+  });
+
+  document.querySelectorAll("[data-copy-target]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const target = document.getElementById(button.dataset.copyTarget);
+      const value = "value" in target ? target.value : target.textContent;
+      if (!value || value === "—") return;
+      try {
+        await navigator.clipboard.writeText(value);
+      } catch {
+        fallbackCopyText(value);
+      }
+      const original = button.textContent;
+      button.textContent = "COPIADO ✓";
+      sfx.success();
+      setTimeout(() => { button.textContent = original; }, 1200);
+    });
+  });
+
+  const requestedTool = new URLSearchParams(window.location.search).get("tool");
+  if (toolTabs.some((tab) => tab.dataset.tool === requestedTool)) {
+    document.getElementById("tab-button-breach")?.click();
+    activateTool(requestedTool);
+  }
+}
+
+function setUtilityFeedback(element, message, isValid) {
+  if (!element) return;
+  element.textContent = message;
+  element.classList.toggle("success", isValid);
+  element.classList.toggle("error", !isValid);
 }
 
 /* ============================================================================
@@ -950,7 +1413,9 @@ function initBreachProtocol() {
   });
 
   updatePresetAndLengthUI();
-  startAutonomousBreachCycle();
+  if (document.querySelector(".tool-tab.active")?.dataset.tool === "token") {
+    startAutonomousBreachCycle();
+  }
 }
 
 function updatePresetAndLengthUI() {
@@ -1369,6 +1834,8 @@ function initSystemControls() {
   const sfxBtn = document.getElementById("sfx-toggle");
   const sfxLabel = document.getElementById("sfx-label");
   const glitchBtn = document.getElementById("glitch-trigger");
+  const modeBtn = document.getElementById("visual-mode-toggle");
+  const languageBtn = document.getElementById("language-toggle");
 
   const toggleAudio = () => {
     sfx.enabled = !sfx.enabled;
@@ -1377,6 +1844,50 @@ function initSystemControls() {
   };
 
   if (sfxBtn) sfxBtn.addEventListener("click", toggleAudio);
+
+  const applyVisualMode = (professional) => {
+    document.body.classList.toggle("professional-mode", professional);
+    if (modeBtn) modeBtn.textContent = currentLanguage === "en"
+      ? (professional ? "MODE: PRO" : "MODE: CYBER")
+      : (professional ? "MODO: PRO" : "MODO: CYBER");
+    localStorage.setItem("portfolio-visual-mode", professional ? "professional" : "cyber");
+  };
+  const query = new URLSearchParams(window.location.search);
+  applyVisualMode(query.get("mode") === "professional" || (!query.has("mode") && localStorage.getItem("portfolio-visual-mode") === "professional"));
+  modeBtn?.addEventListener("click", () => applyVisualMode(!document.body.classList.contains("professional-mode")));
+
+  const applyLanguage = (language) => {
+    currentLanguage = language;
+    localStorage.setItem("portfolio-language", language);
+    document.documentElement.lang = language;
+    const en = language === "en";
+    const setStableText = (node, value) => {
+      if (!node) return;
+      if (typeof node._twCancel === "function") node._twCancel();
+      node.dataset.twText = value;
+      node.textContent = value;
+    };
+    const navLabels = en ? ["PROFILE", "PROJECTS", "STACK", "TOOLS", "/blackwall/", "CONTACT"] : ["PERFIL", "PROYECTOS", "STACK", "HERRAMIENTAS", "/blackwall/", "CONTACTO"];
+    document.querySelectorAll(".daemon-name").forEach((node, index) => setStableText(node, navLabels[index]));
+    const titles = en ? ["IGNACIO ANDRÉS VELIZ SEGUEL", "FEATURED PROJECTS", "TECH STACK", "DEVELOPER TOOLS", "ENCRYPTED FILES (/blackwall/)", "CONTACT & LINKS"] : ["IGNACIO ANDRÉS VELIZ SEGUEL", "PROYECTOS DESTACADOS", "STACK TECNOLÓGICO", "HERRAMIENTAS DE DESARROLLO", "ARCHIVOS ENCRIPTADOS (/blackwall/)", "CONTACTO Y ENLACES"];
+    document.querySelectorAll(".deck-panel > .cp-section-header .cp-title").forEach((node, index) => setStableText(node, titles[index]));
+    if (languageBtn) languageBtn.textContent = en ? "EN / ES" : "ES / EN";
+    if (modeBtn) modeBtn.textContent = en
+      ? (document.body.classList.contains("professional-mode") ? "MODE: PRO" : "MODE: CYBER")
+      : (document.body.classList.contains("professional-mode") ? "MODO: PRO" : "MODO: CYBER");
+    const kickerCopy = en
+      ? ["01 // PROFESSIONAL DOSSIER", "02 // REPOSITORIES & SYSTEMS", "03 // TECHNICAL CAPABILITIES", "04 // DEVELOPMENT & QA UTILITIES", "05 // OPTIONAL SECRET DIRECTORY", "06 // COMMUNICATIONS"]
+      : ["01 // EXPEDIENTE PROFESIONAL", "02 // REPOSITORIOS & SISTEMAS", "03 // CAPACIDADES TÉCNICAS", "04 // UTILIDADES PARA DESARROLLO Y QA", "05 // DIRECTORIO SECRETO OPCIONAL", "06 // COMUNICACIONES"];
+    document.querySelectorAll(".deck-panel > .cp-section-header .cp-kicker").forEach((node, index) => setStableText(node, kickerCopy[index]));
+    document.querySelector('[data-project-view="grid"]').textContent = en ? "CARDS" : "TARJETAS";
+    document.querySelector('[data-project-view="timeline"]').textContent = "TIMELINE";
+    document.getElementById("contact-submit-btn").textContent = en ? "SEND MESSAGE" : "ENVIAR MENSAJE";
+    renderProfileAndHUD();
+    renderProjects("all");
+    renderProjectTimeline();
+  };
+  applyLanguage(query.get("lang") === "en" ? "en" : currentLanguage);
+  languageBtn?.addEventListener("click", () => applyLanguage(currentLanguage === "es" ? "en" : "es"));
 
   if (glitchBtn) {
     glitchBtn.addEventListener("click", () => {
@@ -1421,8 +1932,11 @@ function initIntrusionGate() {
 
   if (!gateOverlay) return;
 
-  // Mostrar siempre el modal de carga al entrar o recargar (Ctrl + R)
-  localStorage.removeItem(GATE_STORAGE_KEY);
+  if (sessionStorage.getItem(GATE_STORAGE_KEY) === "granted") {
+    gateOverlay.classList.add("hidden");
+    document.querySelector(".hud-container")?.removeAttribute("inert");
+    return;
+  }
   openIntrusionGate();
 
   if (skipBtn) {
@@ -1448,6 +1962,7 @@ function openIntrusionGate() {
   bootCompleted = false;
 
   gateOverlay.classList.remove("hidden");
+  document.querySelector(".hud-container")?.setAttribute("inert", "");
   if (linesEl) linesEl.innerHTML = "";
   if (pctPill) pctPill.textContent = "0%";
   if (progressNum) progressNum.textContent = "0%";
@@ -1456,6 +1971,11 @@ function openIntrusionGate() {
   if (headerState) {
     headerState.textContent = "SINCRONIZANDO PERFIL...";
     headerState.classList.remove("granted");
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    finishBootGate();
+    return;
   }
 
   animateContainerTexts(
@@ -1506,12 +2026,13 @@ function finishBootGate() {
   sfx.success();
 
   const gateOverlay = document.getElementById("intrusion-gate");
-  localStorage.setItem(GATE_STORAGE_KEY, "granted");
+  sessionStorage.setItem(GATE_STORAGE_KEY, "granted");
   updateClearanceBadge("granted");
 
   if (gateOverlay) {
     gateOverlay.classList.add("hidden");
   }
+  document.querySelector(".hud-container")?.removeAttribute("inert");
 
   const activePanel = document.querySelector(".deck-panel.active");
   if (activePanel) {

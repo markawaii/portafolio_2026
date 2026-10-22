@@ -78,28 +78,28 @@
       </div>
 
       <!-- Pestañas del Hub -->
-      <nav class="cp-hub-nav" id="daemon-tabs" aria-label="Menú Principal">
-        <button class="daemon-tab active" data-tab="dossier">
+      <nav class="cp-hub-nav" id="daemon-tabs" aria-label="Secciones del portafolio" role="tablist">
+        <button class="daemon-tab active" id="tab-button-dossier" data-tab="dossier" role="tab" aria-selected="true" aria-controls="tab-dossier">
           <span class="tab-code">01</span>
           <span class="daemon-name">PERFIL</span>
         </button>
-        <button class="daemon-tab" data-tab="gigs">
+        <button class="daemon-tab" id="tab-button-gigs" data-tab="gigs" role="tab" aria-selected="false" aria-controls="tab-gigs" tabindex="-1">
           <span class="tab-code">02</span>
           <span class="daemon-name">PROYECTOS</span>
         </button>
-        <button class="daemon-tab" data-tab="cyberware">
+        <button class="daemon-tab" id="tab-button-cyberware" data-tab="cyberware" role="tab" aria-selected="false" aria-controls="tab-cyberware" tabindex="-1">
           <span class="tab-code">03</span>
           <span class="daemon-name">STACK</span>
         </button>
-        <button class="daemon-tab" data-tab="breach">
+        <button class="daemon-tab" id="tab-button-breach" data-tab="breach" role="tab" aria-selected="false" aria-controls="tab-breach" tabindex="-1">
           <span class="tab-code">04</span>
-          <span class="daemon-name">TOKEN GEN</span>
+          <span class="daemon-name">HERRAMIENTAS</span>
         </button>
-        <button class="daemon-tab" data-tab="blackwall">
+        <button class="daemon-tab" id="tab-button-blackwall" data-tab="blackwall" role="tab" aria-selected="false" aria-controls="tab-blackwall" tabindex="-1">
           <span class="tab-code">05</span>
           <span class="daemon-name">/blackwall/</span>
         </button>
-        <button class="daemon-tab" data-tab="holocall">
+        <button class="daemon-tab" id="tab-button-holocall" data-tab="holocall" role="tab" aria-selected="false" aria-controls="tab-holocall" tabindex="-1">
           <span class="tab-code">06</span>
           <span class="daemon-name">CONTACTO</span>
         </button>
@@ -107,6 +107,8 @@
 
       <!-- Controles mínimos a la derecha -->
       <div class="hub-controls-right">
+        <button id="language-toggle" class="cp-util-btn" title="Cambiar idioma">ES / EN</button>
+        <button id="visual-mode-toggle" class="cp-util-btn" title="Cambiar estilo visual">MODO: CYBER</button>
         <button id="sfx-toggle" class="cp-util-btn" title="Activar/Desactivar sonidos">
           <span id="sfx-label">SFX: ON</span>
         </button>
@@ -117,7 +119,7 @@
     <main class="cp-terminal-frame">
 
       <!-- ==================== 01: PERFIL ==================== -->
-      <article id="tab-dossier" class="deck-panel active">
+      <article id="tab-dossier" class="deck-panel active" role="tabpanel" aria-labelledby="tab-button-dossier">
         <div class="cp-section-header">
           <div>
             <div class="cp-kicker">01 // EXPEDIENTE PROFESIONAL</div>
@@ -150,7 +152,7 @@
               </div>
               <div class="data-row">
                 <span class="data-key">EXPERIENCIA</span>
-                <span class="data-val val-cyan" id="profile-affiliation">3+ Años // IDEA UNO</span>
+                <span class="data-val val-cyan" id="profile-affiliation">4+ Años // IDEA UNO</span>
               </div>
               <div class="data-row">
                 <span class="data-key">ESPECIALIDAD</span>
@@ -194,25 +196,24 @@
       </article>
 
       <!-- ==================== 02: PROYECTOS ==================== -->
-      <article id="tab-gigs" class="deck-panel">
+      <article id="tab-gigs" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-gigs" hidden>
         <div class="cp-section-header">
           <div>
             <div class="cp-kicker">02 // REPOSITORIOS &amp; SISTEMAS</div>
-            <h2 class="cp-title">PROYECTOS &amp; EXPERIENCIA TÉCNICA</h2>
+            <h2 class="cp-title">PROYECTOS DESTACADOS</h2>
           </div>
-          <div class="filter-pills" id="project-filters">
-            <button class="filter-pill active" data-filter="all">TODOS</button>
-            <button class="filter-pill" data-filter="webapp">FULL-STACK / LARAVEL</button>
-            <button class="filter-pill" data-filter="systems">CLOUD / DEVOPS</button>
-            <button class="filter-pill" data-filter="ui">INTERFACES UI</button>
+          <div class="project-view-toggle" role="group" aria-label="Vista de proyectos">
+            <button type="button" class="cp-util-btn active" data-project-view="grid">TARJETAS</button>
+            <button type="button" class="cp-util-btn" data-project-view="timeline">TIMELINE</button>
           </div>
         </div>
 
         <div id="projects-grid" class="projects-grid"></div>
+        <div id="projects-timeline" class="projects-timeline hidden"></div>
       </article>
 
       <!-- ==================== 03: TECH STACK ==================== -->
-      <article id="tab-cyberware" class="deck-panel">
+      <article id="tab-cyberware" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-cyberware" hidden>
         <div class="cp-section-header">
           <div>
             <div class="cp-kicker">03 // CAPACIDADES TÉCNICAS</div>
@@ -223,22 +224,38 @@
         <div id="cyberware-grid" class="cyberware-categories"></div>
       </article>
 
-      <!-- ==================== 04: BREACH PROTOCOL (TOKEN GENERATOR) ==================== -->
-      <article id="tab-breach" class="deck-panel">
+      <!-- ==================== 04: HERRAMIENTAS DE DESARROLLO ==================== -->
+      <article id="tab-breach" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-breach" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">INTRUSION SYSTEM // ICEBREAKER v2.4</div>
-            <h2 class="cp-title">PROTOCOLO DE INVASIÓN</h2>
+            <div class="cp-kicker">04 // UTILIDADES PARA DESARROLLO Y QA</div>
+            <h2 class="cp-title">HERRAMIENTAS DE DESARROLLO</h2>
           </div>
-          <div class="breach-top-actions">
+        </div>
+
+        <div class="tools-nav" role="tablist" aria-label="Herramientas disponibles">
+          <button type="button" class="tool-tab active" role="tab" aria-selected="true" aria-controls="tool-token" data-tool="token">TOKEN SEGURO</button>
+          <button type="button" class="tool-tab" role="tab" aria-selected="false" aria-controls="tool-rut" data-tool="rut">RUT CHILENO</button>
+          <button type="button" class="tool-tab" role="tab" aria-selected="false" aria-controls="tool-uuid" data-tool="uuid">UUID</button>
+          <button type="button" class="tool-tab" role="tab" aria-selected="false" aria-controls="tool-json" data-tool="json">JSON</button>
+          <button type="button" class="tool-tab" role="tab" aria-selected="false" aria-controls="tool-hash" data-tool="hash">HASH</button>
+          <button type="button" class="tool-tab" role="tab" aria-selected="false" aria-controls="tool-base64" data-tool="base64">BASE64</button>
+        </div>
+
+        <details class="tools-context">
+          <summary>¿CÓMO ESTÁN CONSTRUIDAS ESTAS HERRAMIENTAS?</summary>
+          <p>Funcionan completamente en el navegador con JavaScript y Web Crypto. Los tokens, UUID y hashes se generan localmente; el contenido ingresado no se envía a un servidor.</p>
+        </details>
+
+        <section id="tool-token" class="tool-panel active" role="tabpanel">
+          <div class="breach-top-actions tool-token-actions">
             <button id="toggle-auto-breach-btn" class="cp-util-btn">
               AUTO-ROTACIÓN: <span id="token-countdown">15.0s</span>
             </button>
             <button id="reset-breach-btn" class="cyber-btn">↻ NUEVO TOKEN</button>
           </div>
-        </div>
 
-        <div class="breach-clean-layout">
+          <div class="breach-clean-layout">
           <!-- Columna Izquierda: Algoritmo en vivo recorriendo la Matriz 5x5 al azar -->
           <div class="cp-box breach-matrix-panel">
             <div class="cp-box-header">
@@ -320,11 +337,97 @@
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </section>
+
+        <section id="tool-rut" class="tool-panel" role="tabpanel" hidden>
+          <div class="utility-grid">
+            <div class="cp-box utility-card">
+              <div class="cp-box-header"><span>GENERADOR DE RUT PARA PRUEBAS</span></div>
+              <div class="cp-box-body utility-body">
+                <p>Genera un RUT matemáticamente válido para ambientes de desarrollo y QA.</p>
+                <output id="rut-generated-output" class="utility-output">—</output>
+                <div class="utility-actions">
+                  <button type="button" id="generate-rut-btn" class="cyber-btn">GENERAR RUT</button>
+                  <button type="button" class="cp-util-btn" data-copy-target="rut-generated-output">COPIAR</button>
+                </div>
+              </div>
+            </div>
+            <div class="cp-box utility-card">
+              <div class="cp-box-header"><span>VALIDADOR DE RUT</span></div>
+              <div class="cp-box-body utility-body">
+                <label class="utility-label" for="rut-input">RUT CON O SIN FORMATO</label>
+                <input id="rut-input" class="utility-input" inputmode="text" placeholder="12.345.678-5" />
+                <button type="button" id="validate-rut-btn" class="cyber-btn">VALIDAR</button>
+                <div id="rut-validation-result" class="utility-feedback" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="tool-uuid" class="tool-panel" role="tabpanel" hidden>
+          <div class="cp-box utility-card utility-card-single">
+            <div class="cp-box-header"><span>GENERADOR UUID v4</span></div>
+            <div class="cp-box-body utility-body">
+              <p>Identificador aleatorio generado mediante Web Crypto.</p>
+              <output id="uuid-output" class="utility-output">—</output>
+              <div class="utility-actions">
+                <button type="button" id="generate-uuid-btn" class="cyber-btn">GENERAR UUID</button>
+                <button type="button" class="cp-util-btn" data-copy-target="uuid-output">COPIAR</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="tool-json" class="tool-panel" role="tabpanel" hidden>
+          <div class="cp-box utility-card utility-card-single">
+            <div class="cp-box-header"><span>FORMATEADOR Y VALIDADOR JSON</span></div>
+            <div class="cp-box-body utility-body">
+              <label class="utility-label" for="json-input">CONTENIDO JSON</label>
+              <textarea id="json-input" class="utility-input utility-textarea code-textarea" rows="10" placeholder='{"estado":"ok"}'></textarea>
+              <div class="utility-actions">
+                <button type="button" id="format-json-btn" class="cyber-btn">FORMATEAR</button>
+                <button type="button" id="minify-json-btn" class="cp-util-btn">MINIFICAR</button>
+                <button type="button" class="cp-util-btn" data-copy-target="json-input">COPIAR</button>
+              </div>
+              <div id="json-result" class="utility-feedback" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="tool-hash" class="tool-panel" role="tabpanel" hidden>
+          <div class="cp-box utility-card utility-card-single">
+            <div class="cp-box-header"><span>GENERADOR SHA-256</span></div>
+            <div class="cp-box-body utility-body">
+              <label class="utility-label" for="hash-input">TEXTO DE ENTRADA</label>
+              <textarea id="hash-input" class="utility-input utility-textarea" rows="5" placeholder="Texto a procesar"></textarea>
+              <button type="button" id="generate-hash-btn" class="cyber-btn">GENERAR HASH</button>
+              <output id="hash-output" class="utility-output utility-output-wrap">—</output>
+              <button type="button" class="cp-util-btn" data-copy-target="hash-output">COPIAR HASH</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="tool-base64" class="tool-panel" role="tabpanel" hidden>
+          <div class="cp-box utility-card utility-card-single">
+            <div class="cp-box-header"><span>CODIFICADOR BASE64 UTF-8</span></div>
+            <div class="cp-box-body utility-body">
+              <label class="utility-label" for="base64-input">TEXTO O BASE64</label>
+              <textarea id="base64-input" class="utility-input utility-textarea" rows="7" placeholder="Ingresa texto para codificar o Base64 para decodificar"></textarea>
+              <div class="utility-actions">
+                <button type="button" id="encode-base64-btn" class="cyber-btn">CODIFICAR</button>
+                <button type="button" id="decode-base64-btn" class="cp-util-btn">DECODIFICAR</button>
+                <button type="button" class="cp-util-btn" data-copy-target="base64-output">COPIAR</button>
+              </div>
+              <output id="base64-output" class="utility-output utility-output-wrap">—</output>
+              <div id="base64-result" class="utility-feedback" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
       </article>
 
       <!-- ==================== 05: /blackwall/ (ARCHIVOS OPCIONALES) ==================== -->
-      <article id="tab-blackwall" class="deck-panel">
+      <article id="tab-blackwall" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-blackwall" hidden>
         <div class="cp-section-header">
           <div>
             <div class="cp-kicker">05 // DIRECTORIO SECRETO OPCIONAL</div>
@@ -339,7 +442,7 @@
       </article>
 
       <!-- ==================== 06: CONTACTO ==================== -->
-      <article id="tab-holocall" class="deck-panel">
+      <article id="tab-holocall" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-holocall" hidden>
         <div class="cp-section-header">
           <div>
             <div class="cp-kicker">06 // COMUNICACIONES</div>
@@ -374,7 +477,7 @@
                 <label for="sender-msg">MENSAJE</label>
                 <textarea id="sender-msg" name="cp_field_payload_z" rows="4" required placeholder="Escribe tu mensaje aquí..." autocomplete="off" spellcheck="false"></textarea>
               </div>
-              <button type="submit" class="cyber-btn full-width">
+              <button type="submit" id="contact-submit-btn" class="cyber-btn full-width">
                 ENVIAR MENSAJE
               </button>
               <div id="form-feedback" class="form-feedback hidden"></div>
@@ -397,6 +500,59 @@
       </div>
     </footer>
 
+  </div>
+
+  <!-- ================= MODAL DE DETALLE DE PROYECTO ================= -->
+  <div id="project-details-modal" class="intrusion-overlay project-modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+    <div class="intrusion-shell project-modal-shell">
+      <header class="intrusion-topbar">
+        <div class="intrusion-brand">
+          <span class="status-dot-red"></span>
+          <span id="project-modal-code">DOSSIER // PROYECTO</span>
+        </div>
+        <button type="button" id="project-modal-close-btn" class="gate-skip-btn" aria-label="Cerrar detalle del proyecto">
+          CERRAR [ESC ✕]
+        </button>
+      </header>
+
+      <div class="project-modal-content">
+        <div class="project-modal-heading">
+          <div>
+            <div class="cp-kicker">INFORMACIÓN PÚBLICA // SIN DATOS CONFIDENCIALES</div>
+            <h2 id="project-modal-title" class="cp-title">DETALLE DEL PROYECTO</h2>
+          </div>
+          <div id="project-modal-role" class="cp-status-tag"></div>
+        </div>
+
+        <div class="project-modal-grid">
+          <section class="cp-box">
+            <div class="cp-box-header"><span>CONTEXTO Y RESPONSABILIDAD</span></div>
+            <div class="cp-box-body project-modal-copy">
+              <p id="project-modal-summary"></p>
+            </div>
+          </section>
+
+          <section class="cp-box">
+            <div class="cp-box-header"><span>APORTES DESTACADOS</span></div>
+            <div class="cp-box-body">
+              <ul id="project-modal-highlights" class="project-highlight-list"></ul>
+            </div>
+          </section>
+        </div>
+
+        <section class="cp-box">
+          <div class="cp-box-header"><span>TECNOLOGÍAS Y CAPACIDADES</span></div>
+          <div class="cp-box-body">
+            <div id="project-modal-stack" class="gig-stack"></div>
+          </div>
+        </section>
+
+        <div class="project-modal-footer">
+          <span>CÓDIGO EMPRESARIAL PROTEGIDO CUANDO CORRESPONDE</span>
+          <a id="project-modal-repo" class="cyber-btn btn-cyan hidden" target="_blank" rel="noopener">VER REPOSITORIO [↗]</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- =========================================================================
