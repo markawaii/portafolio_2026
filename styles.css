@@ -404,6 +404,14 @@ body.emp-glitch {
   clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
 }
 
+body[data-active-tab="dossier"] .cp-terminal-frame {
+  flex: 0 0 auto;
+}
+
+body[data-active-tab="dossier"] .cp-footer-bar {
+  margin-top: auto;
+}
+
 /* Barra superior técnica delgada de las terminales del juego */
 .terminal-chrome-bar {
   display: flex;
@@ -545,8 +553,8 @@ body.emp-glitch {
    ============================================================================ */
 .dossier-grid {
   display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.65fr);
+  gap: 20px;
   align-items: start;
 }
 
@@ -584,22 +592,21 @@ body.emp-glitch {
 }
 
 .operator-card {
-  position: sticky;
-  top: 14px;
+  position: relative;
 }
 
 .operator-identity-row {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 16px;
+  padding: 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .reticle-frame {
   position: relative;
-  width: 94px;
-  height: 94px;
+  width: 82px;
+  height: 82px;
   flex-shrink: 0;
   border: 1px solid var(--cp-cyan-border);
   background: rgba(94, 234, 247, 0.04);
@@ -656,7 +663,7 @@ body.emp-glitch {
 }
 
 .scanner-data-table {
-  padding: 14px 16px;
+  padding: 13px 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -729,7 +736,7 @@ body.emp-glitch {
 .dossier-right {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
 }
 
 .shard-body {
@@ -742,7 +749,7 @@ body.emp-glitch {
 }
 
 .profile-summary-lead {
-  max-width: 76ch;
+  max-width: none;
   font-size: 1.04rem;
   line-height: 1.65;
 }
@@ -1468,6 +1475,22 @@ body.modal-open {
   height: 100%;
 }
 
+.project-modal-story-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-modal-story-card {
+  border-left: 3px solid var(--cp-red);
+}
+
+.project-modal-result-card {
+  border-left-color: var(--cp-cyan);
+}
+
+.project-modal-result-card .project-dossier-section-header b {
+  background: var(--cp-cyan);
+}
+
 .project-dossier-section-header > span:first-child {
   display: inline-flex;
   align-items: center;
@@ -1533,6 +1556,10 @@ body.modal-open {
 .project-modal-tech .gig-stack {
   align-content: flex-start;
   gap: 9px;
+}
+
+.project-modal-tech .project-dossier-section-header > span:last-child {
+  display: none;
 }
 
 .project-modal-tech .stack-chip {
@@ -1782,6 +1809,10 @@ body.modal-open {
 }
 
 @media (max-width: 520px) {
+  .operator-actions {
+    grid-template-columns: 1fr;
+  }
+
   .stack-category-tabs {
     grid-template-columns: 1fr;
   }
@@ -3271,10 +3302,14 @@ body.modal-open {
 }
 
 .operator-actions {
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
+  padding: 14px 16px 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 10px;
+}
+
+.operator-actions > * {
+  min-width: 0;
 }
 
 .hub-operator-id {
@@ -4988,6 +5023,10 @@ body.professional-mode .project-folder-tab { clip-path: none; }
 }
 
 @media (max-width: 430px) {
+  .operator-actions {
+    grid-template-columns: 1fr;
+  }
+
   .tab-code {
     display: none;
   }

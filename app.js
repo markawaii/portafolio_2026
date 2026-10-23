@@ -11,13 +11,13 @@ const browserLanguage = (navigator.language || "es").toLowerCase();
 let currentLanguage = storedLanguage || (browserLanguage.startsWith("es") ? "es" : "en");
 
 const PROJECT_EN = {
-  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "Self-hosted platform I designed and built to manage and gamify Twitch communities through a multichannel bot, virtual economy, games, OBS overlays, WebSockets and local text-to-speech." },
-  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "Desktop Git client I designed and built in Spanish with staging, history, remote synchronization, secure multi-account management and visual block-based conflict resolution." },
-  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "Lead developer of an enterprise platform for managing templates and automating document generation, validation and processing." },
-  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "Maintenance and evolution of a legacy enterprise middleware that centralizes integrations and information flows between internal systems." },
-  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "Technical lead and principal developer for a configurable workflow engine, coordinating frontend and backend work planning and delivery." },
-  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "Principal developer modernizing a legacy hiring system through CI/CD, digital-signature and workflow integrations, technical-debt reduction and deployment stabilization." },
-  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "Principal developer of a centralized platform for shared company services, including a news API and integrations with Instagram, LinkedIn and Google Chat." }
+  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "Self-hosted platform I designed and built to manage and gamify Twitch communities through a multichannel bot, virtual economy, games, OBS overlays, WebSockets and local text-to-speech.", challenge: "Unify community management, real-time interactions and streaming tools without relying on multiple disconnected services.", result: "A modular, self-hosted platform that centralizes bot, economy, games, OBS overlays and local text-to-speech in one maintainable system." },
+  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "Desktop Git client I designed and built in Spanish with staging, history, remote synchronization, secure multi-account management and visual block-based conflict resolution.", challenge: "Make advanced Git operations and conflict resolution easier to understand for Spanish-speaking users without hiding the real repository state.", result: "A desktop workflow that brings staging, history, synchronization, secure accounts and visual conflict resolution into one native interface." },
+  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "Lead developer of an enterprise platform for managing templates and automating document generation, validation and processing.", challenge: "Standardize reusable templates and automate document generation while preserving data validation and integration with related services.", result: "A centralized workflow for managing templates and processing documents with fewer manual steps and more consistent validation." },
+  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "Maintenance and evolution of a legacy enterprise middleware that centralizes integrations and information flows between internal systems.", challenge: "Safely evolve a production legacy codebase while maintaining compatibility between contracts, HR processes and internal systems.", result: "Progressive modernization that preserves operations and centralizes information exchange between business systems." },
+  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "Technical lead and principal developer for a configurable workflow engine, coordinating frontend and backend work planning and delivery.", challenge: "Coordinate frontend and backend delivery while designing a configurable engine for asynchronous business processes and external integrations.", result: "A supervised workflow platform with queues, states, process history, webhooks and scheduled tasks, delivered through coordinated team planning." },
+  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "Principal developer modernizing a legacy hiring system through CI/CD, digital-signature and workflow integrations, technical-debt reduction and deployment stabilization.", challenge: "Connect a legacy hiring process to digital signatures and workflows while improving an unstable deployment pipeline and reducing technical debt.", result: "A more integrated hiring flow with clearer promotion between development, QA and production and more reliable deployments." },
+  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "Principal developer of a centralized platform for shared company services, including a news API and integrations with Instagram, LinkedIn and Google Chat.", challenge: "Avoid duplicating shared integrations and services across company projects by giving them a single maintained access point.", result: "A centralized API for reusable services, news feeds, social integrations and automated Google Chat communication." }
 };
 
 const CYBERWARE_EN = [
@@ -50,11 +50,11 @@ const PORTFOLIO_DATA = {
     location: "Santiago, Chile",
     totalRam: 16,
     bio: [
-      "Con más de 4 años de experiencia en desarrollo de software, especializado en Laravel y con proyectos realizados en Flask y .NET. Domino tecnologías como Laravel, React, AWS, Serverless Framework, JavaScript y Docker.",
+      "Desarrollo y lidero soluciones empresariales full-stack, integraciones y automatizaciones, con especialización en Laravel, React, Docker y CI/CD. Cuento con más de 4 años de experiencia en desarrollo de software y proyectos realizados en Flask y .NET.",
       "He liderado y participado en proyectos reales internos y externos en IDEA UNO, fortaleciendo mis habilidades técnicas, de liderazgo y trabajo colaborativo con Jira y Confluence. Actualmente finalizo mis estudios de Ingeniería en Informática en DUOC UC (modalidad vespertina), complementando formación académica con experiencia práctica en producción."
     ],
     bioEn: [
-      "Full-stack developer with more than 4 years of professional experience, specializing in Laravel and with production work in Flask and .NET. My stack includes React, AWS, Serverless Framework, JavaScript and Docker.",
+      "I build and lead full-stack business solutions, integrations and automation, specializing in Laravel, React, Docker and CI/CD. I have more than 4 years of software-development experience, including production work with Flask and .NET.",
       "I have led and contributed to real internal and client projects at IDEA UNO, combining hands-on engineering with planning, task assignment and collaboration through Jira and Confluence. I am currently completing an evening degree in Computer Engineering at DUOC UC."
     ],
     attributes: [
@@ -137,6 +137,8 @@ const PORTFOLIO_DATA = {
       category: "personal",
       threat: "PROYECTO PROPIO // FULL-STACK & REAL-TIME",
       desc: "Proyecto diseñado y desarrollado íntegramente por mí: plataforma autohospedada para administrar y gamificar comunidades de Twitch mediante bot multicanal, economía virtual, juegos, overlays para OBS, WebSockets y síntesis de voz local.",
+      challenge: "Unificar la gestión de comunidades, las interacciones en tiempo real y las herramientas de streaming sin depender de múltiples servicios desconectados.",
+      result: "Una plataforma modular y autohospedada que centraliza bot, economía, juegos, overlays para OBS y síntesis de voz local en un sistema mantenible.",
       stack: ["FastAPI", "React", "TypeScript", "MariaDB", "Redis", "Docker", "Twitch API", "Piper TTS"],
       highlights: [
         "Arquitectura separada en API, bot, worker, frontend y servicio de síntesis de voz.",
@@ -153,6 +155,8 @@ const PORTFOLIO_DATA = {
       category: "personal",
       threat: "PROYECTO PROPIO // TAURI & RUST",
       desc: "Proyecto diseñado y desarrollado íntegramente por mí: cliente Git de escritorio en español con staging, historial, sincronización remota, gestión segura de múltiples cuentas y resolución visual de conflictos por bloques.",
+      challenge: "Hacer comprensibles las operaciones avanzadas de Git y la resolución de conflictos para usuarios hispanohablantes sin ocultar el estado real del repositorio.",
+      result: "Un flujo de escritorio que reúne staging, historial, sincronización, cuentas seguras y resolución visual de conflictos en una interfaz nativa.",
       stack: ["Tauri", "Rust", "TypeScript", "Git CLI", "Keyring nativo", "GitHub Actions"],
       highlights: [
         "Operaciones Git reales con staging, commits, fetch, pull seguro y push.",
@@ -169,6 +173,8 @@ const PORTFOLIO_DATA = {
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
       desc: "Desarrollador principal de una plataforma empresarial para administrar plantillas y automatizar la generación, validación y procesamiento de documentos. Responsable de la evolución funcional, lógica backend e integración con servicios relacionados.",
+      challenge: "Estandarizar plantillas reutilizables y automatizar la generación documental, manteniendo validaciones de datos e integración con servicios relacionados.",
+      result: "Un flujo centralizado para administrar plantillas y procesar documentos con menos pasos manuales y validaciones más consistentes.",
       stack: ["PHP", "Laravel", "JavaScript", "MySQL", "Docker", "Procesamiento documental"],
       highlights: [
         "Diseño y evolución del flujo de administración de plantillas reutilizables.",
@@ -185,6 +191,8 @@ const PORTFOLIO_DATA = {
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // PROYECTO HEREDADO",
       desc: "Participación en la mantención y evolución de un middleware empresarial heredado que centraliza integraciones y flujos de información entre sistemas internos. Trabajo sobre modernización tecnológica, procesos de contratación y servicios de recursos humanos.",
+      challenge: "Evolucionar de forma segura una base heredada en producción, manteniendo compatibilidad entre contratos, procesos de recursos humanos y sistemas internos.",
+      result: "Una modernización progresiva que conserva la operación y centraliza el intercambio de información entre sistemas empresariales.",
       stack: ["PHP", "Laravel", "APIs REST", "MySQL", "Docker", "Integraciones empresariales"],
       highlights: [
         "Comprensión y evolución segura de una base de código heredada en producción.",
@@ -201,6 +209,8 @@ const PORTFOLIO_DATA = {
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // LÍDER TÉCNICO",
       desc: "Lideré el desarrollo del producto y coordiné al equipo frontend y backend mediante definición y asignación de tareas. Participé como desarrollador principal en un motor para configurar, ejecutar y supervisar workflows, integraciones y procesos automatizados.",
+      challenge: "Coordinar la entrega frontend y backend mientras se diseñaba un motor configurable para procesos empresariales asíncronos e integraciones externas.",
+      result: "Una plataforma de workflows supervisados con colas, estados, historial, webhooks y tareas programadas, entregada mediante planificación coordinada del equipo.",
       stack: ["Laravel", "React", "TypeScript", "Redis", "Laravel Horizon", "Docker"],
       highlights: [
         "Liderazgo técnico de frontend y backend, planificación y asignación de tareas.",
@@ -217,6 +227,8 @@ const PORTFOLIO_DATA = {
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
       desc: "Desarrollador principal de un sistema heredado para procesos de contratación. Implementé mejoras de CI/CD, integración con un proveedor de firma digital y un motor de workflows, además de reducir deuda técnica y estabilizar sus despliegues.",
+      challenge: "Conectar un proceso heredado de contratación con firma digital y workflows, mientras se mejoraba un pipeline inestable y se reducía deuda técnica.",
+      result: "Un flujo de contratación más integrado, con promociones más claras entre desarrollo, QA y producción y despliegues más confiables.",
       stack: ["Python", "Flask", "React", "JavaScript", "Firma digital", "Workflows", "CI/CD"],
       highlights: [
         "Integración del proceso de contratación con firma digital y workflows.",
@@ -233,6 +245,8 @@ const PORTFOLIO_DATA = {
       category: "enterprise",
       threat: "PROYECTO INTERNO: IDEA UNO // DESARROLLADOR PRINCIPAL",
       desc: "Desarrollador principal de una plataforma para centralizar servicios reutilizados por distintos sistemas de la empresa y mantenerlos desde un único lugar. Incluye una API de noticias e integraciones con Instagram, LinkedIn y Google Chat.",
+      challenge: "Evitar la duplicación de servicios e integraciones compartidas entre proyectos, entregándoles un único punto de acceso mantenible.",
+      result: "Una API centralizada para servicios reutilizables, noticias, integraciones sociales y comunicación automatizada con Google Chat.",
       stack: ["PHP", "Laravel", "APIs REST", "API de noticias", "OAuth", "Instagram", "LinkedIn", "Google Chat", "Docker"],
       highlights: [
         "API de noticias con agregación RSS, proveedores y consulta por categorías.",
@@ -994,6 +1008,8 @@ function openProjectDetailsModal(projectId) {
   setModalText("project-modal-role", copy.threat);
   setModalText("project-modal-period", copy.periodLabel);
   setModalText("project-modal-summary", copy.desc);
+  setModalText("project-modal-challenge", copy.challenge);
+  setModalText("project-modal-result", copy.result);
   document.getElementById("project-modal-highlights").innerHTML = project.highlights
     .map((item) => `<li>${item}</li>`)
     .join("");
@@ -1024,10 +1040,7 @@ function openProjectDetailsModal(projectId) {
 function animateProjectModalContent(modal) {
   if (!modal || modal.classList.contains("hidden")) return;
   const typedTargets = [
-    ["#project-modal-code", 0, 420],
-    ["#project-modal-title", 45, 620],
-    ["#project-modal-period", 90, 440],
-    ["#project-modal-summary", 150, 920]
+    ["#project-modal-summary", 80, 920]
   ];
 
   typedTargets.forEach(([selector, delay, duration]) => {
@@ -1223,12 +1236,14 @@ function initDaemonNavigation() {
   const tabs = document.querySelectorAll(".daemon-tab");
   const panels = document.querySelectorAll(".deck-panel");
   const inspectorEl = document.getElementById("inspector-text");
+  document.body.dataset.activeTab = "dossier";
 
   const activateTab = (tabName) => {
     const targetTab = Array.from(tabs).find((t) => t.dataset.tab === tabName);
     if (!targetTab || targetTab.classList.contains("active")) return;
 
     sfx.click();
+    document.body.dataset.activeTab = tabName;
 
     tabs.forEach((t) => {
       const isActive = t === targetTab;
@@ -2219,6 +2234,10 @@ function initSystemControls() {
     setStableText(document.getElementById("profile-cv-cta"), en ? "DOWNLOAD CV (PDF) [↗]" : "DESCARGAR CV (PDF) [↗]");
     setStableText(document.getElementById("profile-summary-heading"), en ? "PROFESSIONAL SUMMARY" : "RESUMEN PROFESIONAL");
     setStableText(document.getElementById("profile-timeline-heading"), en ? "PROFESSIONAL & EDUCATION TIMELINE" : "TRAYECTORIA PROFESIONAL Y EDUCACIÓN");
+    document.getElementById("project-modal-challenge-label").innerHTML = en ? "<b>02</b> CHALLENGE" : "<b>02</b> DESAFÍO";
+    document.getElementById("project-modal-result-label").innerHTML = en ? "<b>03</b> OUTCOME" : "<b>03</b> RESULTADO";
+    document.getElementById("project-modal-highlights-label").innerHTML = en ? "<b>04</b> KEY CONTRIBUTIONS" : "<b>04</b> APORTES DESTACADOS";
+    document.getElementById("project-modal-tech-label").innerHTML = en ? "<b>05</b> TECHNOLOGIES & CAPABILITIES" : "<b>05</b> TECNOLOGÍAS Y CAPACIDADES";
     const kickerCopy = en
       ? ["01 // PROFESSIONAL DOSSIER", "02 // CAREER PROGRESSION", "03 // REPOSITORIES & SYSTEMS", "04 // TECHNICAL CAPABILITIES", "07 // DEVELOPMENT & QA UTILITIES", "05 // OPTIONAL SECRET DIRECTORY", "06 // COMMUNICATIONS"]
       : ["01 // EXPEDIENTE PROFESIONAL", "02 // EVOLUCIÓN PROFESIONAL", "03 // REPOSITORIOS & SISTEMAS", "04 // CAPACIDADES TÉCNICAS", "07 // UTILIDADES PARA DESARROLLO Y QA", "05 // DIRECTORIO SECRETO OPCIONAL", "06 // COMUNICACIONES"];
