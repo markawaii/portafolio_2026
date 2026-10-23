@@ -91,45 +91,20 @@
           <span class="tab-code">03</span>
           <span class="daemon-name">STACK</span>
         </button>
-        <button class="daemon-tab" id="tab-button-breach" data-tab="breach" role="tab" aria-selected="false" aria-controls="tab-breach" tabindex="-1">
-          <span class="tab-code">04</span>
+        <button class="daemon-tab" id="tab-button-breach" data-tab="breach" role="tab" aria-selected="false" aria-controls="tab-breach" aria-hidden="true" tabindex="-1" hidden>
+          <span class="tab-code">06</span>
           <span class="daemon-name">HERRAMIENTAS</span>
         </button>
         <button class="daemon-tab" id="tab-button-blackwall" data-tab="blackwall" role="tab" aria-selected="false" aria-controls="tab-blackwall" tabindex="-1">
-          <span class="tab-code">05</span>
+          <span class="tab-code">04</span>
           <span class="daemon-name">/blackwall/</span>
         </button>
         <button class="daemon-tab" id="tab-button-holocall" data-tab="holocall" role="tab" aria-selected="false" aria-controls="tab-holocall" tabindex="-1">
-          <span class="tab-code">06</span>
+          <span class="tab-code">05</span>
           <span class="daemon-name">CONTACTO</span>
         </button>
       </nav>
 
-      <!-- Preferencias compactas: evita que los controles deformen la cabecera -->
-      <div class="hub-controls-right">
-        <button id="settings-menu-toggle" class="cp-util-btn settings-trigger" type="button"
-          aria-haspopup="true" aria-expanded="false" aria-controls="settings-menu">
-          <span id="settings-trigger-label">AJUSTES</span>
-          <span class="settings-chevron" aria-hidden="true">⌄</span>
-        </button>
-        <div id="settings-menu" class="settings-menu hidden" role="menu" aria-labelledby="settings-menu-toggle">
-          <div id="settings-menu-title" class="settings-menu-title">PREFERENCIAS</div>
-          <div class="settings-row">
-            <span id="language-setting-label" class="settings-label">IDIOMA</span>
-            <button id="language-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">ES</button>
-          </div>
-          <div class="settings-row">
-            <span id="visual-setting-label" class="settings-label">TEMA</span>
-            <button id="visual-mode-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">CYBER</button>
-          </div>
-          <div class="settings-row">
-            <span id="sfx-setting-label" class="settings-label">SONIDO</span>
-            <button id="sfx-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">
-              <span id="sfx-label">ON</span>
-            </button>
-          </div>
-        </div>
-      </div>
     </header>
 
     <!-- ================= PANTALLA PRINCIPAL ================= -->
@@ -243,11 +218,11 @@
         <div id="cyberware-grid" class="cyberware-categories"></div>
       </article>
 
-      <!-- ==================== 04: HERRAMIENTAS DE DESARROLLO ==================== -->
+      <!-- ==================== 06: HERRAMIENTAS DE DESARROLLO (ACCESO OCULTO) ==================== -->
       <article id="tab-breach" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-breach" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">04 // UTILIDADES PARA DESARROLLO Y QA</div>
+            <div class="cp-kicker">06 // UTILIDADES PARA DESARROLLO Y QA</div>
             <h2 class="cp-title">HERRAMIENTAS DE DESARROLLO</h2>
           </div>
         </div>
@@ -445,11 +420,11 @@
         </section>
       </article>
 
-      <!-- ==================== 05: /blackwall/ (ARCHIVOS OPCIONALES) ==================== -->
+      <!-- ==================== 04: /blackwall/ (ARCHIVOS OPCIONALES) ==================== -->
       <article id="tab-blackwall" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-blackwall" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">05 // DIRECTORIO SECRETO OPCIONAL</div>
+            <div class="cp-kicker">04 // DIRECTORIO SECRETO OPCIONAL</div>
             <h2 class="cp-title">ARCHIVOS ENCRIPTADOS (/blackwall/)</h2>
           </div>
           <div class="cp-status-tag" id="blackwall-status-tag">
@@ -460,11 +435,11 @@
         <div id="blackwall-grid" class="projects-grid"></div>
       </article>
 
-      <!-- ==================== 06: CONTACTO ==================== -->
+      <!-- ==================== 05: CONTACTO ==================== -->
       <article id="tab-holocall" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-holocall" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">06 // COMUNICACIONES</div>
+            <div class="cp-kicker">05 // COMUNICACIONES</div>
             <h2 class="cp-title">CONTACTO Y ENLACES</h2>
           </div>
         </div>
@@ -510,12 +485,37 @@
     <!-- ================= PIE DE PÁGINA DISCRETO ================= -->
     <footer class="cp-footer-bar">
       <div class="footer-shortcuts">
-        <span class="shortcut-item"><kbd>1</kbd>–<kbd>6</kbd> Secciones</span>
+        <span id="section-shortcut-hint" class="shortcut-item"><kbd>1</kbd>–<kbd>5</kbd> Secciones</span>
+        <span id="secret-tool-hint" class="shortcut-item shortcut-secret"><kbd>6</kbd> Acceso oculto</span>
         <span id="token-shortcut-hint" class="shortcut-item hidden"><kbd>R</kbd> Nuevo Token</span>
         <span class="shortcut-item"><kbd>M</kbd> Audio</span>
       </div>
-      <div class="footer-status">
-        Ignacio Veliz © 2026
+      <div class="footer-meta">
+        <div class="hub-controls-right footer-settings">
+          <button id="settings-menu-toggle" class="cp-util-btn settings-trigger" type="button"
+            aria-haspopup="true" aria-expanded="false" aria-controls="settings-menu">
+            <span id="settings-trigger-label">AJUSTES</span>
+            <span class="settings-chevron" aria-hidden="true">⌃</span>
+          </button>
+          <div id="settings-menu" class="settings-menu hidden" role="menu" aria-labelledby="settings-menu-toggle">
+            <div id="settings-menu-title" class="settings-menu-title">PREFERENCIAS</div>
+            <div class="settings-row">
+              <span id="language-setting-label" class="settings-label">IDIOMA</span>
+              <button id="language-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">ES</button>
+            </div>
+            <div class="settings-row">
+              <span id="visual-setting-label" class="settings-label">TEMA</span>
+              <button id="visual-mode-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">CYBER</button>
+            </div>
+            <div class="settings-row">
+              <span id="sfx-setting-label" class="settings-label">SONIDO</span>
+              <button id="sfx-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">
+                <span id="sfx-label">ON</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="footer-status">Ignacio Veliz © 2026</div>
       </div>
     </footer>
 

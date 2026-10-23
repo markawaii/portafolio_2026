@@ -108,7 +108,7 @@ body.emp-glitch {
    ============================================================================ */
 .cp-hub-header {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 20px;
   background: rgba(16, 18, 24, 0.94);
@@ -218,6 +218,10 @@ body.emp-glitch {
   letter-spacing: 1.2px;
   transition: all 0.16s ease;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+.daemon-tab[hidden] {
+  display: none !important;
 }
 
 .daemon-tab:hover {
@@ -2206,6 +2210,25 @@ body.modal-open {
   flex-wrap: wrap;
 }
 
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+}
+
+.footer-settings .settings-trigger {
+  min-width: 104px;
+  min-height: 30px;
+  padding: 5px 9px;
+  font-size: 0.68rem;
+}
+
+.footer-settings .settings-menu {
+  top: auto;
+  bottom: calc(100% + 9px);
+}
+
 .shortcut-item kbd {
   background: rgba(235, 82, 76, 0.12);
   border: 1px solid var(--cp-red-border);
@@ -2213,6 +2236,23 @@ body.modal-open {
   padding: 1px 6px;
   font-size: 0.68rem;
   margin-right: 4px;
+}
+
+.shortcut-secret {
+  color: var(--cp-cyan);
+  opacity: 0.72;
+  transition: opacity 160ms ease, text-shadow 160ms ease;
+}
+
+.shortcut-secret:hover {
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(94, 234, 247, 0.45);
+}
+
+.shortcut-secret kbd {
+  border-color: rgba(94, 234, 247, 0.5);
+  background: rgba(94, 234, 247, 0.08);
+  color: var(--cp-cyan);
 }
 
 .footer-status {
@@ -4472,6 +4512,21 @@ body.professional-mode .project-folder-tab { clip-path: none; }
 
   .hub-controls-right .settings-trigger {
     width: 132px;
+  }
+
+  .footer-meta {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+
+  .footer-settings {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .footer-settings .settings-trigger {
+    width: 112px;
   }
 
   .settings-menu {

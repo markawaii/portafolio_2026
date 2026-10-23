@@ -6,7 +6,9 @@
  * personales, proyectos, habilidades y enlaces de contacto.
  */
 
-let currentLanguage = localStorage.getItem("portfolio-language") || "es";
+const storedLanguage = localStorage.getItem("portfolio-language");
+const browserLanguage = (navigator.language || "es").toLowerCase();
+let currentLanguage = storedLanguage || (browserLanguage.startsWith("es") ? "es" : "en");
 
 const PROJECT_EN = {
   "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "Self-hosted platform I designed and built to manage and gamify Twitch communities through a multichannel bot, virtual economy, games, OBS overlays, WebSockets and local text-to-speech." },
@@ -1202,7 +1204,7 @@ function initDaemonNavigation() {
   document.getElementById("daemon-tabs")?.addEventListener("keydown", (event) => {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
     event.preventDefault();
-    const tabList = Array.from(tabs);
+    const tabList = Array.from(tabs).filter((tab) => !tab.hidden);
     const currentIndex = tabList.indexOf(document.activeElement);
     let nextIndex = currentIndex;
     if (event.key === "Home") nextIndex = 0;
@@ -1221,7 +1223,7 @@ function initDaemonNavigation() {
     if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
     const gate = document.getElementById("intrusion-gate");
     if (gate && !gate.classList.contains("hidden")) return;
-    const map = { "1": "dossier", "2": "gigs", "3": "cyberware", "4": "breach", "5": "blackwall", "6": "holocall" };
+    const map = { "1": "dossier", "2": "gigs", "3": "cyberware", "4": "blackwall", "5": "holocall", "6": "breach" };
     if (map[e.key]) activateTab(map[e.key]);
   });
 }
@@ -2104,10 +2106,10 @@ function initSystemControls() {
     if (modeBtn) modeBtn.textContent = currentLanguage === "en"
       ? (professional ? "LIGHT" : "CYBER")
       : (professional ? "CLARO" : "CYBER");
-    localStorage.setItem("portfolio-visual-mode", professional ? "professional" : "cyber");
   };
   const query = new URLSearchParams(window.location.search);
-  applyVisualMode(query.get("mode") === "professional" || (!query.has("mode") && localStorage.getItem("portfolio-visual-mode") === "professional"));
+  localStorage.removeItem("portfolio-visual-mode");
+  applyVisualMode(query.get("mode") === "professional");
   modeBtn?.addEventListener("click", () => {
     applyVisualMode(!document.body.classList.contains("professional-mode"));
     setSettingsMenu(false);
@@ -2138,9 +2140,15 @@ function initSystemControls() {
     setStableText(document.getElementById("visual-setting-label"), en ? "THEME" : "TEMA");
     setStableText(document.getElementById("sfx-setting-label"), en ? "SOUND" : "SONIDO");
     const kickerCopy = en
-      ? ["01 // PROFESSIONAL DOSSIER", "02 // REPOSITORIES & SYSTEMS", "03 // TECHNICAL CAPABILITIES", "04 // DEVELOPMENT & QA UTILITIES", "05 // OPTIONAL SECRET DIRECTORY", "06 // COMMUNICATIONS"]
-      : ["01 // EXPEDIENTE PROFESIONAL", "02 // REPOSITORIOS & SISTEMAS", "03 // CAPACIDADES TÉCNICAS", "04 // UTILIDADES PARA DESARROLLO Y QA", "05 // DIRECTORIO SECRETO OPCIONAL", "06 // COMUNICACIONES"];
+      ? ["01 // PROFESSIONAL DOSSIER", "02 // REPOSITORIES & SYSTEMS", "03 // TECHNICAL CAPABILITIES", "06 // DEVELOPMENT & QA UTILITIES", "04 // OPTIONAL SECRET DIRECTORY", "05 // COMMUNICATIONS"]
+      : ["01 // EXPEDIENTE PROFESIONAL", "02 // REPOSITORIOS & SISTEMAS", "03 // CAPACIDADES TÉCNICAS", "06 // UTILIDADES PARA DESARROLLO Y QA", "04 // DIRECTORIO SECRETO OPCIONAL", "05 // COMUNICACIONES"];
     document.querySelectorAll(".deck-panel > .cp-section-header .cp-kicker").forEach((node, index) => setStableText(node, kickerCopy[index]));
+    document.getElementById("section-shortcut-hint").innerHTML = en
+      ? '<kbd>1</kbd>–<kbd>5</kbd> Sections'
+      : '<kbd>1</kbd>–<kbd>5</kbd> Secciones';
+    document.getElementById("secret-tool-hint").innerHTML = en
+      ? '<kbd>6</kbd> Hidden access'
+      : '<kbd>6</kbd> Acceso oculto';
     document.querySelector('[data-project-view="grid"]').textContent = en ? "CARDS" : "TARJETAS";
     document.querySelector('[data-project-view="timeline"]').textContent = "TIMELINE";
     document.querySelector('[data-project-view="folders"]').textContent = en ? "FOLDERS" : "CARPETAS";
