@@ -83,24 +83,28 @@
           <span class="tab-code">01</span>
           <span class="daemon-name">PERFIL</span>
         </button>
-        <button class="daemon-tab" id="tab-button-gigs" data-tab="gigs" role="tab" aria-selected="false" aria-controls="tab-gigs" tabindex="-1">
+        <button class="daemon-tab" id="tab-button-trajectory" data-tab="trajectory" role="tab" aria-selected="false" aria-controls="tab-trajectory" tabindex="-1">
           <span class="tab-code">02</span>
+          <span class="daemon-name">TRAYECTORIA</span>
+        </button>
+        <button class="daemon-tab" id="tab-button-gigs" data-tab="gigs" role="tab" aria-selected="false" aria-controls="tab-gigs" tabindex="-1">
+          <span class="tab-code">03</span>
           <span class="daemon-name">PROYECTOS</span>
         </button>
         <button class="daemon-tab" id="tab-button-cyberware" data-tab="cyberware" role="tab" aria-selected="false" aria-controls="tab-cyberware" tabindex="-1">
-          <span class="tab-code">03</span>
+          <span class="tab-code">04</span>
           <span class="daemon-name">STACK</span>
         </button>
         <button class="daemon-tab" id="tab-button-breach" data-tab="breach" role="tab" aria-selected="false" aria-controls="tab-breach" aria-hidden="true" tabindex="-1" hidden>
-          <span class="tab-code">06</span>
+          <span class="tab-code">07</span>
           <span class="daemon-name">HERRAMIENTAS</span>
         </button>
         <button class="daemon-tab" id="tab-button-blackwall" data-tab="blackwall" role="tab" aria-selected="false" aria-controls="tab-blackwall" tabindex="-1">
-          <span class="tab-code">04</span>
+          <span class="tab-code">05</span>
           <span class="daemon-name">/blackwall/</span>
         </button>
         <button class="daemon-tab" id="tab-button-holocall" data-tab="holocall" role="tab" aria-selected="false" aria-controls="tab-holocall" tabindex="-1">
-          <span class="tab-code">05</span>
+          <span class="tab-code">06</span>
           <span class="daemon-name">CONTACTO</span>
         </button>
       </nav>
@@ -117,9 +121,6 @@
             <div class="cp-kicker">01 // EXPEDIENTE PROFESIONAL</div>
             <h1 class="cp-title">IGNACIO ANDRÉS VELIZ SEGUEL</h1>
           </div>
-          <div class="cp-status-tag">
-            <span class="status-led"></span> ANALISTA DESARROLLADOR // FULL-STACK
-          </div>
         </div>
 
         <div class="dossier-grid">
@@ -131,7 +132,7 @@
                 <img src="https://avatars.githubusercontent.com/u/101842633?v=4" alt="Ignacio Veliz Seguel" class="operator-avatar" />
               </div>
               <div>
-                <div class="op-card-label">PERFIL VERIFICADO</div>
+                <div class="op-card-label" id="profile-verified-label">PERFIL VERIFICADO</div>
                 <div class="op-card-name" id="profile-name">IGNACIO VELIZ</div>
                 <div class="op-card-sub" id="profile-role">Analista Desarrollador</div>
               </div>
@@ -139,59 +140,64 @@
 
             <div class="scanner-data-table">
               <div class="data-row">
-                <span class="data-key">UBICACIÓN</span>
+                <span class="data-key" id="profile-location-label">UBICACIÓN</span>
                 <span class="data-val" id="hud-location">Santiago, Chile</span>
               </div>
               <div class="data-row">
-                <span class="data-key">EXPERIENCIA</span>
+                <span class="data-key" id="profile-experience-label">EXPERIENCIA</span>
                 <span class="data-val val-cyan" id="profile-affiliation">4+ Años // IDEA UNO</span>
               </div>
               <div class="data-row">
-                <span class="data-key">ESPECIALIDAD</span>
+                <span class="data-key" id="profile-specialty-label">ESPECIALIDAD</span>
                 <span class="data-val" id="profile-specialty">Laravel · React · AWS · Docker</span>
               </div>
               <div class="data-row">
-                <span class="data-key">FORMACIÓN</span>
-                <span class="data-val">Ing. en Informática (DUOC UC)</span>
+                <span class="data-key" id="profile-education-label">FORMACIÓN</span>
+                <span class="data-val" id="profile-formation">Ing. en Informática (DUOC UC)</span>
               </div>
             </div>
 
             <div class="operator-actions">
-              <button class="cyber-btn full-width" data-goto-tab="gigs">VER PROYECTOS &amp; SISTEMAS →</button>
-              <a href="./Ignacio_Veliz_CV.pdf" target="_blank" rel="noopener" class="cyber-btn btn-cyan full-width" style="text-align: center; text-decoration: none;">
+              <button id="profile-projects-cta" class="cyber-btn full-width" data-goto-tab="gigs">VER PROYECTOS →</button>
+              <a id="profile-cv-cta" href="./Ignacio_Veliz_CV.pdf" target="_blank" rel="noopener" class="cp-util-btn full-width profile-cv-link">
                 DESCARGAR CV (PDF) [↗]
               </a>
             </div>
           </div>
 
-          <!-- Columna Derecha: Sobre mí + Experiencia -->
+          <!-- Columna Derecha: Sobre mí -->
           <div class="dossier-right">
             <div class="cp-box">
               <div class="cp-box-header">
-                <span>RESUMEN PROFESIONAL</span>
+                <span id="profile-summary-heading">RESUMEN PROFESIONAL</span>
               </div>
               <div class="cp-box-body">
                 <div id="bio-paragraphs" class="shard-body"></div>
-              </div>
-            </div>
-
-            <div class="cp-box">
-              <div class="cp-box-header">
-                <span>EXPERIENCIA LABORAL &amp; EDUCACIÓN</span>
-              </div>
-              <div class="cp-box-body">
-                <div id="experience-timeline" class="cyber-timeline"></div>
               </div>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- ==================== 02: PROYECTOS ==================== -->
+      <!-- ==================== 02: TRAYECTORIA ==================== -->
+      <article id="tab-trajectory" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-trajectory" hidden>
+        <div class="cp-section-header">
+          <div>
+            <div class="cp-kicker">02 // EVOLUCIÓN PROFESIONAL</div>
+            <h2 id="profile-timeline-heading" class="cp-title">TRAYECTORIA PROFESIONAL Y EDUCACIÓN</h2>
+          </div>
+        </div>
+
+        <div class="career-panel">
+          <div id="experience-timeline" class="cyber-timeline career-timeline"></div>
+        </div>
+      </article>
+
+      <!-- ==================== 03: PROYECTOS ==================== -->
       <article id="tab-gigs" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-gigs" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">02 // REPOSITORIOS &amp; SISTEMAS</div>
+            <div class="cp-kicker">03 // REPOSITORIOS &amp; SISTEMAS</div>
             <h2 class="cp-title">PROYECTOS DESTACADOS</h2>
           </div>
           <div class="project-view-toggle" role="group" aria-label="Vista de proyectos">
@@ -206,11 +212,11 @@
         <div id="projects-timeline" class="projects-timeline hidden"></div>
       </article>
 
-      <!-- ==================== 03: TECH STACK ==================== -->
+      <!-- ==================== 04: TECH STACK ==================== -->
       <article id="tab-cyberware" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-cyberware" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">03 // CAPACIDADES TÉCNICAS</div>
+            <div class="cp-kicker">04 // CAPACIDADES TÉCNICAS</div>
             <h2 class="cp-title">STACK TECNOLÓGICO</h2>
           </div>
         </div>
@@ -218,11 +224,11 @@
         <div id="cyberware-grid" class="cyberware-categories"></div>
       </article>
 
-      <!-- ==================== 06: HERRAMIENTAS DE DESARROLLO (ACCESO OCULTO) ==================== -->
+      <!-- ==================== 07: HERRAMIENTAS DE DESARROLLO (ACCESO OCULTO) ==================== -->
       <article id="tab-breach" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-breach" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">06 // UTILIDADES PARA DESARROLLO Y QA</div>
+            <div class="cp-kicker">07 // UTILIDADES PARA DESARROLLO Y QA</div>
             <h2 class="cp-title">HERRAMIENTAS DE DESARROLLO</h2>
           </div>
         </div>
@@ -424,7 +430,7 @@
       <article id="tab-blackwall" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-blackwall" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">04 // DIRECTORIO SECRETO OPCIONAL</div>
+            <div class="cp-kicker">05 // DIRECTORIO SECRETO OPCIONAL</div>
             <h2 class="cp-title">ARCHIVOS ENCRIPTADOS (/blackwall/)</h2>
           </div>
           <div class="cp-status-tag" id="blackwall-status-tag">
@@ -439,7 +445,7 @@
       <article id="tab-holocall" class="deck-panel" role="tabpanel" aria-labelledby="tab-button-holocall" hidden>
         <div class="cp-section-header">
           <div>
-            <div class="cp-kicker">05 // COMUNICACIONES</div>
+            <div class="cp-kicker">06 // COMUNICACIONES</div>
             <h2 class="cp-title">CONTACTO Y ENLACES</h2>
           </div>
         </div>
@@ -485,8 +491,8 @@
     <!-- ================= PIE DE PÁGINA DISCRETO ================= -->
     <footer class="cp-footer-bar">
       <div class="footer-shortcuts">
-        <span id="section-shortcut-hint" class="shortcut-item"><kbd>1</kbd>–<kbd>5</kbd> Secciones</span>
-        <span id="secret-tool-hint" class="shortcut-item shortcut-secret"><kbd>6</kbd> Acceso oculto</span>
+        <span id="section-shortcut-hint" class="shortcut-item"><kbd>1</kbd>–<kbd>6</kbd> Secciones</span>
+        <span id="secret-tool-hint" class="shortcut-item shortcut-secret"><kbd>7</kbd> Acceso oculto</span>
         <span id="token-shortcut-hint" class="shortcut-item hidden"><kbd>R</kbd> Nuevo Token</span>
         <span class="shortcut-item"><kbd>M</kbd> Audio</span>
       </div>

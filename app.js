@@ -29,7 +29,7 @@ const CYBERWARE_EN = [
   {
     category: "CLOUD, DEVOPS & SECURITY",
     description: "Continuous delivery, cloud infrastructure and secure production operations.",
-    items: ["AWS Lambda", "Serverless Framework", "Docker", "Production / QA Environments", "CI/CD", "GitHub Actions", "Bitbucket Pipelines", "JWT", "OAuth2"]
+    items: ["Serverless Framework", "Docker", "Production / QA Environments", "CI/CD", "GitHub Actions", "Bitbucket Pipelines", "JWT", "OAuth2"]
   },
   {
     category: "ARCHITECTURE, LEADERSHIP & QUALITY",
@@ -41,7 +41,7 @@ const CYBERWARE_EN = [
 const PORTFOLIO_DATA = {
   profile: {
     name: "IGNACIO VELIZ",
-    role: "Analista Desarrollador · Full-Stack Developer",
+    role: "Líder Técnico · Full-Stack Developer",
     level: 50,
     streetCred: 50,
     affiliation: "4+ Años // IDEA UNO",
@@ -50,31 +50,81 @@ const PORTFOLIO_DATA = {
     location: "Santiago, Chile",
     totalRam: 16,
     bio: [
-      "Con más de 4 años de experiencia en desarrollo de software, especializado en Laravel y con proyectos realizados en Flask y .NET. Domino tecnologías como Laravel, React, AWS Lambda, Serverless Framework, JavaScript y Docker.",
+      "Con más de 4 años de experiencia en desarrollo de software, especializado en Laravel y con proyectos realizados en Flask y .NET. Domino tecnologías como Laravel, React, AWS, Serverless Framework, JavaScript y Docker.",
       "He liderado y participado en proyectos reales internos y externos en IDEA UNO, fortaleciendo mis habilidades técnicas, de liderazgo y trabajo colaborativo con Jira y Confluence. Actualmente finalizo mis estudios de Ingeniería en Informática en DUOC UC (modalidad vespertina), complementando formación académica con experiencia práctica en producción."
     ],
     bioEn: [
-      "Full-stack developer with more than 4 years of professional experience, specializing in Laravel and with production work in Flask and .NET. My stack includes React, AWS Lambda, Serverless Framework, JavaScript and Docker.",
+      "Full-stack developer with more than 4 years of professional experience, specializing in Laravel and with production work in Flask and .NET. My stack includes React, AWS, Serverless Framework, JavaScript and Docker.",
       "I have led and contributed to real internal and client projects at IDEA UNO, combining hands-on engineering with planning, task assignment and collaboration through Jira and Confluence. I am currently completing an evening degree in Computer Engineering at DUOC UC."
     ],
     attributes: [
       { name: "DESARROLLO BACKEND (Laravel / Flask / .NET)", score: "20 / 20", percent: 100 },
       { name: "FRONTEND & UI (React / JavaScript / HTML / Bootstrap)", score: "19 / 20", percent: 95 },
-      { name: "DEVOPS & CLOUD (AWS Lambda / Serverless / Docker / CI-CD)", score: "19 / 20", percent: 95 },
+      { name: "DEVOPS & CLOUD (AWS / Serverless / Docker / CI-CD)", score: "19 / 20", percent: 95 },
       { name: "LIDERAZGO, GESTIÓN & QA (Jira / Confluence / Postman)", score: "19 / 20", percent: 95 }
     ],
     experience: [
       {
-        period: "OCTUBRE 2022 — ACTUAL",
-        role: "Analista Desarrollador",
+        period: "OCT 2022 — MAR 2023",
+        role: "Trainee Developer",
         company: "IDEA UNO · Santiago, Chile",
-        desc: "Liderazgo y participación en proyectos internos y externos con Jira y Confluence. Desarrollo de APIs RESTful (Laravel, Flask, .NET) e interfaces en React, gestión de contenedores Docker, levantamiento de ambientes productivos/QA, actualización de sistemas de clientes e implementación de integración continua (CI/CD) con pipelines de Bitbucket y GitHub."
+        desc: "Inicio profesional y formación práctica durante seis meses. Apoyo en implementación, correcciones y mantenimiento, aprendiendo los procesos de desarrollo y entrega de la empresa."
+      },
+      {
+        period: "ABR 2023 — DIC 2023",
+        role: "Desarrollador Junior",
+        company: "IDEA UNO · Santiago, Chile",
+        desc: "Participación con autonomía creciente en APIs, interfaces e integraciones, además de resolución de incidencias y evolución de sistemas internos y de clientes."
+      },
+      {
+        period: "ENE 2024 — 10 OCT 2025",
+        role: "Desarrollador Full-Stack",
+        company: "IDEA UNO · Santiago, Chile",
+        desc: "Responsabilidad integral sobre soluciones empresariales con Laravel, React, Flask y .NET; ambientes Docker, integraciones, CI/CD y despliegues en producción y QA."
+      },
+      {
+        period: "11 OCT 2025 — ACTUAL",
+        role: "Líder Técnico",
+        company: "IDEA UNO · Santiago, Chile",
+        desc: "Liderazgo de equipos frontend y backend, planificación y asignación de tareas, acompañamiento técnico, toma de decisiones y seguimiento de entregas."
       },
       {
         period: "EN CURSO (MODALIDAD VESPERTINA)",
         role: "Ingeniería en Informática",
         company: "DUOC UC · Santiago, Chile",
         desc: "Certificaciones obtenidas: Arquitectura de Software · Análisis y Planificación de Requerimientos Informáticos · Programación de Software · Gestión de Proyectos Informáticos · Análisis y Desarrollo de Modelos de Datos · Calidad de Software."
+      }
+    ],
+    experienceEn: [
+      {
+        period: "OCT 2022 — MAR 2023",
+        role: "Trainee Developer",
+        company: "IDEA UNO · Santiago, Chile",
+        desc: "Six-month professional onboarding period supporting implementation, fixes and maintenance while learning the company's development and delivery processes."
+      },
+      {
+        period: "APR 2023 — DEC 2023",
+        role: "Junior Developer",
+        company: "IDEA UNO · Santiago, Chile",
+        desc: "Contributed with growing autonomy to APIs, interfaces and integrations, as well as issue resolution and the evolution of internal and client systems."
+      },
+      {
+        period: "JAN 2024 — OCT 10, 2025",
+        role: "Full-Stack Developer",
+        company: "IDEA UNO · Santiago, Chile",
+        desc: "End-to-end ownership of business solutions built with Laravel, React, Flask and .NET, including Docker environments, integrations, CI/CD and production and QA deployments."
+      },
+      {
+        period: "OCT 11, 2025 — PRESENT",
+        role: "Technical Lead",
+        company: "IDEA UNO · Santiago, Chile",
+        desc: "Leads frontend and backend teams through planning, task assignment, technical guidance, engineering decisions and delivery follow-up."
+      },
+      {
+        period: "IN PROGRESS · EVENING PROGRAM",
+        role: "Computer Engineering",
+        company: "DUOC UC · Santiago, Chile",
+        desc: "Certifications completed in software architecture, requirements planning, software development, IT project management, data modeling and software quality."
       }
     ]
   },
@@ -215,7 +265,6 @@ const PORTFOLIO_DATA = {
       category: "CLOUD, DEVOPS & SEGURIDAD",
       slot: "MOD: CLOUD_OPS",
       items: [
-        { name: "AWS Lambda", tier: "AVANZADO", level: 90 },
         { name: "Serverless Framework", tier: "AVANZADO", level: 90 },
         { name: "Docker", tier: "AVANZADO", level: 92 },
         { name: "Ambientes Productivos / QA", tier: "AVANZADO", level: 92 },
@@ -328,25 +377,18 @@ const sfx = new CyberAudio();
    MOTOR DE ESCRITURA TERMINAL (TYPEWRITER SIN SALTOS DE LAYOUT NI PARPADEO)
    ============================================================================ */
 const VIEW_TYPEWRITER_SELECTOR = [
-  ".cp-kicker",
-  ".cp-title",
-  "#profile-name",
   "#profile-role",
   ".data-val",
   "#bio-paragraphs p",
   ".tl-period",
-  ".tl-role",
   ".tl-company",
   ".tl-desc",
   ".gig-code",
-  ".gig-title",
   ".gig-desc",
-  ".cw-cat-title",
   ".cw-implant-top span:first-child",
   ".cp-toolbar-label",
   ".cp-toolbar-sub",
   "#db-preset-desc",
-  ".bw-helper-text",
   ".bw-unlocked-seq",
   ".channel-label",
   ".channel-val"
@@ -524,7 +566,12 @@ function animateContainerTexts(containerEl, customSelector = null) {
   const selector = customSelector || VIEW_TYPEWRITER_SELECTOR;
   const nodes = containerEl.querySelectorAll(selector);
   nodes.forEach((el, idx) => {
-    typeElementText(el, Math.min(idx * 65, 520));
+    if (el.classList.contains("no-typewriter")) return;
+    const isProfessionalSummary = el.closest("#bio-paragraphs") !== null;
+    const duration = isProfessionalSummary
+      ? Math.min(7200, Math.max(4200, (el.dataset.twText ?? el.textContent).trim().length * 14))
+      : null;
+    typeElementText(el, Math.min(idx * 65, 520), duration);
   });
 
   // Efecto de datos corruptos desencriptándose para los chips de tecnologías (.stack-chip)
@@ -562,6 +609,7 @@ document.addEventListener("DOMContentLoaded", () => {
    ============================================================================ */
 function renderProfileAndHUD() {
   const { profile } = PORTFOLIO_DATA;
+  const en = currentLanguage === "en";
 
   const setTxt = (id, val) => {
     const el = document.getElementById(id);
@@ -575,9 +623,10 @@ function renderProfileAndHUD() {
   setTxt("hud-sc", profile.streetCred);
   setTxt("hud-location", profile.location);
   setTxt("profile-name", profile.name);
-  setTxt("profile-role", profile.role);
-  setTxt("profile-affiliation", profile.affiliation);
+  setTxt("profile-role", en ? "Technical Lead · Full-Stack Developer" : profile.role);
+  setTxt("profile-affiliation", en ? "4+ Years // IDEA UNO" : profile.affiliation);
   setTxt("profile-specialty", profile.specialty);
+  setTxt("profile-formation", en ? "Computer Engineering (DUOC UC)" : "Ing. en Informática (DUOC UC)");
   setTxt("profile-bounty", profile.bounty);
 
   updateRamDisplay(2);
@@ -603,20 +652,23 @@ function renderProfileAndHUD() {
 
   const bioContainer = document.getElementById("bio-paragraphs");
   if (bioContainer) {
-    const bio = currentLanguage === "en" ? profile.bioEn : profile.bio;
-    bioContainer.innerHTML = bio.map((p) => `<p>${p}</p>`).join("");
+    const bio = en ? profile.bioEn : profile.bio;
+    bioContainer.innerHTML = `<p class="profile-summary-lead">${bio.join(" ")}</p>`;
   }
 
   const timelineContainer = document.getElementById("experience-timeline");
   if (timelineContainer) {
-    timelineContainer.innerHTML = profile.experience
+    const experience = en ? profile.experienceEn : profile.experience;
+    timelineContainer.innerHTML = experience
       .map(
         (item) => `
         <div class="timeline-item">
           <div class="tl-period">${item.period}</div>
-          <div class="tl-role">${item.role}</div>
-          <div class="tl-company">${item.company}</div>
-          <p class="tl-desc">${item.desc}</p>
+          <div class="tl-main">
+            <div class="tl-role">${item.role}</div>
+            <div class="tl-company">${item.company}</div>
+            <p class="tl-desc">${item.desc}</p>
+          </div>
         </div>
       `
       )
@@ -707,14 +759,7 @@ function renderProjectTimeline() {
   if (!timeline) return;
   const projects = [...PORTFOLIO_DATA.projects]
     .sort((a, b) => a.period.start.localeCompare(b.period.start));
-  const rangeStart = projects[0]?.period.start.slice(0, 4) || "—";
-  const rangeEnd = currentLanguage === "en" ? "PRESENT" : "ACTUAL";
-
   timeline.innerHTML = `
-    <div class="timeline-command-bar">
-      <span>${currentLanguage === "en" ? "PROFESSIONAL TRAJECTORY" : "TRAYECTORIA PROFESIONAL"}</span>
-      <span>${rangeStart} — ${rangeEnd}</span>
-    </div>
     <div class="timeline-scroll">
       <div class="timeline-axis" role="tablist" aria-label="${currentLanguage === "en" ? "Project chronology" : "Cronología de proyectos"}">
         ${projects.map((project, index) => {
@@ -796,10 +841,6 @@ function renderProjectFolders() {
   ];
 
   explorer.innerHTML = `
-    <div class="folder-explorer-bar">
-      <span>${currentLanguage === "en" ? "PROJECT ARCHIVE" : "ARCHIVO DE PROYECTOS"}</span>
-      <span>${PORTFOLIO_DATA.projects.length.toString().padStart(2, "0")} ${currentLanguage === "en" ? "FILES" : "EXPEDIENTES"}</span>
-    </div>
     ${groups.map((group) => {
       const projects = PORTFOLIO_DATA.projects.filter((project) => project.category === group.key);
       return `
@@ -847,16 +888,43 @@ function getLocalizedProject(project) {
   return { ...project, ...PROJECT_EN[project.id], threat: role, periodLabel };
 }
 
+function replayProjectViewAnimation(view) {
+  if (!view || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  view.classList.remove("project-view-entering");
+  void view.offsetWidth;
+  view.classList.add("project-view-entering");
+  window.setTimeout(() => view.classList.remove("project-view-entering"), 1250);
+}
+
 function initProjectViewToggle() {
   const views = {
     grid: document.getElementById("projects-grid"),
     timeline: document.getElementById("projects-timeline"),
     folders: document.getElementById("projects-folders")
   };
+  let viewTransitionTimer = null;
   document.querySelectorAll("[data-project-view]").forEach((button) => {
     button.addEventListener("click", () => {
       const selectedView = button.dataset.projectView;
-      Object.entries(views).forEach(([name, view]) => view?.classList.toggle("hidden", name !== selectedView));
+      const targetView = views[selectedView];
+      const currentView = Object.values(views).find((view) => view && !view.classList.contains("hidden"));
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      window.clearTimeout(viewTransitionTimer);
+      const revealTarget = () => {
+        Object.entries(views).forEach(([name, view]) => {
+          view?.classList.remove("project-view-leaving");
+          view?.classList.toggle("hidden", name !== selectedView);
+        });
+        replayProjectViewAnimation(targetView);
+      };
+
+      if (currentView && currentView !== targetView && !reducedMotion) {
+        currentView.classList.add("project-view-leaving");
+        viewTransitionTimer = window.setTimeout(revealTarget, 180);
+      } else {
+        revealTarget();
+      }
       document.querySelectorAll("[data-project-view]").forEach((item) => {
         const active = item === button;
         item.classList.toggle("active", active);
@@ -1062,7 +1130,7 @@ function renderCyberware() {
           </div>`;
         }).join("")}
       </div>`;
-    animateContainerTexts(panel, ".cw-cat-title, .cw-cat-description, .cw-implant-top span:first-child");
+    animateContainerTexts(panel, ".cw-cat-description, .cw-implant-top span:first-child");
   };
 
   tabs.forEach((tab, index) => {
@@ -1181,6 +1249,9 @@ function initDaemonNavigation() {
       activePanel.classList.add("active");
       activePanel.hidden = false;
       animateContainerTexts(activePanel);
+      if (tabName === "gigs") {
+        replayProjectViewAnimation(activePanel.querySelector("#projects-folders:not(.hidden), #projects-grid:not(.hidden), #projects-timeline:not(.hidden)"));
+      }
     }
 
     if (tabName === "breach" && document.querySelector(".tool-tab.active")?.dataset.tool === "token") {
@@ -1223,7 +1294,7 @@ function initDaemonNavigation() {
     if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
     const gate = document.getElementById("intrusion-gate");
     if (gate && !gate.classList.contains("hidden")) return;
-    const map = { "1": "dossier", "2": "gigs", "3": "cyberware", "4": "blackwall", "5": "holocall", "6": "breach" };
+    const map = { "1": "dossier", "2": "trajectory", "3": "gigs", "4": "cyberware", "5": "blackwall", "6": "holocall", "7": "breach" };
     if (map[e.key]) activateTab(map[e.key]);
   });
 }
@@ -2126,9 +2197,9 @@ function initSystemControls() {
       node.dataset.twText = value;
       node.textContent = value;
     };
-    const navLabels = en ? ["PROFILE", "PROJECTS", "STACK", "TOOLS", "/blackwall/", "CONTACT"] : ["PERFIL", "PROYECTOS", "STACK", "HERRAMIENTAS", "/blackwall/", "CONTACTO"];
+    const navLabels = en ? ["PROFILE", "CAREER", "PROJECTS", "STACK", "TOOLS", "/blackwall/", "CONTACT"] : ["PERFIL", "TRAYECTORIA", "PROYECTOS", "STACK", "HERRAMIENTAS", "/blackwall/", "CONTACTO"];
     document.querySelectorAll(".daemon-name").forEach((node, index) => setStableText(node, navLabels[index]));
-    const titles = en ? ["IGNACIO ANDRÉS VELIZ SEGUEL", "FEATURED PROJECTS", "TECH STACK", "DEVELOPER TOOLS", "ENCRYPTED FILES (/blackwall/)", "CONTACT & LINKS"] : ["IGNACIO ANDRÉS VELIZ SEGUEL", "PROYECTOS DESTACADOS", "STACK TECNOLÓGICO", "HERRAMIENTAS DE DESARROLLO", "ARCHIVOS ENCRIPTADOS (/blackwall/)", "CONTACTO Y ENLACES"];
+    const titles = en ? ["IGNACIO ANDRÉS VELIZ SEGUEL", "PROFESSIONAL & EDUCATION TIMELINE", "FEATURED PROJECTS", "TECH STACK", "DEVELOPER TOOLS", "ENCRYPTED FILES (/blackwall/)", "CONTACT & LINKS"] : ["IGNACIO ANDRÉS VELIZ SEGUEL", "TRAYECTORIA PROFESIONAL Y EDUCACIÓN", "PROYECTOS DESTACADOS", "STACK TECNOLÓGICO", "HERRAMIENTAS DE DESARROLLO", "ARCHIVOS ENCRIPTADOS (/blackwall/)", "CONTACTO Y ENLACES"];
     document.querySelectorAll(".deck-panel > .cp-section-header .cp-title").forEach((node, index) => setStableText(node, titles[index]));
     if (languageBtn) languageBtn.textContent = en ? "EN" : "ES";
     if (modeBtn) modeBtn.textContent = en
@@ -2139,16 +2210,25 @@ function initSystemControls() {
     setStableText(document.getElementById("language-setting-label"), en ? "LANGUAGE" : "IDIOMA");
     setStableText(document.getElementById("visual-setting-label"), en ? "THEME" : "TEMA");
     setStableText(document.getElementById("sfx-setting-label"), en ? "SOUND" : "SONIDO");
+    setStableText(document.getElementById("profile-verified-label"), en ? "VERIFIED PROFILE" : "PERFIL VERIFICADO");
+    setStableText(document.getElementById("profile-location-label"), en ? "LOCATION" : "UBICACIÓN");
+    setStableText(document.getElementById("profile-experience-label"), en ? "EXPERIENCE" : "EXPERIENCIA");
+    setStableText(document.getElementById("profile-specialty-label"), en ? "SPECIALTY" : "ESPECIALIDAD");
+    setStableText(document.getElementById("profile-education-label"), en ? "EDUCATION" : "FORMACIÓN");
+    setStableText(document.getElementById("profile-projects-cta"), en ? "VIEW PROJECTS →" : "VER PROYECTOS →");
+    setStableText(document.getElementById("profile-cv-cta"), en ? "DOWNLOAD CV (PDF) [↗]" : "DESCARGAR CV (PDF) [↗]");
+    setStableText(document.getElementById("profile-summary-heading"), en ? "PROFESSIONAL SUMMARY" : "RESUMEN PROFESIONAL");
+    setStableText(document.getElementById("profile-timeline-heading"), en ? "PROFESSIONAL & EDUCATION TIMELINE" : "TRAYECTORIA PROFESIONAL Y EDUCACIÓN");
     const kickerCopy = en
-      ? ["01 // PROFESSIONAL DOSSIER", "02 // REPOSITORIES & SYSTEMS", "03 // TECHNICAL CAPABILITIES", "06 // DEVELOPMENT & QA UTILITIES", "04 // OPTIONAL SECRET DIRECTORY", "05 // COMMUNICATIONS"]
-      : ["01 // EXPEDIENTE PROFESIONAL", "02 // REPOSITORIOS & SISTEMAS", "03 // CAPACIDADES TÉCNICAS", "06 // UTILIDADES PARA DESARROLLO Y QA", "04 // DIRECTORIO SECRETO OPCIONAL", "05 // COMUNICACIONES"];
+      ? ["01 // PROFESSIONAL DOSSIER", "02 // CAREER PROGRESSION", "03 // REPOSITORIES & SYSTEMS", "04 // TECHNICAL CAPABILITIES", "07 // DEVELOPMENT & QA UTILITIES", "05 // OPTIONAL SECRET DIRECTORY", "06 // COMMUNICATIONS"]
+      : ["01 // EXPEDIENTE PROFESIONAL", "02 // EVOLUCIÓN PROFESIONAL", "03 // REPOSITORIOS & SISTEMAS", "04 // CAPACIDADES TÉCNICAS", "07 // UTILIDADES PARA DESARROLLO Y QA", "05 // DIRECTORIO SECRETO OPCIONAL", "06 // COMUNICACIONES"];
     document.querySelectorAll(".deck-panel > .cp-section-header .cp-kicker").forEach((node, index) => setStableText(node, kickerCopy[index]));
     document.getElementById("section-shortcut-hint").innerHTML = en
-      ? '<kbd>1</kbd>–<kbd>5</kbd> Sections'
-      : '<kbd>1</kbd>–<kbd>5</kbd> Secciones';
+      ? '<kbd>1</kbd>–<kbd>6</kbd> Sections'
+      : '<kbd>1</kbd>–<kbd>6</kbd> Secciones';
     document.getElementById("secret-tool-hint").innerHTML = en
-      ? '<kbd>6</kbd> Hidden access'
-      : '<kbd>6</kbd> Acceso oculto';
+      ? '<kbd>7</kbd> Hidden access'
+      : '<kbd>7</kbd> Acceso oculto';
     document.querySelector('[data-project-view="grid"]').textContent = en ? "CARDS" : "TARJETAS";
     document.querySelector('[data-project-view="timeline"]').textContent = "TIMELINE";
     document.querySelector('[data-project-view="folders"]').textContent = en ? "FOLDERS" : "CARPETAS";
@@ -2343,6 +2423,8 @@ const BLACKWALL_FILES = [
     daemonName: "ICEPICK // NIVEL 1",
     sequence: ["55", "1C", "E9"],
     title: "Certificaciones Oficiales — Ingeniería en Informática (DUOC UC)",
+    titleLead: "Certificaciones Oficiales —",
+    classifiedTitle: "Ingeniería en Informática (DUOC UC)",
     content:
       "• Arquitectura de Software · • Análisis y Planificación de Requerimientos Informáticos · • Programación de Software · • Gestión de Proyectos Informáticos · • Análisis y Desarrollo de Modelos de Datos · • Calidad de Software."
   },
@@ -2352,8 +2434,10 @@ const BLACKWALL_FILES = [
     daemonName: "OPTICS JAMMER // NIVEL 2",
     sequence: ["BD", "7A", "FF"],
     title: "Bitácora de Ingeniería — IDEA UNO (Oct 2022 - Actual)",
+    titleLead: "Bitácora de Ingeniería —",
+    classifiedTitle: "IDEA UNO (Oct 2022 - Actual)",
     content:
-      "Liderazgo en proyectos internos y externos, levantamiento de ambientes Productivos y QA con contenedores Docker, pipelines CI/CD en Bitbucket y GitHub, desarrollo de APIs RESTful en Laravel, Flask y .NET, y despliegues Serverless en AWS Lambda."
+      "Liderazgo en proyectos internos y externos, levantamiento de ambientes Productivos y QA con contenedores Docker, pipelines CI/CD en Bitbucket y GitHub, desarrollo de APIs RESTful en Laravel, Flask y .NET, y despliegues serverless en AWS."
   },
   {
     id: "BW-03",
@@ -2361,12 +2445,15 @@ const BLACKWALL_FILES = [
     daemonName: "DATAMINE V3 // NÚCLEO",
     sequence: ["1C", "55", "BD", "E9"],
     title: "Expediente Clasificado // Contacto Directo & Repositorios",
+    titleLead: "Expediente Clasificado //",
+    classifiedTitle: "Contacto Directo & Repositorios",
     content:
       "Operador: Ignacio Andrés Veliz Seguel (Santiago, Chile) · Email: ignaciovs.dev@gmail.com · GitHub: github.com/markawaii · LinkedIn: linkedin.com/in/ingveliz."
   }
 ];
 
 const BW_BUFFER_MAX = 5;
+let blackwallCipherTimer = null;
 
 let bwState = {
   unlocked: new Set(),
@@ -2447,6 +2534,25 @@ function initBlackwallSection() {
   });
 }
 
+function obfuscateBlackwallFragment(value) {
+  const glyphs = ["█", "▓", "▒", "░", "0", "1", "A", "F"];
+  return [...value]
+    .map((character, index) => character === " " ? " " : glyphs[(character.charCodeAt(0) + index) % glyphs.length])
+    .join("");
+}
+
+function animateLockedBlackwallTitles(grid) {
+  window.clearInterval(blackwallCipherTimer);
+  const fragments = [...grid.querySelectorAll("[data-classified-title]")];
+  if (!fragments.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  blackwallCipherTimer = window.setInterval(() => {
+    fragments.forEach((fragment) => {
+      fragment.textContent = buildCorruptString(fragment.dataset.classifiedTitle);
+    });
+  }, 110);
+}
+
 function renderBlackwallCards(newlyUnlockedId = null) {
   const grid = document.getElementById("blackwall-grid");
   const statusTag = document.getElementById("blackwall-status-tag");
@@ -2482,11 +2588,16 @@ function renderBlackwallCards(newlyUnlockedId = null) {
       <div class="bw-card" data-bw-card="${file.id}">
         <div>
           <div class="gig-top">
-            <span class="gig-code">ENCRYPTED // ${file.filename}</span>
+            <span class="gig-code no-typewriter">ENCRYPTED // ${file.filename}</span>
             <span class="gig-threat">${file.daemonName}</span>
           </div>
-          <h3 class="gig-title">${file.title}</h3>
-          <p class="bw-helper-text">
+          <h3 class="gig-title bw-classified-title">
+            <span class="bw-title-lead">${file.titleLead}</span>
+            <span class="bw-encrypted-fragment" aria-label="Contenido cifrado: ${file.classifiedTitle}">
+              <span aria-hidden="true" data-classified-title="${file.classifiedTitle}">${obfuscateBlackwallFragment(file.classifiedTitle)}</span>
+            </span>
+          </h3>
+          <p class="bw-helper-text no-typewriter">
             Archivo protegido. Desencripta manualmente con la Matriz Hexadecimal o ejecuta el proceso automático.
           </p>
         </div>
@@ -2501,6 +2612,8 @@ function renderBlackwallCards(newlyUnlockedId = null) {
       </div>
     `;
   }).join("");
+
+  animateLockedBlackwallTitles(grid);
 
   if (newlyUnlockedId) {
     const unlockedCard = grid.querySelector(`[data-bw-card="${newlyUnlockedId}"]`);
@@ -2657,7 +2770,11 @@ function setupBlackwallMatrixForFile(fileId) {
 
   const titleEl = document.getElementById("bw-modal-title");
   const codeEl = document.getElementById("bw-modal-file-code");
-  if (titleEl) setTypedText(titleEl, `BREACH PROTOCOL // ${file.filename}`, 820);
+  if (titleEl) {
+    if (typeof titleEl._twCancel === "function") titleEl._twCancel();
+    titleEl.dataset.twText = `BREACH PROTOCOL // ${file.filename}`;
+    titleEl.textContent = titleEl.dataset.twText;
+  }
   if (codeEl) codeEl.textContent = file.id;
 
   renderBlackwallModalUI();
