@@ -105,13 +105,30 @@
         </button>
       </nav>
 
-      <!-- Controles mínimos a la derecha -->
+      <!-- Preferencias compactas: evita que los controles deformen la cabecera -->
       <div class="hub-controls-right">
-        <button id="language-toggle" class="cp-util-btn" title="Cambiar idioma">ES / EN</button>
-        <button id="visual-mode-toggle" class="cp-util-btn" title="Cambiar estilo visual">MODO: CYBER</button>
-        <button id="sfx-toggle" class="cp-util-btn" title="Activar/Desactivar sonidos">
-          <span id="sfx-label">SFX: ON</span>
+        <button id="settings-menu-toggle" class="cp-util-btn settings-trigger" type="button"
+          aria-haspopup="true" aria-expanded="false" aria-controls="settings-menu">
+          <span id="settings-trigger-label">AJUSTES</span>
+          <span class="settings-chevron" aria-hidden="true">⌄</span>
         </button>
+        <div id="settings-menu" class="settings-menu hidden" role="menu" aria-labelledby="settings-menu-toggle">
+          <div id="settings-menu-title" class="settings-menu-title">PREFERENCIAS</div>
+          <div class="settings-row">
+            <span id="language-setting-label" class="settings-label">IDIOMA</span>
+            <button id="language-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">ES</button>
+          </div>
+          <div class="settings-row">
+            <span id="visual-setting-label" class="settings-label">TEMA</span>
+            <button id="visual-mode-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">CYBER</button>
+          </div>
+          <div class="settings-row">
+            <span id="sfx-setting-label" class="settings-label">SONIDO</span>
+            <button id="sfx-toggle" class="cp-util-btn settings-value" type="button" role="menuitem">
+              <span id="sfx-label">ON</span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -203,12 +220,14 @@
             <h2 class="cp-title">PROYECTOS DESTACADOS</h2>
           </div>
           <div class="project-view-toggle" role="group" aria-label="Vista de proyectos">
-            <button type="button" class="cp-util-btn active" data-project-view="grid">TARJETAS</button>
-            <button type="button" class="cp-util-btn" data-project-view="timeline">TIMELINE</button>
+            <button type="button" class="cp-util-btn active" data-project-view="folders" aria-pressed="true">CARPETAS</button>
+            <button type="button" class="cp-util-btn" data-project-view="grid" aria-pressed="false">TARJETAS</button>
+            <button type="button" class="cp-util-btn" data-project-view="timeline" aria-pressed="false">TIMELINE</button>
           </div>
         </div>
 
-        <div id="projects-grid" class="projects-grid"></div>
+        <div id="projects-folders" class="projects-folders"></div>
+        <div id="projects-grid" class="projects-grid hidden"></div>
         <div id="projects-timeline" class="projects-timeline hidden"></div>
       </article>
 
@@ -492,7 +511,7 @@
     <footer class="cp-footer-bar">
       <div class="footer-shortcuts">
         <span class="shortcut-item"><kbd>1</kbd>–<kbd>6</kbd> Secciones</span>
-        <span class="shortcut-item"><kbd>R</kbd> Nuevo Token</span>
+        <span id="token-shortcut-hint" class="shortcut-item hidden"><kbd>R</kbd> Nuevo Token</span>
         <span class="shortcut-item"><kbd>M</kbd> Audio</span>
       </div>
       <div class="footer-status">
@@ -521,34 +540,48 @@
             <div class="cp-kicker">INFORMACIÓN PÚBLICA // SIN DATOS CONFIDENCIALES</div>
             <h2 id="project-modal-title" class="cp-title">DETALLE DEL PROYECTO</h2>
           </div>
-          <div id="project-modal-role" class="cp-status-tag"></div>
+          <div class="project-modal-meta">
+            <div class="project-modal-period">
+              <span>PERIODO</span>
+              <strong id="project-modal-period"></strong>
+            </div>
+            <div id="project-modal-role" class="cp-status-tag"></div>
+          </div>
         </div>
+
+        <section class="cp-box project-modal-context">
+          <div class="cp-box-header project-dossier-section-header">
+            <span><b>01</b> CONTEXTO Y RESPONSABILIDAD</span>
+            <span>BRIEF</span>
+          </div>
+          <div class="cp-box-body project-modal-copy">
+            <p id="project-modal-summary"></p>
+          </div>
+        </section>
 
         <div class="project-modal-grid">
           <section class="cp-box">
-            <div class="cp-box-header"><span>CONTEXTO Y RESPONSABILIDAD</span></div>
-            <div class="cp-box-body project-modal-copy">
-              <p id="project-modal-summary"></p>
+            <div class="cp-box-header project-dossier-section-header">
+              <span><b>02</b> APORTES DESTACADOS</span>
+              <span>LOG</span>
             </div>
-          </section>
-
-          <section class="cp-box">
-            <div class="cp-box-header"><span>APORTES DESTACADOS</span></div>
             <div class="cp-box-body">
               <ul id="project-modal-highlights" class="project-highlight-list"></ul>
             </div>
           </section>
+
+          <section class="cp-box project-modal-tech">
+            <div class="cp-box-header project-dossier-section-header">
+              <span><b>03</b> TECNOLOGÍAS Y CAPACIDADES</span>
+              <span>STACK</span>
+            </div>
+            <div class="cp-box-body">
+              <div id="project-modal-stack" class="gig-stack"></div>
+            </div>
+          </section>
         </div>
 
-        <section class="cp-box">
-          <div class="cp-box-header"><span>TECNOLOGÍAS Y CAPACIDADES</span></div>
-          <div class="cp-box-body">
-            <div id="project-modal-stack" class="gig-stack"></div>
-          </div>
-        </section>
-
-        <div class="project-modal-footer">
-          <span>CÓDIGO EMPRESARIAL PROTEGIDO CUANDO CORRESPONDE</span>
+        <div id="project-modal-footer" class="project-modal-footer">
           <a id="project-modal-repo" class="cyber-btn btn-cyan hidden" target="_blank" rel="noopener">VER REPOSITORIO [↗]</a>
         </div>
       </div>

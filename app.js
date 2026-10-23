@@ -9,14 +9,32 @@
 let currentLanguage = localStorage.getItem("portfolio-language") || "es";
 
 const PROJECT_EN = {
-  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "Self-hosted platform I designed and built to manage and gamify Twitch communities through a multichannel bot, virtual economy, games, OBS overlays, WebSockets and local text-to-speech.", impact: "5 specialized components: API, bot, worker, frontend and text-to-speech." },
-  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "Desktop Git client I designed and built in Spanish with staging, history, remote synchronization, secure multi-account management and visual block-based conflict resolution.", impact: "" },
-  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "Lead developer of an enterprise platform for managing templates and automating document generation, validation and processing.", impact: "Unified document generation, validation and processing in one workflow." },
-  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "Maintenance and evolution of a legacy enterprise middleware that centralizes integrations and information flows between internal systems.", impact: "Centralizes contracts, HR processes and data exchange between systems." },
-  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "Technical lead and principal developer for a configurable workflow engine, coordinating frontend and backend work planning and delivery.", impact: "Coordinated leadership across 2 technical disciplines: frontend and backend." },
-  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "Principal developer modernizing a legacy hiring system through CI/CD, digital-signature and workflow integrations, technical-debt reduction and deployment stabilization.", impact: "3 modernized areas: CI/CD, digital signatures and workflow engine." },
-  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "Principal developer of a centralized platform for shared company services, including a news API and integrations with Instagram, LinkedIn and Google Chat.", impact: "4 centralized channels: news, Instagram, LinkedIn and Google Chat." }
+  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "Self-hosted platform I designed and built to manage and gamify Twitch communities through a multichannel bot, virtual economy, games, OBS overlays, WebSockets and local text-to-speech." },
+  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "Desktop Git client I designed and built in Spanish with staging, history, remote synchronization, secure multi-account management and visual block-based conflict resolution." },
+  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "Lead developer of an enterprise platform for managing templates and automating document generation, validation and processing." },
+  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "Maintenance and evolution of a legacy enterprise middleware that centralizes integrations and information flows between internal systems." },
+  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "Technical lead and principal developer for a configurable workflow engine, coordinating frontend and backend work planning and delivery." },
+  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "Principal developer modernizing a legacy hiring system through CI/CD, digital-signature and workflow integrations, technical-debt reduction and deployment stabilization." },
+  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "Principal developer of a centralized platform for shared company services, including a news API and integrations with Instagram, LinkedIn and Google Chat." }
 };
+
+const CYBERWARE_EN = [
+  {
+    category: "LANGUAGES, FRAMEWORKS & FRONTEND",
+    description: "Robust backend development, web interfaces and maintainable business services.",
+    items: ["PHP", "Laravel", "JavaScript", "React", "HTML5", "Bootstrap", "Python", "Flask", "C#", ".NET"]
+  },
+  {
+    category: "CLOUD, DEVOPS & SECURITY",
+    description: "Continuous delivery, cloud infrastructure and secure production operations.",
+    items: ["AWS Lambda", "Serverless Framework", "Docker", "Production / QA Environments", "CI/CD", "GitHub Actions", "Bitbucket Pipelines", "JWT", "OAuth2"]
+  },
+  {
+    category: "ARCHITECTURE, LEADERSHIP & QUALITY",
+    description: "System design, technical coordination and quality practices across delivery teams.",
+    items: ["Jira", "Confluence", "Trello", "Technical Leadership", "Software Architecture", "Data Models", "RESTful APIs", "Postman", "Software Quality"]
+  }
+];
 
 const PORTFOLIO_DATA = {
   profile: {
@@ -63,7 +81,6 @@ const PORTFOLIO_DATA = {
     {
       id: "OWN-01",
       period: { start: "2026-03-17", end: "actual", label: "MAR 2026 — ACTUAL" },
-      impact: "5 componentes especializados: API, bot, worker, frontend y síntesis de voz.",
       title: "STREAMIXOR // PLATAFORMA PARA COMUNIDADES DE TWITCH",
       category: "personal",
       threat: "PROYECTO PROPIO // FULL-STACK & REAL-TIME",
@@ -80,7 +97,6 @@ const PORTFOLIO_DATA = {
     {
       id: "OWN-02",
       period: { start: "2026-10-14", end: "actual", label: "OCT 2026 — ACTUAL" },
-      impact: "",
       title: "RAMIFICA // CLIENTE GIT DE ESCRITORIO",
       category: "personal",
       threat: "PROYECTO PROPIO // TAURI & RUST",
@@ -97,7 +113,6 @@ const PORTFOLIO_DATA = {
     {
       id: "CORP-01",
       period: { start: "2024-10-01", end: "actual", label: "OCT 2024 — ACTUAL" },
-      impact: "Unificó generación, validación y procesamiento documental en un mismo flujo.",
       title: "ARCOPRIME // GESTOR DE PLANTILLAS",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
@@ -114,7 +129,6 @@ const PORTFOLIO_DATA = {
     {
       id: "CORP-02",
       period: { start: "2024-01-01", end: "actual", label: "ENE 2024 — ACTUAL" },
-      impact: "Centraliza contratos, recursos humanos e intercambio de datos entre sistemas.",
       title: "ARCOPRIME // MIDDLEWARE DE INTEGRACIONES",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // PROYECTO HEREDADO",
@@ -131,7 +145,6 @@ const PORTFOLIO_DATA = {
     {
       id: "CORP-03",
       period: { start: "2025-07-01", end: "actual", label: "JUL 2025 — ACTUAL" },
-      impact: "Liderazgo coordinado de 2 frentes técnicos: frontend y backend.",
       title: "ARCOPRIME // MOTOR DE WORKFLOWS",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // LÍDER TÉCNICO",
@@ -148,7 +161,6 @@ const PORTFOLIO_DATA = {
     {
       id: "CORP-04",
       period: { start: "2025-01-01", end: "actual", label: "ENE 2025 — ACTUAL" },
-      impact: "3 ejes modernizados: CI/CD, firma digital y motor de workflows.",
       title: "CONTRATACIÓN RED // MODERNIZACIÓN E INTEGRACIONES",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
@@ -165,7 +177,6 @@ const PORTFOLIO_DATA = {
     {
       id: "CORP-05",
       period: { start: "2022-10-01", end: "2023-12-31", label: "OCT 2022 — DIC 2023" },
-      impact: "4 canales centralizados: noticias, Instagram, LinkedIn y Google Chat.",
       title: "IDEA UNO // API GLOBAL DE SERVICIOS",
       category: "enterprise",
       threat: "PROYECTO INTERNO: IDEA UNO // DESARROLLADOR PRINCIPAL",
@@ -186,27 +197,46 @@ const PORTFOLIO_DATA = {
       category: "LENGUAJES, FRAMEWORKS & FRONTEND",
       slot: "MOD: CORE_STACK",
       items: [
-        { name: "PHP & Laravel Framework", tier: "ESPECIALISTA", level: 96 },
-        { name: "JavaScript, React, HTML5 & Bootstrap", tier: "AVANZADO", level: 92 },
-        { name: "Python (Flask) & C# (.NET)", tier: "AVANZADO", level: 88 }
+        { name: "PHP", tier: "ESPECIALISTA", level: 96 },
+        { name: "Laravel", tier: "ESPECIALISTA", level: 96 },
+        { name: "JavaScript", tier: "AVANZADO", level: 92 },
+        { name: "React", tier: "AVANZADO", level: 92 },
+        { name: "HTML5", tier: "AVANZADO", level: 92 },
+        { name: "Bootstrap", tier: "AVANZADO", level: 92 },
+        { name: "Python", tier: "AVANZADO", level: 88 },
+        { name: "Flask", tier: "AVANZADO", level: 88 },
+        { name: "C#", tier: "AVANZADO", level: 88 },
+        { name: ".NET", tier: "AVANZADO", level: 88 }
       ]
     },
     {
       category: "CLOUD, DEVOPS & SEGURIDAD",
       slot: "MOD: CLOUD_OPS",
       items: [
-        { name: "AWS Lambda & Serverless Framework", tier: "AVANZADO", level: 90 },
-        { name: "Docker & Ambientes Productivos / QA", tier: "AVANZADO", level: 92 },
-        { name: "CI/CD (GitHub / Bitbucket) · JWT & OAuth2", tier: "AVANZADO", level: 91 }
+        { name: "AWS Lambda", tier: "AVANZADO", level: 90 },
+        { name: "Serverless Framework", tier: "AVANZADO", level: 90 },
+        { name: "Docker", tier: "AVANZADO", level: 92 },
+        { name: "Ambientes Productivos / QA", tier: "AVANZADO", level: 92 },
+        { name: "CI/CD", tier: "AVANZADO", level: 91 },
+        { name: "GitHub Actions", tier: "AVANZADO", level: 91 },
+        { name: "Bitbucket Pipelines", tier: "AVANZADO", level: 91 },
+        { name: "JWT", tier: "AVANZADO", level: 91 },
+        { name: "OAuth2", tier: "AVANZADO", level: 91 }
       ]
     },
     {
       category: "ARQUITECTURA, GESTIÓN & CALIDAD (QA)",
       slot: "MOD: ARCH_LEAD",
       items: [
-        { name: "Jira, Confluence & Trello (Liderazgo Técnico)", tier: "AVANZADO", level: 95 },
-        { name: "Arquitectura de Software & Modelos de Datos", tier: "CERTIFICADO", level: 92 },
-        { name: "APIs RESTful, Postman & Calidad de Software", tier: "AVANZADO", level: 94 }
+        { name: "Jira", tier: "AVANZADO", level: 95 },
+        { name: "Confluence", tier: "AVANZADO", level: 95 },
+        { name: "Trello", tier: "AVANZADO", level: 95 },
+        { name: "Liderazgo Técnico", tier: "AVANZADO", level: 95 },
+        { name: "Arquitectura de Software", tier: "CERTIFICADO", level: 92 },
+        { name: "Modelos de Datos", tier: "CERTIFICADO", level: 92 },
+        { name: "APIs RESTful", tier: "AVANZADO", level: 94 },
+        { name: "Postman", tier: "AVANZADO", level: 94 },
+        { name: "Calidad de Software", tier: "AVANZADO", level: 94 }
       ]
     }
   ],
@@ -423,6 +453,12 @@ function scrambleDecryptElement(el, delayMs = 0, durationMs = 1050) {
   if (!fullText) return;
   el.dataset.origChip = fullText;
 
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    el.classList.remove("decrypting");
+    el.textContent = fullText;
+    return;
+  }
+
   const decodedSpan = document.createElement("span");
   decodedSpan.className = "sc-decoded";
   decodedSpan.textContent = "";
@@ -506,6 +542,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProfileAndHUD();
   renderProjects("all");
   renderProjectTimeline();
+  renderProjectFolders();
   initProjectDetailsModal();
   renderCyberware();
   renderContacts();
@@ -628,7 +665,6 @@ function renderProjects(filter = "all", animate = false) {
           <h3 class="gig-title">${copy.title}</h3>
           <div class="gig-period">${copy.periodLabel}</div>
           <p class="gig-desc">${copy.desc}</p>
-          ${copy.impact ? `<p class="gig-impact"><strong>${currentLanguage === "en" ? "VERIFIABLE IMPACT" : "IMPACTO VERIFICABLE"}:</strong> ${copy.impact}</p>` : ""}
         </div>
         <div>
           <div class="gig-stack">
@@ -667,25 +703,126 @@ function renderProjects(filter = "all", animate = false) {
 function renderProjectTimeline() {
   const timeline = document.getElementById("projects-timeline");
   if (!timeline) return;
-  timeline.innerHTML = [...PORTFOLIO_DATA.projects]
-    .sort((a, b) => b.period.start.localeCompare(a.period.start))
-    .map((project) => {
+  const projects = [...PORTFOLIO_DATA.projects]
+    .sort((a, b) => a.period.start.localeCompare(b.period.start));
+  const rangeStart = projects[0]?.period.start.slice(0, 4) || "—";
+  const rangeEnd = currentLanguage === "en" ? "PRESENT" : "ACTUAL";
+
+  timeline.innerHTML = `
+    <div class="timeline-command-bar">
+      <span>${currentLanguage === "en" ? "PROFESSIONAL TRAJECTORY" : "TRAYECTORIA PROFESIONAL"}</span>
+      <span>${rangeStart} — ${rangeEnd}</span>
+    </div>
+    <div class="timeline-scroll">
+      <div class="timeline-axis" role="tablist" aria-label="${currentLanguage === "en" ? "Project chronology" : "Cronología de proyectos"}">
+        ${projects.map((project, index) => {
       const copy = getLocalizedProject(project);
       return `
-      <article class="project-timeline-item">
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <div class="timeline-period">${copy.periodLabel}</div>
-        <div class="timeline-project-card">
-          <div class="gig-code">${project.id} // ${copy.threat}</div>
-          <h3>${copy.title}</h3>
-          <p>${copy.desc}</p>
-          ${copy.impact ? `<p class="gig-impact"><strong>${currentLanguage === "en" ? "VERIFIABLE IMPACT" : "IMPACTO VERIFICABLE"}:</strong> ${copy.impact}</p>` : ""}
-          <button type="button" class="gig-link gig-details-btn" data-project-details="${project.id}">${currentLanguage === "en" ? "VIEW DETAILS" : "VER DETALLES"} [+]</button>
-        </div>
-      </article>`; })
-    .join("");
-  timeline.querySelectorAll("[data-project-details]").forEach((button) => {
-    button.addEventListener("click", () => openProjectDetailsModal(button.dataset.projectDetails));
+          <article class="project-timeline-item" role="presentation">
+            <div class="timeline-period">${copy.periodLabel}</div>
+            <button id="timeline-tab-${project.id}" type="button" class="timeline-node${index === 0 ? " active" : ""}"
+              role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-controls="timeline-detail"
+              tabindex="${index === 0 ? "0" : "-1"}" data-timeline-project="${project.id}">
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <span class="timeline-index">${String(index + 1).padStart(2, "0")}</span>
+              <span class="timeline-node-copy">
+                <strong>${copy.title}</strong>
+                <small>${project.id}</small>
+              </span>
+            </button>
+          </article>`;
+        }).join("")}
+      </div>
+    </div>
+    <section id="timeline-detail" class="timeline-detail" role="tabpanel" aria-live="polite"></section>`;
+
+  const detail = timeline.querySelector("#timeline-detail");
+  const nodes = [...timeline.querySelectorAll("[data-timeline-project]")];
+  const selectProject = (projectId, moveFocus = false) => {
+    const project = projects.find((item) => item.id === projectId);
+    if (!project || !detail) return;
+    const copy = getLocalizedProject(project);
+    nodes.forEach((node) => {
+      const active = node.dataset.timelineProject === projectId;
+      node.classList.toggle("active", active);
+      node.setAttribute("aria-selected", String(active));
+      node.tabIndex = active ? 0 : -1;
+      if (active && moveFocus) {
+        node.focus();
+        node.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      }
+    });
+    detail.setAttribute("aria-labelledby", `timeline-tab-${projectId}`);
+    detail.innerHTML = `
+      <div class="timeline-detail-accent" aria-hidden="true"></div>
+      <div class="timeline-detail-main">
+        <div class="gig-code">${project.id} // ${copy.threat}</div>
+        <h3>${copy.title}</h3>
+        <p>${copy.desc}</p>
+        <div class="gig-stack">${project.stack.map((tech) => `<span class="stack-chip">${tech}</span>`).join("")}</div>
+      </div>
+      <aside class="timeline-detail-side">
+        <span>${currentLanguage === "en" ? "PERIOD" : "PERIODO"}</span>
+        <strong>${copy.periodLabel}</strong>
+        <button type="button" class="gig-link gig-details-btn" data-project-details="${project.id}">${currentLanguage === "en" ? "OPEN FILE" : "ABRIR EXPEDIENTE"} [↗]</button>
+      </aside>`;
+    detail.querySelector("[data-project-details]")?.addEventListener("click", () => openProjectDetailsModal(projectId));
+  };
+
+  nodes.forEach((node, index) => {
+    node.addEventListener("click", () => selectProject(node.dataset.timelineProject));
+    node.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      let targetIndex = index;
+      if (event.key === "ArrowLeft") targetIndex = (index - 1 + nodes.length) % nodes.length;
+      if (event.key === "ArrowRight") targetIndex = (index + 1) % nodes.length;
+      if (event.key === "Home") targetIndex = 0;
+      if (event.key === "End") targetIndex = nodes.length - 1;
+      selectProject(nodes[targetIndex].dataset.timelineProject, true);
+    });
+  });
+  if (projects[0]) selectProject(projects[0].id);
+}
+
+function renderProjectFolders() {
+  const explorer = document.getElementById("projects-folders");
+  if (!explorer) return;
+  const groups = [
+    { key: "enterprise", label: currentLanguage === "en" ? "CORPORATE SYSTEMS" : "SISTEMAS EMPRESARIALES" },
+    { key: "personal", label: currentLanguage === "en" ? "PERSONAL PROJECTS" : "PROYECTOS PERSONALES" }
+  ];
+
+  explorer.innerHTML = `
+    <div class="folder-explorer-bar">
+      <span>${currentLanguage === "en" ? "PROJECT ARCHIVE" : "ARCHIVO DE PROYECTOS"}</span>
+      <span>${PORTFOLIO_DATA.projects.length.toString().padStart(2, "0")} ${currentLanguage === "en" ? "FILES" : "EXPEDIENTES"}</span>
+    </div>
+    ${groups.map((group) => {
+      const projects = PORTFOLIO_DATA.projects.filter((project) => project.category === group.key);
+      return `
+        <section class="folder-group" aria-labelledby="folder-group-${group.key}">
+          <h3 id="folder-group-${group.key}" class="folder-group-title">// ${group.label}</h3>
+          <div class="folder-grid">
+            ${projects.map((project) => {
+              const copy = getLocalizedProject(project);
+              return `
+                <article class="project-folder">
+                  <button type="button" class="project-folder-tab" data-project-details="${project.id}" aria-label="${currentLanguage === "en" ? "View details for" : "Ver detalles de"} ${copy.title}">
+                    <span class="folder-tab-edge" aria-hidden="true"></span>
+                    <span class="folder-code">${project.id}</span>
+                    <span class="folder-name">${copy.title}</span>
+                    <span class="folder-state">${project.period.end === "actual" ? (currentLanguage === "en" ? "ACTIVE" : "ACTIVO") : (currentLanguage === "en" ? "ARCHIVED" : "ARCHIVADO")}</span>
+                    <span class="folder-action">${currentLanguage === "en" ? "VIEW DETAILS" : "VER DETALLES"} [+]</span>
+                  </button>
+                </article>`;
+            }).join("")}
+          </div>
+        </section>`;
+    }).join("")}`;
+
+  explorer.querySelectorAll("[data-project-details]").forEach((folder) => {
+    folder.addEventListener("click", () => openProjectDetailsModal(folder.dataset.projectDetails));
   });
 }
 
@@ -709,19 +846,26 @@ function getLocalizedProject(project) {
 }
 
 function initProjectViewToggle() {
-  const grid = document.getElementById("projects-grid");
-  const timeline = document.getElementById("projects-timeline");
+  const views = {
+    grid: document.getElementById("projects-grid"),
+    timeline: document.getElementById("projects-timeline"),
+    folders: document.getElementById("projects-folders")
+  };
   document.querySelectorAll("[data-project-view]").forEach((button) => {
     button.addEventListener("click", () => {
-      const showTimeline = button.dataset.projectView === "timeline";
-      grid.classList.toggle("hidden", showTimeline);
-      timeline.classList.toggle("hidden", !showTimeline);
-      document.querySelectorAll("[data-project-view]").forEach((item) => item.classList.toggle("active", item === button));
+      const selectedView = button.dataset.projectView;
+      Object.entries(views).forEach(([name, view]) => view?.classList.toggle("hidden", name !== selectedView));
+      document.querySelectorAll("[data-project-view]").forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
     });
   });
-  if (new URLSearchParams(window.location.search).get("view") === "timeline") {
+  const requestedView = new URLSearchParams(window.location.search).get("view");
+  if (["grid", "timeline", "folders"].includes(requestedView)) {
     document.getElementById("tab-button-gigs")?.click();
-    document.querySelector('[data-project-view="timeline"]')?.click();
+    document.querySelector(`[data-project-view="${requestedView}"]`)?.click();
   }
 }
 
@@ -765,11 +909,21 @@ function openProjectDetailsModal(projectId) {
   if (!project || !modal) return;
 
   projectModalTrigger = document.activeElement;
-  document.getElementById("project-modal-code").textContent = `DOSSIER // ${project.id}`;
   const copy = getLocalizedProject(project);
-  document.getElementById("project-modal-title").textContent = copy.title;
-  document.getElementById("project-modal-role").textContent = copy.threat;
-  document.getElementById("project-modal-summary").textContent = copy.desc;
+  const setModalText = (id, value) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    if (typeof element._twCancel === "function") element._twCancel();
+    if (typeof element._scCancel === "function") element._scCancel();
+    element.dataset.twText = value;
+    delete element.dataset.origChip;
+    element.textContent = value;
+  };
+  setModalText("project-modal-code", `DOSSIER // ${project.id}`);
+  setModalText("project-modal-title", copy.title);
+  setModalText("project-modal-role", copy.threat);
+  setModalText("project-modal-period", copy.periodLabel);
+  setModalText("project-modal-summary", copy.desc);
   document.getElementById("project-modal-highlights").innerHTML = project.highlights
     .map((item) => `<li>${item}</li>`)
     .join("");
@@ -778,19 +932,45 @@ function openProjectDetailsModal(projectId) {
     .join("");
 
   const repoLink = document.getElementById("project-modal-repo");
+  const modalFooter = document.getElementById("project-modal-footer");
   if (project.repoUrl) {
     repoLink.href = project.repoUrl;
     repoLink.classList.remove("hidden");
+    modalFooter?.classList.remove("hidden");
   } else {
     repoLink.removeAttribute("href");
     repoLink.classList.add("hidden");
+    modalFooter?.classList.add("hidden");
   }
 
   modal.classList.remove("hidden");
   document.body.classList.add("modal-open");
   document.querySelector(".hud-container")?.setAttribute("inert", "");
   document.getElementById("project-modal-close-btn").focus();
+  requestAnimationFrame(() => animateProjectModalContent(modal));
   sfx.click();
+}
+
+function animateProjectModalContent(modal) {
+  if (!modal || modal.classList.contains("hidden")) return;
+  const typedTargets = [
+    ["#project-modal-code", 0, 420],
+    ["#project-modal-title", 45, 620],
+    ["#project-modal-period", 90, 440],
+    ["#project-modal-summary", 150, 920]
+  ];
+
+  typedTargets.forEach(([selector, delay, duration]) => {
+    typeElementText(modal.querySelector(selector), delay, duration);
+  });
+  modal.querySelectorAll("#project-modal-highlights li").forEach((item, index) => {
+    typeElementText(item, 250 + (index * 85), 620);
+  });
+
+  scrambleDecryptElement(modal.querySelector("#project-modal-role"), 80, 680);
+  modal.querySelectorAll("#project-modal-stack .stack-chip").forEach((chip, index) => {
+    scrambleDecryptElement(chip, 180 + (index * 55), 720);
+  });
 }
 
 function closeProjectDetailsModal() {
@@ -823,36 +1003,81 @@ if (projectFiltersEl) {
 function renderCyberware() {
   const container = document.getElementById("cyberware-grid");
   if (!container) return;
+  const en = currentLanguage === "en";
+  const shortLabels = en ? ["CORE", "CLOUD", "ARCHITECTURE"] : ["CORE", "CLOUD", "ARQUITECTURA"];
+  const descriptions = en
+    ? CYBERWARE_EN.map((category) => category.description)
+    : [
+        "Backend robusto, interfaces web y servicios empresariales mantenibles.",
+        "Entrega continua, infraestructura cloud y operación segura en producción.",
+        "Diseño de sistemas, coordinación técnica y prácticas de calidad de software."
+      ];
 
-  container.innerHTML = PORTFOLIO_DATA.cyberware
-    .map(
-      (cat) => `
-      <div class="cw-category-card">
-        <div class="cw-cat-header">
-          <span class="cw-cat-title">${cat.category}</span>
-          <span class="cw-cat-slot">${cat.slot}</span>
-        </div>
-        <div class="cw-items-list">
-          ${cat.items
-            .map(
-              (item) => `
-              <div class="cw-implant">
-                <div class="cw-implant-top">
-                  <span>${item.name}</span>
-                  <span class="cw-tier">${item.tier}</span>
-                </div>
-                <div class="cw-bar-bg">
-                  <div class="cw-bar-fill" style="width: ${item.level}%"></div>
-                </div>
-              </div>
-            `
-            )
-            .join("")}
-        </div>
+  container.innerHTML = `
+    <div class="stack-category-tabs" role="tablist" aria-label="${en ? "Technology categories" : "Categorías tecnológicas"}">
+      ${PORTFOLIO_DATA.cyberware.map((category, index) => `
+        <button type="button" class="stack-category-tab${index === 0 ? " active" : ""}" role="tab"
+          aria-selected="${index === 0 ? "true" : "false"}" aria-controls="stack-category-panel"
+          tabindex="${index === 0 ? "0" : "-1"}" data-stack-category="${index}">
+          <span>0${index + 1}</span>${shortLabels[index]}
+        </button>`).join("")}
+    </div>
+    <section id="stack-category-panel" class="cw-category-card stack-category-panel" role="tabpanel"></section>`;
+
+  const panel = container.querySelector("#stack-category-panel");
+  const tabs = [...container.querySelectorAll("[data-stack-category]")];
+  const selectCategory = (categoryIndex, moveFocus = false) => {
+    const cat = PORTFOLIO_DATA.cyberware[categoryIndex];
+    const localized = CYBERWARE_EN[categoryIndex];
+    if (!cat || !panel) return;
+    const categoryName = en ? localized.category : cat.category;
+    panel.dataset.category = String(categoryIndex);
+    tabs.forEach((tab, index) => {
+      const active = index === categoryIndex;
+      tab.classList.toggle("active", active);
+      tab.setAttribute("aria-selected", String(active));
+      tab.tabIndex = active ? 0 : -1;
+      if (active && moveFocus) tab.focus();
+    });
+    panel.setAttribute("aria-labelledby", tabs[categoryIndex].id || "");
+    panel.innerHTML = `
+      <div class="cw-cat-header">
+        <span class="cw-cat-index">0${categoryIndex + 1}</span>
+        <div><h3 class="cw-cat-title">${categoryName}</h3><span class="cw-cat-slot">${cat.slot}</span></div>
       </div>
-    `
-    )
-    .join("");
+      <p class="cw-cat-description">${descriptions[categoryIndex]}</p>
+      <div class="cw-items-list">
+        ${cat.items.map((item, itemIndex) => {
+          const itemName = en ? localized.items[itemIndex] : item.name;
+          const tier = en
+            ? ({ ESPECIALISTA: "SPECIALIST", AVANZADO: "ADVANCED", CERTIFICADO: "CERTIFIED" }[item.tier] || item.tier)
+            : item.tier;
+          return `<div class="cw-implant">
+            <div class="cw-implant-top"><span>${itemName}</span><span class="cw-tier">${tier}</span></div>
+            <div class="cw-bar-bg" role="progressbar" aria-label="${itemName}: ${tier}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${item.level}">
+              <div class="cw-bar-fill" style="width:${item.level}%"></div>
+            </div>
+          </div>`;
+        }).join("")}
+      </div>`;
+    animateContainerTexts(panel, ".cw-cat-title, .cw-cat-description, .cw-implant-top span:first-child");
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.id = `stack-category-tab-${index}`;
+    tab.addEventListener("click", () => selectCategory(index));
+    tab.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      let targetIndex = index;
+      if (event.key === "ArrowLeft") targetIndex = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === "ArrowRight") targetIndex = (index + 1) % tabs.length;
+      if (event.key === "Home") targetIndex = 0;
+      if (event.key === "End") targetIndex = tabs.length - 1;
+      selectCategory(targetIndex, true);
+    });
+  });
+  selectCategory(0);
 }
 
 /* ============================================================================
@@ -915,6 +1140,15 @@ function renderContacts() {
 /* ============================================================================
    5. NAVEGACIÓN DE DAEMONS (QUICKHACKING TABS)
    ============================================================================ */
+function isTokenToolViewActive() {
+  return document.getElementById("tab-breach")?.classList.contains("active") === true
+    && document.getElementById("tool-token")?.classList.contains("active") === true;
+}
+
+function syncTokenShortcutVisibility() {
+  document.getElementById("token-shortcut-hint")?.classList.toggle("hidden", !isTokenToolViewActive());
+}
+
 function initDaemonNavigation() {
   const tabs = document.querySelectorAll(".daemon-tab");
   const panels = document.querySelectorAll(".deck-panel");
@@ -953,6 +1187,7 @@ function initDaemonNavigation() {
       clearInterval(breachState.stepTimer);
       clearInterval(breachState.countdownInterval);
     }
+    syncTokenShortcutVisibility();
 
     if (inspectorEl && targetTab.dataset.desc) {
       inspectorEl.textContent = `MÓDULO ACTIVO: ${targetTab.dataset.desc}`;
@@ -1019,6 +1254,7 @@ function initDeveloperTools() {
       clearInterval(breachState.stepTimer);
       clearInterval(breachState.countdownInterval);
     }
+    syncTokenShortcutVisibility();
     sfx.click();
   };
 
@@ -1406,13 +1642,14 @@ function initBreachProtocol() {
   window.addEventListener("keydown", (e) => {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
-    if (e.key.toLowerCase() === "r") {
+    if (e.key.toLowerCase() === "r" && isTokenToolViewActive()) {
       sfx.click();
       startAutonomousBreachCycle();
     }
   });
 
   updatePresetAndLengthUI();
+  syncTokenShortcutVisibility();
   if (document.querySelector(".tool-tab.active")?.dataset.tool === "token") {
     startAutonomousBreachCycle();
   }
@@ -1836,11 +2073,28 @@ function initSystemControls() {
   const glitchBtn = document.getElementById("glitch-trigger");
   const modeBtn = document.getElementById("visual-mode-toggle");
   const languageBtn = document.getElementById("language-toggle");
+  const settingsToggle = document.getElementById("settings-menu-toggle");
+  const settingsMenu = document.getElementById("settings-menu");
+
+  const setSettingsMenu = (open) => {
+    if (!settingsToggle || !settingsMenu) return;
+    settingsMenu.classList.toggle("hidden", !open);
+    settingsToggle.setAttribute("aria-expanded", String(open));
+  };
+
+  settingsToggle?.addEventListener("click", () => {
+    setSettingsMenu(settingsToggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".hub-controls-right")) setSettingsMenu(false);
+  });
 
   const toggleAudio = () => {
     sfx.enabled = !sfx.enabled;
-    if (sfxLabel) sfxLabel.textContent = `SFX: ${sfx.enabled ? "ON" : "OFF"}`;
+    if (sfxLabel) sfxLabel.textContent = sfx.enabled ? "ON" : "OFF";
     if (sfx.enabled) sfx.click();
+    setSettingsMenu(false);
   };
 
   if (sfxBtn) sfxBtn.addEventListener("click", toggleAudio);
@@ -1848,13 +2102,16 @@ function initSystemControls() {
   const applyVisualMode = (professional) => {
     document.body.classList.toggle("professional-mode", professional);
     if (modeBtn) modeBtn.textContent = currentLanguage === "en"
-      ? (professional ? "MODE: PRO" : "MODE: CYBER")
-      : (professional ? "MODO: PRO" : "MODO: CYBER");
+      ? (professional ? "LIGHT" : "CYBER")
+      : (professional ? "CLARO" : "CYBER");
     localStorage.setItem("portfolio-visual-mode", professional ? "professional" : "cyber");
   };
   const query = new URLSearchParams(window.location.search);
   applyVisualMode(query.get("mode") === "professional" || (!query.has("mode") && localStorage.getItem("portfolio-visual-mode") === "professional"));
-  modeBtn?.addEventListener("click", () => applyVisualMode(!document.body.classList.contains("professional-mode")));
+  modeBtn?.addEventListener("click", () => {
+    applyVisualMode(!document.body.classList.contains("professional-mode"));
+    setSettingsMenu(false);
+  });
 
   const applyLanguage = (language) => {
     currentLanguage = language;
@@ -1871,23 +2128,34 @@ function initSystemControls() {
     document.querySelectorAll(".daemon-name").forEach((node, index) => setStableText(node, navLabels[index]));
     const titles = en ? ["IGNACIO ANDRÉS VELIZ SEGUEL", "FEATURED PROJECTS", "TECH STACK", "DEVELOPER TOOLS", "ENCRYPTED FILES (/blackwall/)", "CONTACT & LINKS"] : ["IGNACIO ANDRÉS VELIZ SEGUEL", "PROYECTOS DESTACADOS", "STACK TECNOLÓGICO", "HERRAMIENTAS DE DESARROLLO", "ARCHIVOS ENCRIPTADOS (/blackwall/)", "CONTACTO Y ENLACES"];
     document.querySelectorAll(".deck-panel > .cp-section-header .cp-title").forEach((node, index) => setStableText(node, titles[index]));
-    if (languageBtn) languageBtn.textContent = en ? "EN / ES" : "ES / EN";
+    if (languageBtn) languageBtn.textContent = en ? "EN" : "ES";
     if (modeBtn) modeBtn.textContent = en
-      ? (document.body.classList.contains("professional-mode") ? "MODE: PRO" : "MODE: CYBER")
-      : (document.body.classList.contains("professional-mode") ? "MODO: PRO" : "MODO: CYBER");
+      ? (document.body.classList.contains("professional-mode") ? "LIGHT" : "CYBER")
+      : (document.body.classList.contains("professional-mode") ? "CLARO" : "CYBER");
+    setStableText(document.getElementById("settings-trigger-label"), en ? "SETTINGS" : "AJUSTES");
+    setStableText(document.getElementById("settings-menu-title"), en ? "PREFERENCES" : "PREFERENCIAS");
+    setStableText(document.getElementById("language-setting-label"), en ? "LANGUAGE" : "IDIOMA");
+    setStableText(document.getElementById("visual-setting-label"), en ? "THEME" : "TEMA");
+    setStableText(document.getElementById("sfx-setting-label"), en ? "SOUND" : "SONIDO");
     const kickerCopy = en
       ? ["01 // PROFESSIONAL DOSSIER", "02 // REPOSITORIES & SYSTEMS", "03 // TECHNICAL CAPABILITIES", "04 // DEVELOPMENT & QA UTILITIES", "05 // OPTIONAL SECRET DIRECTORY", "06 // COMMUNICATIONS"]
       : ["01 // EXPEDIENTE PROFESIONAL", "02 // REPOSITORIOS & SISTEMAS", "03 // CAPACIDADES TÉCNICAS", "04 // UTILIDADES PARA DESARROLLO Y QA", "05 // DIRECTORIO SECRETO OPCIONAL", "06 // COMUNICACIONES"];
     document.querySelectorAll(".deck-panel > .cp-section-header .cp-kicker").forEach((node, index) => setStableText(node, kickerCopy[index]));
     document.querySelector('[data-project-view="grid"]').textContent = en ? "CARDS" : "TARJETAS";
     document.querySelector('[data-project-view="timeline"]').textContent = "TIMELINE";
+    document.querySelector('[data-project-view="folders"]').textContent = en ? "FOLDERS" : "CARPETAS";
     document.getElementById("contact-submit-btn").textContent = en ? "SEND MESSAGE" : "ENVIAR MENSAJE";
     renderProfileAndHUD();
     renderProjects("all");
     renderProjectTimeline();
+    renderProjectFolders();
+    renderCyberware();
   };
   applyLanguage(query.get("lang") === "en" ? "en" : currentLanguage);
-  languageBtn?.addEventListener("click", () => applyLanguage(currentLanguage === "es" ? "en" : "es"));
+  languageBtn?.addEventListener("click", () => {
+    applyLanguage(currentLanguage === "es" ? "en" : "es");
+    setSettingsMenu(false);
+  });
 
   if (glitchBtn) {
     glitchBtn.addEventListener("click", () => {
@@ -1899,6 +2167,11 @@ function initSystemControls() {
   }
 
   window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && settingsToggle?.getAttribute("aria-expanded") === "true") {
+      setSettingsMenu(false);
+      settingsToggle.focus();
+      return;
+    }
     if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
     if (e.key.toLowerCase() === "m") toggleAudio();
   });
@@ -2206,12 +2479,12 @@ function renderBlackwallCards(newlyUnlockedId = null) {
           </div>
           <h3 class="gig-title">${file.title}</h3>
           <p class="bw-helper-text">
-            Archivo protegido. Inicia la Matriz Hexadecimal o usa el desencriptado automático para desbloquear su contenido.
+            Archivo protegido. Desencripta manualmente con la Matriz Hexadecimal o ejecuta el proceso automático.
           </p>
         </div>
         <div class="bw-card-footer">
           <button type="button" class="cyber-btn btn-cyan" data-bw-open="${file.id}">
-            INICIAR BREACH // MATRIZ HEX
+            DESENCRIPTAR
           </button>
           <button type="button" class="cp-util-btn" data-bw-auto-direct="${file.id}">
             ⚡ AUTO-DESENCRIPTAR
@@ -2284,11 +2557,13 @@ function runBlackwallAutoDecryptAnimation() {
   bwState.matchedSteps = 0;
   bwState.hoverCoord = null;
   bwState.autoTargetCoord = null;
-  bwState.showHint = true;
+  // El modo automático recorre la misma interfaz que el manual: muestra únicamente
+  // el eje activo, la celda apuntada y cada selección incorporándose al búfer.
+  bwState.showHint = false;
   bwState.autoDecrypting = true;
   renderBlackwallModalUI();
 
-  const stepInterval = 520;
+  const stepInterval = 760;
 
   bwState.solutionPath.forEach((stepNode, idx) => {
     // Fase 1: Apuntar al nodo y previsualizar el cruce Fila/Columna
@@ -2297,13 +2572,13 @@ function runBlackwallAutoDecryptAnimation() {
       bwState.hoverCoord = { r: stepNode.r, c: stepNode.c };
       bwState.autoTargetCoord = { r: stepNode.r, c: stepNode.c };
       renderBlackwallModalUI();
-    }, idx * stepInterval + 80);
+    }, idx * stepInterval + 120);
 
     // Fase 2: Acoplar el byte en el búfer y cambiar de eje (Fila <-> Columna)
     const tPick = setTimeout(() => {
       bwState.autoTargetCoord = null;
       handleBlackwallMatrixPick(stepNode.r, stepNode.c, true);
-    }, idx * stepInterval + 340);
+    }, idx * stepInterval + 560);
 
     bwState.autoTimers.push(tAim, tPick);
   });
