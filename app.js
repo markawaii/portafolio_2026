@@ -11,13 +11,13 @@ const browserLanguage = (navigator.language || "es").toLowerCase();
 let currentLanguage = storedLanguage || (browserLanguage.startsWith("es") ? "es" : "en");
 
 const PROJECT_EN = {
-  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "Self-hosted platform I designed and built to manage and gamify Twitch communities through a multichannel bot, virtual economy, games, OBS overlays, WebSockets and local text-to-speech.", challenge: "Unify community management, real-time interactions and streaming tools without relying on multiple disconnected services.", result: "A modular, self-hosted platform that centralizes bot, economy, games, OBS overlays and local text-to-speech in one maintainable system." },
-  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "Desktop Git client I designed and built in Spanish with staging, history, remote synchronization, secure multi-account management and visual block-based conflict resolution.", challenge: "Make advanced Git operations and conflict resolution easier to understand for Spanish-speaking users without hiding the real repository state.", result: "A desktop workflow that brings staging, history, synchronization, secure accounts and visual conflict resolution into one native interface." },
-  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "Lead developer of an enterprise platform for managing templates and automating document generation, validation and processing.", challenge: "Standardize reusable templates and automate document generation while preserving data validation and integration with related services.", result: "A centralized workflow for managing templates and processing documents with fewer manual steps and more consistent validation." },
-  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "Maintenance and evolution of a legacy enterprise middleware that centralizes integrations and information flows between internal systems.", challenge: "Safely evolve a production legacy codebase while maintaining compatibility between contracts, HR processes and internal systems.", result: "Progressive modernization that preserves operations and centralizes information exchange between business systems." },
-  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "Technical lead and principal developer for a configurable workflow engine, coordinating frontend and backend work planning and delivery.", challenge: "Coordinate frontend and backend delivery while designing a configurable engine for asynchronous business processes and external integrations.", result: "A supervised workflow platform with queues, states, process history, webhooks and scheduled tasks, delivered through coordinated team planning." },
-  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "Principal developer modernizing a legacy hiring system through CI/CD, digital-signature and workflow integrations, technical-debt reduction and deployment stabilization.", challenge: "Connect a legacy hiring process to digital signatures and workflows while improving an unstable deployment pipeline and reducing technical debt.", result: "A more integrated hiring flow with clearer promotion between development, QA and production and more reliable deployments." },
-  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "Principal developer of a centralized platform for shared company services, including a news API and integrations with Instagram, LinkedIn and Google Chat.", challenge: "Avoid duplicating shared integrations and services across company projects by giving them a single maintained access point.", result: "A centralized API for reusable services, news feeds, social integrations and automated Google Chat communication." }
+  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "A self-hosted operations platform for Twitch communities. It brings audience management, gamification and streaming tools into a single product operated from a web interface.", challenge: "Streamers often need separate services for moderation, rewards, games, overlays and voice interactions, creating fragmented operations and duplicated configuration.", result: "I designed a modular system with an API, bot, background workers and React frontend, connected through real-time events. It centralizes the virtual economy, games, OBS overlays and local text-to-speech while keeping deployment under the creator's control.", highlights: ["Designed the product and its architecture end to end, from data model to operating interface.", "Implemented Twitch and OBS real-time events using WebSockets and Redis Streams.", "Prepared CI/CD, automated tests, health checks, backups and recovery flows for self-hosted operation."] },
+  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "A native desktop client that makes everyday Git work and repository history easier to understand in Spanish without replacing Git's real behavior.", challenge: "Staging, branch synchronization and conflict resolution are usually exposed through commands or dense tools that make it difficult to understand what will change before acting.", result: "I built a Tauri and Rust application that executes real Git operations and presents status, history, branches, diffs and conflicts in one guided interface. The conflict editor works by block and supports merge, rebase, cherry-pick and revert flows.", highlights: ["Designed and developed the full product, including the TypeScript interface and native Rust layer.", "Implemented staging, commits, history, fetch, safe pull, push and visual branch navigation.", "Protected remote credentials through the operating-system keyring and prepared cross-platform builds."] },
+  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "An enterprise platform for creating and maintaining reusable document templates and generating standardized documents from validated business data.", challenge: "Document generation was handled through SAP and could take too long for the company's operating volume and the size of the documents being processed. The flow needed to become faster without sacrificing validation or consistency.", result: "As lead developer, I implemented and evolved a centralized workflow for template administration, data validation and asynchronous document generation. I also deployed its AWS infrastructure with MariaDB on RDS, document storage on S3 and containerized services on EC2 behind Nginx.", highlights: ["Owned the main functional and backend evolution of the product.", "Implemented template rules, required-tag validation and document-processing flows.", "Set up the AWS deployment with RDS, S3, EC2, Docker and Nginx, including IAM users and scoped access permissions."] },
+  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "A legacy integration layer that connects contracts, employee records and HR operations across several internal business systems.", challenge: "Critical information moved through a mature production codebase with multiple dependencies, so every change had to preserve compatibility and operational continuity.", result: "I maintained and progressively modernized the middleware, strengthening the services that synchronize contracts, organizational structures and employee data. I also set up its containerized AWS operation with MariaDB on RDS, S3, EC2 and Nginx.", highlights: ["Analyzed and safely evolved a legacy Laravel codebase in production.", "Worked on contract and employee synchronization with internal and external HR services.", "Set up and maintained the AWS deployment with RDS, S3, EC2, Docker and Nginx, including IAM users and scoped access permissions."] },
+  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "A configurable platform for modeling, executing and monitoring business workflows that combine rules, integrations, scheduled tasks and asynchronous processing.", challenge: "The organization needed to orchestrate processes that cross multiple services while keeping execution status, history and failures visible and manageable.", result: "I led the frontend and backend team and contributed as principal developer to a workflow engine with queues, states, run history, webhooks, schedules and external connections. I also set up its AWS infrastructure with MariaDB on RDS, S3 and containerized services on EC2 behind Nginx.", highlights: ["Led technical planning, task assignment and delivery follow-up across frontend and backend.", "Implemented supervised executions with queues, states, history and external integrations.", "Set up the AWS deployment with RDS, S3, EC2, Docker and Nginx, including IAM users and scoped access permissions."] },
+  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "A hiring platform that supports the path from candidate information to document generation, digital signature and downstream workflow execution.", challenge: "A legacy system had to connect reliably to digital signatures and workflows while its deployment pipeline and accumulated technical debt complicated safe releases.", result: "As principal developer, I integrated the hiring flow with the signature provider and workflow platform, strengthened CI/CD promotion across development, QA and production, and improved the codebase's stability and maintainability.", highlights: ["Connected hiring stages with digital-signature and workflow services.", "Improved the release pipeline and environment promotion process.", "Reduced technical debt and stabilized critical paths in the inherited system."] },
+  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "An internal API hub that provides shared capabilities to different company products from one maintained and reusable integration layer.", challenge: "News sources, social networks and messaging integrations were at risk of being implemented repeatedly across projects, increasing maintenance and inconsistency.", result: "As principal developer, I centralized those services behind REST APIs, including news aggregation and integrations with Instagram, LinkedIn and Google Chat, with reusable authentication and automation flows.", highlights: ["Built a news API with RSS aggregation, multiple providers and category-based queries.", "Centralized common services to avoid duplicated implementations across products.", "Implemented social and messaging integrations using OAuth and automated processes."] }
 };
 
 const CYBERWARE_EN = [
@@ -136,14 +136,14 @@ const PORTFOLIO_DATA = {
       title: "STREAMIXOR // PLATAFORMA PARA COMUNIDADES DE TWITCH",
       category: "personal",
       threat: "PROYECTO PROPIO // FULL-STACK & REAL-TIME",
-      desc: "Proyecto diseñado y desarrollado íntegramente por mí: plataforma autohospedada para administrar y gamificar comunidades de Twitch mediante bot multicanal, economía virtual, juegos, overlays para OBS, WebSockets y síntesis de voz local.",
-      challenge: "Unificar la gestión de comunidades, las interacciones en tiempo real y las herramientas de streaming sin depender de múltiples servicios desconectados.",
-      result: "Una plataforma modular y autohospedada que centraliza bot, economía, juegos, overlays para OBS y síntesis de voz local en un sistema mantenible.",
+      desc: "Plataforma autohospedada para operar comunidades de Twitch. Reúne administración de audiencia, gamificación y herramientas para transmisiones en un solo producto controlado desde una interfaz web.",
+      challenge: "Los streamers suelen depender de servicios separados para moderación, recompensas, juegos, overlays e interacciones por voz, lo que fragmenta la operación y duplica configuraciones.",
+      result: "Diseñé una arquitectura modular con API, bot, workers y frontend React conectados mediante eventos en tiempo real. La solución centraliza economía virtual, juegos, overlays para OBS y síntesis de voz local, manteniendo el despliegue bajo control del creador.",
       stack: ["FastAPI", "React", "TypeScript", "MariaDB", "Redis", "Docker", "Twitch API", "Piper TTS"],
       highlights: [
-        "Arquitectura separada en API, bot, worker, frontend y servicio de síntesis de voz.",
-        "Eventos en tiempo real para Twitch y OBS mediante WebSockets y Redis Streams.",
-        "CI/CD, pruebas automatizadas, healthchecks, respaldos y recuperación productiva."
+        "Diseñé el producto y su arquitectura de extremo a extremo, desde el modelo de datos hasta la interfaz operativa.",
+        "Implementé eventos en tiempo real para Twitch y OBS mediante WebSockets y Redis Streams.",
+        "Preparé CI/CD, pruebas automatizadas, healthchecks, respaldos y recuperación para una operación autohospedada."
       ],
       demoUrl: "",
       repoUrl: "https://github.com/markawaii/cl_streamixor_app"
@@ -154,14 +154,14 @@ const PORTFOLIO_DATA = {
       title: "RAMIFICA // CLIENTE GIT DE ESCRITORIO",
       category: "personal",
       threat: "PROYECTO PROPIO // TAURI & RUST",
-      desc: "Proyecto diseñado y desarrollado íntegramente por mí: cliente Git de escritorio en español con staging, historial, sincronización remota, gestión segura de múltiples cuentas y resolución visual de conflictos por bloques.",
-      challenge: "Hacer comprensibles las operaciones avanzadas de Git y la resolución de conflictos para usuarios hispanohablantes sin ocultar el estado real del repositorio.",
-      result: "Un flujo de escritorio que reúne staging, historial, sincronización, cuentas seguras y resolución visual de conflictos en una interfaz nativa.",
+      desc: "Cliente de escritorio nativo que facilita comprender el trabajo diario con Git y el historial de un repositorio en español, sin sustituir ni ocultar el comportamiento real de Git.",
+      challenge: "El staging, la sincronización de ramas y la resolución de conflictos suelen depender de comandos o herramientas densas que dificultan anticipar qué cambiará antes de ejecutar una acción.",
+      result: "Construí una aplicación con Tauri y Rust que ejecuta operaciones Git reales y presenta estado, historial, ramas, diferencias y conflictos en una interfaz guiada. Su editor resuelve conflictos por bloques en flujos de merge, rebase, cherry-pick y revert.",
       stack: ["Tauri", "Rust", "TypeScript", "Git CLI", "Keyring nativo", "GitHub Actions"],
       highlights: [
-        "Operaciones Git reales con staging, commits, fetch, pull seguro y push.",
-        "Editor visual para resolver conflictos de merge, rebase, cherry-pick y revert.",
-        "Credenciales protegidas por el llavero del sistema y builds multiplataforma."
+        "Diseñé y desarrollé el producto completo: interfaz TypeScript y capa nativa en Rust.",
+        "Implementé staging, commits, historial, fetch, pull seguro, push y navegación visual de ramas.",
+        "Protegí las credenciales remotas mediante el llavero del sistema y preparé builds multiplataforma."
       ],
       demoUrl: "",
       repoUrl: "https://github.com/markawaii/cl_ramifica_app"
@@ -172,14 +172,14 @@ const PORTFOLIO_DATA = {
       title: "ARCOPRIME // GESTOR DE PLANTILLAS",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
-      desc: "Desarrollador principal de una plataforma empresarial para administrar plantillas y automatizar la generación, validación y procesamiento de documentos. Responsable de la evolución funcional, lógica backend e integración con servicios relacionados.",
-      challenge: "Estandarizar plantillas reutilizables y automatizar la generación documental, manteniendo validaciones de datos e integración con servicios relacionados.",
-      result: "Un flujo centralizado para administrar plantillas y procesar documentos con menos pasos manuales y validaciones más consistentes.",
-      stack: ["PHP", "Laravel", "JavaScript", "MySQL", "Docker", "Procesamiento documental"],
+      desc: "Plataforma empresarial para crear y mantener plantillas reutilizables y generar documentos estandarizados a partir de datos de negocio validados.",
+      challenge: "La generación de documentos se realizaba a través de SAP y podía tomar demasiado tiempo frente al volumen operativo de la empresa y la extensión de los archivos procesados. Era necesario agilizar el flujo sin perder validación ni consistencia.",
+      result: "Como desarrollador principal, implementé y evolucioné un flujo centralizado para administrar plantillas, validar información y generar documentos de forma asíncrona. También levanté su infraestructura en AWS con MariaDB sobre RDS, almacenamiento documental en S3 y servicios contenerizados en EC2 detrás de Nginx.",
+      stack: ["PHP", "Laravel", "JavaScript", "MariaDB", "AWS RDS", "AWS S3", "AWS EC2", "AWS IAM", "Docker", "Nginx", "Procesamiento documental"],
       highlights: [
-        "Diseño y evolución del flujo de administración de plantillas reutilizables.",
-        "Validación de datos, generación documental y procesamiento asíncrono.",
-        "Integración con almacenamiento y servicios empresariales relacionados."
+        "Asumí la evolución funcional y backend principal del producto.",
+        "Implementé reglas de plantillas, validación de tags obligatorios y flujos de procesamiento documental.",
+        "Levanté el despliegue con RDS, S3, EC2, Docker y Nginx, además de crear usuarios IAM y configurar permisos de acceso."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -190,14 +190,14 @@ const PORTFOLIO_DATA = {
       title: "ARCOPRIME // MIDDLEWARE DE INTEGRACIONES",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // PROYECTO HEREDADO",
-      desc: "Participación en la mantención y evolución de un middleware empresarial heredado que centraliza integraciones y flujos de información entre sistemas internos. Trabajo sobre modernización tecnológica, procesos de contratación y servicios de recursos humanos.",
-      challenge: "Evolucionar de forma segura una base heredada en producción, manteniendo compatibilidad entre contratos, procesos de recursos humanos y sistemas internos.",
-      result: "Una modernización progresiva que conserva la operación y centraliza el intercambio de información entre sistemas empresariales.",
-      stack: ["PHP", "Laravel", "APIs REST", "MySQL", "Docker", "Integraciones empresariales"],
+      desc: "Capa de integración heredada que conecta contratos, fichas de colaboradores y operaciones de recursos humanos entre distintos sistemas empresariales.",
+      challenge: "La información crítica circulaba por una base madura en producción y con múltiples dependencias, por lo que cada cambio debía conservar compatibilidad y continuidad operacional.",
+      result: "Mantuve y modernicé progresivamente el middleware, fortaleciendo servicios que sincronizan contratos, estructuras organizacionales y datos de colaboradores. También levanté su operación contenerizada en AWS con MariaDB sobre RDS, S3, EC2 y Nginx.",
+      stack: ["PHP", "Laravel", "APIs REST", "MariaDB", "AWS RDS", "AWS S3", "AWS EC2", "AWS IAM", "Docker", "Nginx", "Integraciones empresariales"],
       highlights: [
-        "Comprensión y evolución segura de una base de código heredada en producción.",
-        "Centralización de contratos e intercambio de información entre sistemas.",
-        "Modernización progresiva de Laravel y mantenimiento de compatibilidad operativa."
+        "Analicé y evolucioné de forma segura una base Laravel heredada en producción.",
+        "Trabajé en sincronización de contratos y colaboradores con servicios internos y externos de RR. HH.",
+        "Levanté y mantuve el despliegue con RDS, S3, EC2, Docker y Nginx, además de crear usuarios IAM y configurar permisos de acceso."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -208,14 +208,14 @@ const PORTFOLIO_DATA = {
       title: "ARCOPRIME // MOTOR DE WORKFLOWS",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // LÍDER TÉCNICO",
-      desc: "Lideré el desarrollo del producto y coordiné al equipo frontend y backend mediante definición y asignación de tareas. Participé como desarrollador principal en un motor para configurar, ejecutar y supervisar workflows, integraciones y procesos automatizados.",
-      challenge: "Coordinar la entrega frontend y backend mientras se diseñaba un motor configurable para procesos empresariales asíncronos e integraciones externas.",
-      result: "Una plataforma de workflows supervisados con colas, estados, historial, webhooks y tareas programadas, entregada mediante planificación coordinada del equipo.",
-      stack: ["Laravel", "React", "TypeScript", "Redis", "Laravel Horizon", "Docker"],
+      desc: "Plataforma configurable para modelar, ejecutar y supervisar procesos empresariales que combinan reglas, integraciones, tareas programadas y procesamiento asíncrono.",
+      challenge: "La organización necesitaba orquestar procesos que atraviesan varios servicios, manteniendo visibles y administrables el estado de ejecución, el historial y los fallos.",
+      result: "Lideré al equipo frontend y backend y participé como desarrollador principal de un motor con colas, estados, historial de ejecuciones, webhooks, programaciones y conexiones externas. También levanté su infraestructura en AWS con MariaDB sobre RDS, S3 y servicios contenerizados en EC2 detrás de Nginx.",
+      stack: ["Laravel", "React", "TypeScript", "MariaDB", "Redis", "Laravel Horizon", "AWS RDS", "AWS S3", "AWS EC2", "AWS IAM", "Docker", "Nginx"],
       highlights: [
-        "Liderazgo técnico de frontend y backend, planificación y asignación de tareas.",
-        "Ejecución supervisada de workflows con colas, estados e historial de procesos.",
-        "Integraciones mediante webhooks, tareas programadas y servicios externos."
+        "Lideré planificación técnica, asignación de tareas y seguimiento de entregas frontend y backend.",
+        "Implementé ejecuciones supervisadas con colas, estados, historial y controles operativos.",
+        "Levanté el despliegue con RDS, S3, EC2, Docker y Nginx, además de crear usuarios IAM y configurar permisos de acceso."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -226,14 +226,14 @@ const PORTFOLIO_DATA = {
       title: "CONTRATACIÓN RED // MODERNIZACIÓN E INTEGRACIONES",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
-      desc: "Desarrollador principal de un sistema heredado para procesos de contratación. Implementé mejoras de CI/CD, integración con un proveedor de firma digital y un motor de workflows, además de reducir deuda técnica y estabilizar sus despliegues.",
-      challenge: "Conectar un proceso heredado de contratación con firma digital y workflows, mientras se mejoraba un pipeline inestable y se reducía deuda técnica.",
-      result: "Un flujo de contratación más integrado, con promociones más claras entre desarrollo, QA y producción y despliegues más confiables.",
+      desc: "Plataforma de contratación que acompaña el proceso desde los datos del candidato hasta la generación documental, la firma digital y la ejecución de workflows posteriores.",
+      challenge: "El sistema heredado debía conectarse de forma confiable con firma digital y workflows, mientras su pipeline y la deuda técnica dificultaban publicar cambios con seguridad.",
+      result: "Como desarrollador principal, integré el flujo de contratación con el proveedor de firma y la plataforma de workflows, reforcé el CI/CD entre desarrollo, QA y producción y mejoré la estabilidad y mantenibilidad del código.",
       stack: ["Python", "Flask", "React", "JavaScript", "Firma digital", "Workflows", "CI/CD"],
       highlights: [
-        "Integración del proceso de contratación con firma digital y workflows.",
-        "Mejora del pipeline entre desarrollo, QA y producción.",
-        "Reducción de deuda técnica y estabilización de un sistema heredado."
+        "Conecté etapas de contratación con servicios de firma digital y workflows.",
+        "Mejoré el pipeline de entrega y la promoción entre ambientes.",
+        "Reduje deuda técnica y estabilicé flujos críticos del sistema heredado."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -244,14 +244,14 @@ const PORTFOLIO_DATA = {
       title: "IDEA UNO // API GLOBAL DE SERVICIOS",
       category: "enterprise",
       threat: "PROYECTO INTERNO: IDEA UNO // DESARROLLADOR PRINCIPAL",
-      desc: "Desarrollador principal de una plataforma para centralizar servicios reutilizados por distintos sistemas de la empresa y mantenerlos desde un único lugar. Incluye una API de noticias e integraciones con Instagram, LinkedIn y Google Chat.",
-      challenge: "Evitar la duplicación de servicios e integraciones compartidas entre proyectos, entregándoles un único punto de acceso mantenible.",
-      result: "Una API centralizada para servicios reutilizables, noticias, integraciones sociales y comunicación automatizada con Google Chat.",
+      desc: "Hub interno de APIs que entrega capacidades compartidas a distintos productos de la empresa desde una única capa de integración mantenible y reutilizable.",
+      challenge: "Las fuentes de noticias, redes sociales y mensajería podían terminar implementadas varias veces en distintos proyectos, aumentando el mantenimiento y las inconsistencias.",
+      result: "Como desarrollador principal, centralicé esos servicios mediante APIs REST, incluyendo agregación de noticias e integraciones con Instagram, LinkedIn y Google Chat, con flujos reutilizables de autenticación y automatización.",
       stack: ["PHP", "Laravel", "APIs REST", "API de noticias", "OAuth", "Instagram", "LinkedIn", "Google Chat", "Docker"],
       highlights: [
-        "API de noticias con agregación RSS, proveedores y consulta por categorías.",
-        "Centralización de servicios comunes para reducir duplicación entre proyectos.",
-        "Integraciones sociales y de mensajería con flujos OAuth y procesos automatizados."
+        "Construí una API de noticias con agregación RSS, múltiples proveedores y consultas por categoría.",
+        "Centralicé servicios comunes para evitar implementaciones duplicadas entre productos.",
+        "Implementé integraciones sociales y de mensajería mediante OAuth y procesos automatizados."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -603,15 +603,13 @@ function animateContainerTexts(containerEl, customSelector = null) {
 document.addEventListener("DOMContentLoaded", () => {
   initIntrusionGate();
   renderProfileAndHUD();
-  renderProjects("all");
-  renderProjectTimeline();
   renderProjectFolders();
   initProjectDetailsModal();
   renderCyberware();
+  initContactStatusModal();
   renderContacts();
   initBlackwallSection();
   initDaemonNavigation();
-  initProjectViewToggle();
   initDeveloperTools();
   initBreachProtocol();
   initClockAndTickers();
@@ -863,14 +861,20 @@ function renderProjectFolders() {
           <div class="folder-grid">
             ${projects.map((project) => {
               const copy = getLocalizedProject(project);
+              const visibleStack = project.stack.slice(0, 3);
               return `
                 <article class="project-folder">
                   <button type="button" class="project-folder-tab" data-project-details="${project.id}" aria-label="${currentLanguage === "en" ? "View details for" : "Ver detalles de"} ${copy.title}">
                     <span class="folder-tab-edge" aria-hidden="true"></span>
                     <span class="folder-code">${project.id}</span>
                     <span class="folder-name">${copy.title}</span>
-                    <span class="folder-state">${project.period.end === "actual" ? (currentLanguage === "en" ? "ACTIVE" : "ACTIVO") : (currentLanguage === "en" ? "ARCHIVED" : "ARCHIVADO")}</span>
-                    <span class="folder-action">${currentLanguage === "en" ? "VIEW DETAILS" : "VER DETALLES"} [+]</span>
+                    <span class="folder-footer">
+                      <span class="folder-stack" aria-label="${currentLanguage === "en" ? "Key technologies" : "Tecnologías principales"}">
+                        ${visibleStack.map((tech) => `<span>${tech}</span>`).join("")}
+                        ${project.stack.length > visibleStack.length ? `<span>+${project.stack.length - visibleStack.length}</span>` : ""}
+                      </span>
+                      <span class="folder-action">${currentLanguage === "en" ? "OPEN DOSSIER" : "ABRIR EXPEDIENTE"} [+]</span>
+                    </span>
                   </button>
                 </article>`;
             }).join("")}
@@ -954,35 +958,21 @@ function initProjectViewToggle() {
 }
 
 let projectModalTrigger = null;
+let projectModalCloseTimer = null;
+let projectModalOpenTimer = null;
 
 function initProjectDetailsModal() {
   const modal = document.getElementById("project-details-modal");
   const closeBtn = document.getElementById("project-modal-close-btn");
   if (!modal || !closeBtn) return;
 
-  closeBtn.addEventListener("click", closeProjectDetailsModal);
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) closeProjectDetailsModal();
-  });
+  document.getElementById("tab-gigs")?.appendChild(modal);
 
+  closeBtn.addEventListener("click", closeProjectDetailsModal);
   window.addEventListener("keydown", (event) => {
     if (modal.classList.contains("hidden")) return;
     if (event.key === "Escape") {
       closeProjectDetailsModal();
-      return;
-    }
-    if (event.key !== "Tab") return;
-
-    const focusable = modal.querySelectorAll("button, a[href]");
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
     }
   });
 }
@@ -992,7 +982,17 @@ function openProjectDetailsModal(projectId) {
   const modal = document.getElementById("project-details-modal");
   if (!project || !modal) return;
 
+  const projectsPanel = document.getElementById("tab-gigs");
+  if (projectsPanel && modal.parentElement !== projectsPanel) projectsPanel.appendChild(modal);
+  if (projectModalCloseTimer) {
+    window.clearTimeout(projectModalCloseTimer);
+    projectModalCloseTimer = null;
+  }
+  modal.classList.remove("project-detail-closing");
+
   projectModalTrigger = document.activeElement;
+  const sourceFolder = projectModalTrigger?.closest?.(".project-folder");
+  const folders = document.getElementById("projects-folders");
   const copy = getLocalizedProject(project);
   const setModalText = (id, value) => {
     const element = document.getElementById(id);
@@ -1003,14 +1003,11 @@ function openProjectDetailsModal(projectId) {
     delete element.dataset.origChip;
     element.textContent = value;
   };
-  setModalText("project-modal-code", `DOSSIER // ${project.id}`);
   setModalText("project-modal-title", copy.title);
-  setModalText("project-modal-role", copy.threat);
-  setModalText("project-modal-period", copy.periodLabel);
   setModalText("project-modal-summary", copy.desc);
   setModalText("project-modal-challenge", copy.challenge);
   setModalText("project-modal-result", copy.result);
-  document.getElementById("project-modal-highlights").innerHTML = project.highlights
+  document.getElementById("project-modal-highlights").innerHTML = copy.highlights
     .map((item) => `<li>${item}</li>`)
     .join("");
   document.getElementById("project-modal-stack").innerHTML = project.stack
@@ -1029,11 +1026,26 @@ function openProjectDetailsModal(projectId) {
     modalFooter?.classList.add("hidden");
   }
 
-  modal.classList.remove("hidden");
-  document.body.classList.add("modal-open");
-  document.querySelector(".hud-container")?.setAttribute("inert", "");
-  document.getElementById("project-modal-close-btn").focus();
-  requestAnimationFrame(() => animateProjectModalContent(modal));
+  const revealProject = () => {
+    folders?.classList.remove("project-directory-opening");
+    sourceFolder?.classList.remove("project-folder-opening");
+    modal.classList.remove("hidden");
+    projectsPanel?.classList.add("project-detail-open");
+    document.body.classList.add("project-detail-active");
+    document.getElementById("project-modal-close-btn").focus();
+    document.getElementById("tab-gigs")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    requestAnimationFrame(() => animateProjectModalContent(modal));
+    projectModalOpenTimer = null;
+  };
+
+  if (projectModalOpenTimer) window.clearTimeout(projectModalOpenTimer);
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    revealProject();
+  } else {
+    folders?.classList.add("project-directory-opening");
+    sourceFolder?.classList.add("project-folder-opening");
+    projectModalOpenTimer = window.setTimeout(revealProject, 280);
+  }
   sfx.click();
 }
 
@@ -1050,7 +1062,6 @@ function animateProjectModalContent(modal) {
     typeElementText(item, 250 + (index * 85), 620);
   });
 
-  scrambleDecryptElement(modal.querySelector("#project-modal-role"), 80, 680);
   modal.querySelectorAll("#project-modal-stack .stack-chip").forEach((chip, index) => {
     scrambleDecryptElement(chip, 180 + (index * 55), 720);
   });
@@ -1058,14 +1069,30 @@ function animateProjectModalContent(modal) {
 
 function closeProjectDetailsModal() {
   const modal = document.getElementById("project-details-modal");
-  if (!modal || modal.classList.contains("hidden")) return;
-  modal.classList.add("hidden");
-  document.body.classList.remove("modal-open");
-  document.querySelector(".hud-container")?.removeAttribute("inert");
-  if (projectModalTrigger && typeof projectModalTrigger.focus === "function") {
-    projectModalTrigger.focus();
+  if (!modal || modal.classList.contains("hidden") || modal.classList.contains("project-detail-closing")) return;
+
+  const projectsPanel = document.getElementById("tab-gigs");
+  const folders = document.getElementById("projects-folders");
+  const trigger = projectModalTrigger;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finishClose = () => {
+    modal.classList.add("hidden");
+    modal.classList.remove("project-detail-closing");
+    projectsPanel?.classList.remove("project-detail-open");
+    document.body.classList.remove("project-detail-active");
+    replayProjectViewAnimation(folders);
+    if (trigger && typeof trigger.focus === "function") trigger.focus();
+    projectModalTrigger = null;
+    projectModalCloseTimer = null;
+  };
+
+  sfx.click();
+  if (reducedMotion) {
+    finishClose();
+    return;
   }
-  projectModalTrigger = null;
+  modal.classList.add("project-detail-closing");
+  projectModalCloseTimer = window.setTimeout(finishClose, 320);
 }
 
 const projectFiltersEl = document.getElementById("project-filters");
@@ -1166,6 +1193,135 @@ function renderCyberware() {
 /* ============================================================================
    4. RENDERIZADO DE CONTACTO (HOLOCALL)
    ============================================================================ */
+let contactStatusReturnFocus = null;
+let contactStatusState = "idle";
+
+function getContactStatusCopy(state) {
+  const copy = {
+    es: {
+      sending: {
+        code: "HOLOCALL // TRANSMISIÓN EN CURSO",
+        kicker: "ENLACE DE COMUNICACIÓN",
+        title: "ENVIANDO MENSAJE",
+        message: "Transmitiendo el formulario de contacto de forma segura. Espera un momento.",
+        action: "ACEPTAR"
+      },
+      success: {
+        code: "HOLOCALL // TRANSMISIÓN COMPLETADA",
+        kicker: "CONFIRMACIÓN DE ENTREGA",
+        title: "MENSAJE ENVIADO",
+        message: "La transmisión fue aceptada correctamente. Te responderé al correo indicado.",
+        action: "ENTENDIDO"
+      },
+      error: {
+        code: "HOLOCALL // ERROR DE ENLACE",
+        kicker: "TRANSMISIÓN INTERRUMPIDA",
+        title: "NO SE PUDO ENVIAR",
+        message: "La transmisión falló. Puedes cerrar esta ventana e intentarlo nuevamente o abrir tu cliente de correo.",
+        action: "VOLVER AL FORMULARIO"
+      }
+    },
+    en: {
+      sending: {
+        code: "HOLOCALL // TRANSMISSION IN PROGRESS",
+        kicker: "COMMUNICATION LINK",
+        title: "SENDING MESSAGE",
+        message: "Securely transmitting the contact form. Please wait a moment.",
+        action: "ACCEPT"
+      },
+      success: {
+        code: "HOLOCALL // TRANSMISSION COMPLETE",
+        kicker: "DELIVERY CONFIRMATION",
+        title: "MESSAGE SENT",
+        message: "The transmission was accepted successfully. I will reply to the email provided.",
+        action: "GOT IT"
+      },
+      error: {
+        code: "HOLOCALL // LINK ERROR",
+        kicker: "TRANSMISSION INTERRUPTED",
+        title: "MESSAGE NOT SENT",
+        message: "The transmission failed. You can close this window and try again or open your email client.",
+        action: "BACK TO FORM"
+      }
+    }
+  };
+  return copy[currentLanguage === "en" ? "en" : "es"][state];
+}
+
+function setContactStatusModalState(state, mailtoUrl = "") {
+  const modal = document.getElementById("contact-status-modal");
+  const shell = document.getElementById("contact-status-shell");
+  if (!modal || !shell) return;
+
+  const copy = getContactStatusCopy(state);
+  contactStatusState = state;
+  shell.classList.remove("is-sending", "is-success", "is-error");
+  shell.classList.add(`is-${state}`);
+  shell.setAttribute("aria-busy", String(state === "sending"));
+  document.getElementById("contact-status-code").textContent = copy.code;
+  document.getElementById("contact-status-kicker").textContent = copy.kicker;
+  document.getElementById("contact-status-title").textContent = copy.title;
+  document.getElementById("contact-status-message").textContent = copy.message;
+
+  const closeButton = document.getElementById("contact-status-close");
+  const dismissButton = document.getElementById("contact-status-dismiss");
+  const mailtoLink = document.getElementById("contact-status-mailto");
+  const progress = document.getElementById("contact-status-progress");
+  const isSending = state === "sending";
+  const isEnglish = currentLanguage === "en";
+
+  closeButton.classList.toggle("hidden", isSending);
+  closeButton.textContent = isEnglish ? "CLOSE [ESC ✕]" : "CERRAR [ESC ✕]";
+  closeButton.setAttribute("aria-label", isEnglish ? "Close message status" : "Cerrar estado del mensaje");
+  dismissButton.classList.toggle("hidden", isSending);
+  progress.classList.toggle("hidden", !isSending);
+  dismissButton.textContent = copy.action;
+  mailtoLink.textContent = isEnglish ? "OPEN EMAIL CLIENT" : "ABRIR CLIENTE DE CORREO";
+  mailtoLink.classList.toggle("hidden", state !== "error" || !mailtoUrl);
+  if (state === "error" && mailtoUrl) mailtoLink.href = mailtoUrl;
+  else mailtoLink.removeAttribute("href");
+
+  if (!isSending) requestAnimationFrame(() => dismissButton.focus());
+}
+
+function openContactStatusModal(state, mailtoUrl = "") {
+  const modal = document.getElementById("contact-status-modal");
+  const shell = document.getElementById("contact-status-shell");
+  if (!modal || !shell) return;
+  contactStatusReturnFocus = document.activeElement;
+  setContactStatusModalState(state, mailtoUrl);
+  modal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  document.querySelector(".hud-container")?.setAttribute("inert", "");
+  shell.focus();
+}
+
+function closeContactStatusModal() {
+  const modal = document.getElementById("contact-status-modal");
+  if (!modal || modal.classList.contains("hidden") || contactStatusState === "sending") return;
+  modal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+  document.querySelector(".hud-container")?.removeAttribute("inert");
+  if (contactStatusReturnFocus && typeof contactStatusReturnFocus.focus === "function") {
+    contactStatusReturnFocus.focus();
+  }
+  contactStatusReturnFocus = null;
+  contactStatusState = "idle";
+}
+
+function initContactStatusModal() {
+  const modal = document.getElementById("contact-status-modal");
+  if (!modal) return;
+  document.getElementById("contact-status-close")?.addEventListener("click", closeContactStatusModal);
+  document.getElementById("contact-status-dismiss")?.addEventListener("click", closeContactStatusModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeContactStatusModal();
+  });
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.classList.contains("hidden")) closeContactStatusModal();
+  });
+}
+
 function renderContacts() {
   const list = document.getElementById("contact-links");
   if (list) {
@@ -1194,9 +1350,13 @@ function renderContacts() {
       const email = document.getElementById("sender-email").value;
       const message = document.getElementById("sender-msg").value;
       const submitButton = document.getElementById("contact-submit-btn");
+      const subject = encodeURIComponent(`Contacto desde el portafolio — ${handle}`);
+      const body = encodeURIComponent(`Nombre / empresa: ${handle}\nEmail: ${email}\n\n${message}`);
+      const mailtoUrl = `mailto:ignaciovs.dev@gmail.com?subject=${subject}&body=${body}`;
       submitButton.disabled = true;
       submitButton.textContent = currentLanguage === "en" ? "SENDING..." : "ENVIANDO...";
-      feedback.classList.remove("hidden");
+      feedback.classList.add("hidden");
+      openContactStatusModal("sending");
       try {
         const response = await fetch("https://formsubmit.co/ajax/ignaciovs.dev@gmail.com", {
           method: "POST",
@@ -1204,14 +1364,12 @@ function renderContacts() {
           body: JSON.stringify({ name: handle, email, message, _subject: `Portafolio — ${handle}`, _template: "table" })
         });
         if (!response.ok) throw new Error("No se pudo enviar el formulario");
-        feedback.textContent = currentLanguage === "en" ? ">> MESSAGE SENT SUCCESSFULLY." : ">> MENSAJE ENVIADO CORRECTAMENTE.";
+        setContactStatusModalState("success");
         form.reset();
         sfx.success();
       } catch {
-        feedback.textContent = currentLanguage === "en" ? ">> DELIVERY FAILED. OPENING YOUR EMAIL CLIENT AS A BACKUP." : ">> FALLÓ EL ENVÍO. ABRIENDO TU CLIENTE DE CORREO COMO RESPALDO.";
-        const subject = encodeURIComponent(`Contacto desde el portafolio — ${handle}`);
-        const body = encodeURIComponent(`Nombre / empresa: ${handle}\nEmail: ${email}\n\n${message}`);
-        window.location.href = `mailto:ignaciovs.dev@gmail.com?subject=${subject}&body=${body}`;
+        setContactStatusModalState("error", mailtoUrl);
+        sfx.error?.();
       } finally {
         submitButton.disabled = false;
         submitButton.textContent = currentLanguage === "en" ? "SEND MESSAGE" : "ENVIAR MENSAJE";
@@ -2234,9 +2392,12 @@ function initSystemControls() {
     setStableText(document.getElementById("profile-cv-cta"), en ? "DOWNLOAD CV (PDF) [↗]" : "DESCARGAR CV (PDF) [↗]");
     setStableText(document.getElementById("profile-summary-heading"), en ? "PROFESSIONAL SUMMARY" : "RESUMEN PROFESIONAL");
     setStableText(document.getElementById("profile-timeline-heading"), en ? "PROFESSIONAL & EDUCATION TIMELINE" : "TRAYECTORIA PROFESIONAL Y EDUCACIÓN");
-    document.getElementById("project-modal-challenge-label").innerHTML = en ? "<b>02</b> CHALLENGE" : "<b>02</b> DESAFÍO";
-    document.getElementById("project-modal-result-label").innerHTML = en ? "<b>03</b> OUTCOME" : "<b>03</b> RESULTADO";
-    document.getElementById("project-modal-highlights-label").innerHTML = en ? "<b>04</b> KEY CONTRIBUTIONS" : "<b>04</b> APORTES DESTACADOS";
+    setStableText(document.getElementById("project-modal-kicker"), en ? "TECHNICAL CASE // PUBLIC INFORMATION" : "CASO TÉCNICO // INFORMACIÓN PÚBLICA");
+    setStableText(document.getElementById("project-modal-close-btn"), en ? "← BACK TO FOLDERS" : "← VOLVER A CARPETAS");
+    document.getElementById("project-modal-summary-label").innerHTML = en ? "<b>01</b> PROJECT OVERVIEW" : "<b>01</b> DE QUÉ TRATA";
+    document.getElementById("project-modal-challenge-label").innerHTML = en ? "<b>02</b> PROBLEM TO SOLVE" : "<b>02</b> PROBLEMA A RESOLVER";
+    document.getElementById("project-modal-result-label").innerHTML = en ? "<b>03</b> IMPLEMENTED SOLUTION" : "<b>03</b> SOLUCIÓN IMPLEMENTADA";
+    document.getElementById("project-modal-highlights-label").innerHTML = en ? "<b>04</b> MY CONTRIBUTION" : "<b>04</b> MI PARTICIPACIÓN";
     document.getElementById("project-modal-tech-label").innerHTML = en ? "<b>05</b> TECHNOLOGIES & CAPABILITIES" : "<b>05</b> TECNOLOGÍAS Y CAPACIDADES";
     const kickerCopy = en
       ? ["01 // PROFESSIONAL DOSSIER", "02 // CAREER PROGRESSION", "03 // REPOSITORIES & SYSTEMS", "04 // TECHNICAL CAPABILITIES", "07 // DEVELOPMENT & QA UTILITIES", "05 // OPTIONAL SECRET DIRECTORY", "06 // COMMUNICATIONS"]
@@ -2248,13 +2409,8 @@ function initSystemControls() {
     document.getElementById("secret-tool-hint").innerHTML = en
       ? '<kbd>7</kbd> Hidden access'
       : '<kbd>7</kbd> Acceso oculto';
-    document.querySelector('[data-project-view="grid"]').textContent = en ? "CARDS" : "TARJETAS";
-    document.querySelector('[data-project-view="timeline"]').textContent = "TIMELINE";
-    document.querySelector('[data-project-view="folders"]').textContent = en ? "FOLDERS" : "CARPETAS";
     document.getElementById("contact-submit-btn").textContent = en ? "SEND MESSAGE" : "ENVIAR MENSAJE";
     renderProfileAndHUD();
-    renderProjects("all");
-    renderProjectTimeline();
     renderProjectFolders();
     renderCyberware();
   };
@@ -2624,8 +2780,8 @@ function renderBlackwallCards(newlyUnlockedId = null) {
           <button type="button" class="cyber-btn btn-cyan" data-bw-open="${file.id}">
             DESENCRIPTAR
           </button>
-          <button type="button" class="cp-util-btn" data-bw-auto-direct="${file.id}">
-            ⚡ AUTO-DESENCRIPTAR
+          <button type="button" class="cp-util-btn bw-auto-decrypt-btn" data-bw-auto-direct="${file.id}">
+            <span>AUTO-DESENCRIPTAR</span>
           </button>
         </div>
       </div>

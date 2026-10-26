@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261026-8" />
 </head>
 <body>
   <!-- Retícula técnica de fondo estilo Hub Menu de Cyberpunk 2077 -->
@@ -200,16 +200,9 @@
             <div class="cp-kicker">03 // REPOSITORIOS &amp; SISTEMAS</div>
             <h2 class="cp-title">PROYECTOS DESTACADOS</h2>
           </div>
-          <div class="project-view-toggle" role="group" aria-label="Vista de proyectos">
-            <button type="button" class="cp-util-btn active" data-project-view="folders" aria-pressed="true">CARPETAS</button>
-            <button type="button" class="cp-util-btn" data-project-view="grid" aria-pressed="false">TARJETAS</button>
-            <button type="button" class="cp-util-btn" data-project-view="timeline" aria-pressed="false">TIMELINE</button>
-          </div>
         </div>
 
         <div id="projects-folders" class="projects-folders"></div>
-        <div id="projects-grid" class="projects-grid hidden"></div>
-        <div id="projects-timeline" class="projects-timeline hidden"></div>
       </article>
 
       <!-- ==================== 04: TECH STACK ==================== -->
@@ -527,40 +520,29 @@
 
   </div>
 
-  <!-- ================= MODAL DE DETALLE DE PROYECTO ================= -->
-  <div id="project-details-modal" class="intrusion-overlay project-modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
-    <div class="intrusion-shell project-modal-shell">
-      <header class="intrusion-topbar">
-        <div class="intrusion-brand">
-          <span class="status-dot-red"></span>
-          <span id="project-modal-code">DOSSIER // PROYECTO</span>
-        </div>
-        <button type="button" id="project-modal-close-btn" class="gate-skip-btn" aria-label="Cerrar detalle del proyecto">
-          CERRAR [ESC ✕]
-        </button>
-      </header>
-
+  <!-- ================= VISTA DE EXPEDIENTE DE PROYECTO ================= -->
+  <section id="project-details-modal" class="project-detail-view hidden" role="region" aria-labelledby="project-modal-title">
+    <div class="project-modal-shell">
       <div class="project-modal-content">
         <div class="project-modal-heading">
           <div>
-            <div class="cp-kicker">INFORMACIÓN PÚBLICA // SIN DATOS CONFIDENCIALES</div>
+            <div id="project-modal-kicker" class="cp-kicker">CASO TÉCNICO // INFORMACIÓN PÚBLICA</div>
             <h2 id="project-modal-title" class="cp-title">DETALLE DEL PROYECTO</h2>
           </div>
           <div class="project-modal-meta">
-            <div class="project-modal-period">
-              <span>PERIODO</span>
-              <strong id="project-modal-period"></strong>
-            </div>
-            <div id="project-modal-role" class="cp-status-tag"></div>
+            <button type="button" id="project-modal-close-btn" class="gate-skip-btn" aria-label="Volver a las carpetas de proyectos">
+              ← VOLVER A CARPETAS
+            </button>
           </div>
         </div>
 
+        <div id="project-modal-overview-panel" class="project-modal-view active" aria-label="Resumen del caso">
         <section class="cp-box project-modal-context">
           <div class="cp-box-header project-dossier-section-header">
-            <span><b>01</b> CONTEXTO Y RESPONSABILIDAD</span>
-            <span>BRIEF</span>
+            <span id="project-modal-summary-label"><b>01</b> DE QUÉ TRATA</span>
+            <span>OVERVIEW</span>
           </div>
-          <div class="cp-box-body project-modal-copy">
+          <div class="cp-box-body project-modal-copy" tabindex="0" aria-label="Descripción del proyecto">
             <p id="project-modal-summary"></p>
           </div>
         </section>
@@ -568,33 +550,35 @@
         <div class="project-modal-grid project-modal-story-grid">
           <section class="cp-box project-modal-story-card">
             <div class="cp-box-header project-dossier-section-header">
-              <span id="project-modal-challenge-label"><b>02</b> DESAFÍO</span>
+              <span id="project-modal-challenge-label"><b>02</b> PROBLEMA A RESOLVER</span>
               <span>PROBLEM</span>
             </div>
-            <div class="cp-box-body project-modal-copy">
+            <div class="cp-box-body project-modal-copy" tabindex="0" aria-label="Problema a resolver">
               <p id="project-modal-challenge"></p>
             </div>
           </section>
 
           <section class="cp-box project-modal-story-card project-modal-result-card">
             <div class="cp-box-header project-dossier-section-header">
-              <span id="project-modal-result-label"><b>03</b> RESULTADO</span>
-              <span>OUTCOME</span>
+              <span id="project-modal-result-label"><b>03</b> SOLUCIÓN IMPLEMENTADA</span>
+              <span>SOLUTION</span>
             </div>
-            <div class="cp-box-body project-modal-copy">
+            <div class="cp-box-body project-modal-copy" tabindex="0" aria-label="Solución implementada">
               <p id="project-modal-result"></p>
             </div>
           </section>
         </div>
+        </div>
 
-        <div class="project-modal-grid">
+        <div id="project-modal-technical-panel" class="project-modal-view active" aria-label="Implementación técnica">
+        <div class="project-modal-grid project-modal-support-grid">
           <section class="cp-box">
             <div class="cp-box-header project-dossier-section-header">
-              <span id="project-modal-highlights-label"><b>04</b> APORTES DESTACADOS</span>
+              <span id="project-modal-highlights-label"><b>04</b> MI PARTICIPACIÓN</span>
               <span>LOG</span>
             </div>
             <div class="cp-box-body">
-              <ul id="project-modal-highlights" class="project-highlight-list"></ul>
+              <ul id="project-modal-highlights" class="project-highlight-list" tabindex="0" aria-label="Participación en el proyecto"></ul>
             </div>
           </section>
 
@@ -604,13 +588,51 @@
               <span>STACK</span>
             </div>
             <div class="cp-box-body">
-              <div id="project-modal-stack" class="gig-stack"></div>
+              <div id="project-modal-stack" class="gig-stack" tabindex="0" aria-label="Tecnologías y capacidades"></div>
             </div>
           </section>
         </div>
 
         <div id="project-modal-footer" class="project-modal-footer">
           <a id="project-modal-repo" class="cyber-btn btn-cyan hidden" target="_blank" rel="noopener">VER REPOSITORIO [↗]</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ESTADO DE ENVÍO DEL FORMULARIO ================= -->
+  <div id="contact-status-modal" class="intrusion-overlay contact-status-overlay hidden" role="dialog"
+    aria-modal="true" aria-labelledby="contact-status-title" aria-describedby="contact-status-message">
+    <div id="contact-status-shell" class="intrusion-shell contact-status-shell" tabindex="-1" aria-busy="false">
+      <header class="intrusion-topbar">
+        <div class="intrusion-brand">
+          <span class="status-dot-red contact-status-dot" aria-hidden="true"></span>
+          <span id="contact-status-code">HOLOCALL // TRANSMISIÓN</span>
+        </div>
+        <button type="button" id="contact-status-close" class="gate-skip-btn hidden"
+          aria-label="Cerrar estado del mensaje">
+          CERRAR [ESC ✕]
+        </button>
+      </header>
+
+      <div class="contact-status-content">
+        <div id="contact-status-icon" class="contact-status-icon" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="contact-status-copy">
+          <div id="contact-status-kicker" class="cp-kicker">ENLACE DE COMUNICACIÓN</div>
+          <h2 id="contact-status-title" class="cp-title">ENVIANDO MENSAJE</h2>
+          <p id="contact-status-message">Transmitiendo el formulario de contacto de forma segura.</p>
+        </div>
+
+        <div id="contact-status-progress" class="contact-status-progress" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <div class="contact-status-actions">
+          <button type="button" id="contact-status-dismiss" class="cyber-btn hidden">ACEPTAR</button>
+          <a id="contact-status-mailto" class="cyber-btn btn-outline hidden">ABRIR CLIENTE DE CORREO</a>
         </div>
       </div>
     </div>
@@ -695,6 +717,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20261026-6"></script>
 </body>
 </html>
