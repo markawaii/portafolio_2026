@@ -11,13 +11,13 @@ const browserLanguage = (navigator.language || "es").toLowerCase();
 let currentLanguage = storedLanguage || (browserLanguage.startsWith("es") ? "es" : "en");
 
 const PROJECT_EN = {
-  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "A self-hosted operations platform for Twitch communities. It brings audience management, gamification and streaming tools into a single product operated from a web interface.", challenge: "Streamers often need separate services for moderation, rewards, games, overlays and voice interactions, creating fragmented operations and duplicated configuration.", result: "I designed a modular system with an API, bot, background workers and React frontend, connected through real-time events. It centralizes the virtual economy, games, OBS overlays and local text-to-speech while keeping deployment under the creator's control.", highlights: ["Designed the product and its architecture end to end, from data model to operating interface.", "Implemented Twitch and OBS real-time events using WebSockets and Redis Streams.", "Prepared CI/CD, automated tests, health checks, backups and recovery flows for self-hosted operation."] },
-  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "A native desktop client that makes everyday Git work and repository history easier to understand in Spanish without replacing Git's real behavior.", challenge: "Staging, branch synchronization and conflict resolution are usually exposed through commands or dense tools that make it difficult to understand what will change before acting.", result: "I built a Tauri and Rust application that executes real Git operations and presents status, history, branches, diffs and conflicts in one guided interface. The conflict editor works by block and supports merge, rebase, cherry-pick and revert flows.", highlights: ["Designed and developed the full product, including the TypeScript interface and native Rust layer.", "Implemented staging, commits, history, fetch, safe pull, push and visual branch navigation.", "Protected remote credentials through the operating-system keyring and prepared cross-platform builds."] },
-  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "An enterprise platform for creating and maintaining reusable document templates and generating standardized documents from validated business data.", challenge: "Document generation was handled through SAP and could take too long for the company's operating volume and the size of the documents being processed. The flow needed to become faster without sacrificing validation or consistency.", result: "As lead developer, I implemented and evolved a centralized workflow for template administration, data validation and asynchronous document generation. I also deployed its AWS infrastructure with MariaDB on RDS, document storage on S3 and containerized services on EC2 behind Nginx.", highlights: ["Owned the main functional and backend evolution of the product.", "Implemented template rules, required-tag validation and document-processing flows.", "Set up the AWS deployment with RDS, S3, EC2, Docker and Nginx, including IAM users and scoped access permissions."] },
-  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "A legacy integration layer that connects contracts, employee records and HR operations across several internal business systems.", challenge: "Critical information moved through a mature production codebase with multiple dependencies, so every change had to preserve compatibility and operational continuity.", result: "I maintained and progressively modernized the middleware, strengthening the services that synchronize contracts, organizational structures and employee data. I also set up its containerized AWS operation with MariaDB on RDS, S3, EC2 and Nginx.", highlights: ["Analyzed and safely evolved a legacy Laravel codebase in production.", "Worked on contract and employee synchronization with internal and external HR services.", "Set up and maintained the AWS deployment with RDS, S3, EC2, Docker and Nginx, including IAM users and scoped access permissions."] },
-  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "A configurable platform for modeling, executing and monitoring business workflows that combine rules, integrations, scheduled tasks and asynchronous processing.", challenge: "The organization needed to orchestrate processes that cross multiple services while keeping execution status, history and failures visible and manageable.", result: "I led the frontend and backend team and contributed as principal developer to a workflow engine with queues, states, run history, webhooks, schedules and external connections. I also set up its AWS infrastructure with MariaDB on RDS, S3 and containerized services on EC2 behind Nginx.", highlights: ["Led technical planning, task assignment and delivery follow-up across frontend and backend.", "Implemented supervised executions with queues, states, history and external integrations.", "Set up the AWS deployment with RDS, S3, EC2, Docker and Nginx, including IAM users and scoped access permissions."] },
-  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "A hiring platform that supports the path from candidate information to document generation, digital signature and downstream workflow execution.", challenge: "A legacy system had to connect reliably to digital signatures and workflows while its deployment pipeline and accumulated technical debt complicated safe releases.", result: "As principal developer, I integrated the hiring flow with the signature provider and workflow platform, strengthened CI/CD promotion across development, QA and production, and improved the codebase's stability and maintainability.", highlights: ["Connected hiring stages with digital-signature and workflow services.", "Improved the release pipeline and environment promotion process.", "Reduced technical debt and stabilized critical paths in the inherited system."] },
-  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "An internal API hub that provides shared capabilities to different company products from one maintained and reusable integration layer.", challenge: "News sources, social networks and messaging integrations were at risk of being implemented repeatedly across projects, increasing maintenance and inconsistency.", result: "As principal developer, I centralized those services behind REST APIs, including news aggregation and integrations with Instagram, LinkedIn and Google Chat, with reusable authentication and automation flows.", highlights: ["Built a news API with RSS aggregation, multiple providers and category-based queries.", "Centralized common services to avoid duplicated implementations across products.", "Implemented social and messaging integrations using OAuth and automated processes."] }
+  "OWN-01": { title: "STREAMIXOR // TWITCH COMMUNITY PLATFORM", desc: "A self-hosted operations platform that unifies audience management, virtual economy, games, OBS overlays and local voice interactions for Twitch communities.", challenge: "Streaming operations are usually split across independent services with duplicated configuration, limited control over data and fragile real-time coordination between chat, overlays and background tasks.", result: "I designed a modular architecture with FastAPI services, a Twitch bot, background workers and a React control panel connected through WebSockets and Redis Streams. It includes access revocation, session validation, service health checks and event recovery.", impact: "It provides creators with one controllable operating environment instead of a collection of disconnected tools, while supporting resilient self-hosting, recoverable events and secure real-time collaboration.", highlights: ["Designed the product, domain model and operating architecture end to end.", "Implemented Twitch EventSub, real-time OBS channels, virtual economy, games and local Piper TTS.", "Added automated tests for WebSockets, permissions, revocation, uploads and economy behavior.", "Prepared CI/CD, health checks, backup and recovery flows for self-hosted operation."] },
+  "OWN-02": { title: "RAMIFICA // DESKTOP GIT CLIENT", desc: "A native desktop client in Spanish for inspecting repositories and performing real Git operations through a guided interface without hiding the underlying Git model.", challenge: "Staging, branch synchronization and conflict resolution are often exposed through commands or dense tools, making it hard to preview consequences and safely recover when an operation is interrupted.", result: "I built a Tauri and Rust application with a TypeScript interface for status, diffs, history, branches, tags and remote operations. It previews merges and resolves conflicts by block across merge, rebase, cherry-pick and revert workflows.", impact: "It makes Git state and branch consequences easier to understand while preserving real repositories, explicit confirmations and safe continuation or abort paths for conflict-prone operations.", highlights: ["Designed and developed the complete product: TypeScript interface and native Rust layer.", "Implemented staging, commits, history, fetch, safe pull, push, tags and visual branch navigation.", "Built conflict detection, per-file resolution and continuation or abort flows backed by automated tests.", "Protected remote credentials through the operating-system keyring and prepared cross-platform builds."] },
+  "CORP-01": { title: "ARCOPRIME // TEMPLATE MANAGER", desc: "A legal-document platform for generating contracts and amendments at scale from reusable templates, validated business data and dynamic rules, reducing dependency on SAP processing times.", challenge: "Large, multi-page documents had to combine affiliation, compensation, workplace, schedule and legal-clause data without missing required fields or breaking corporate formatting.", result: "As principal developer, I implemented strict validation and replacement of dynamic tags, business rules and a high-performance DOM-to-PDF pipeline with clean page breaks, corporate typography and image and signature optimization. Generated files are stored in Amazon S3 and exposed through short-lived presigned links for downstream signature flows.", impact: "The platform centralizes document rules, accelerates preparation of contracts and amendments and provides a secure, traceable pipeline from business data to electronic-signature delivery.", highlights: ["Built the dynamic-tag merge engine and required-field validation.", "Optimized multi-page PDF rendering, page breaks, tables, signatures and images.", "Implemented S3 document storage and short-lived presigned delivery URLs.", "Provisioned RDS, S3, EC2, Docker and Nginx, including IAM users and scoped permissions."] },
+  "CORP-02": { title: "ARCOPRIME // INTEGRATION MIDDLEWARE", desc: "The integration and reconciliation core that maintains a shared view of contracts, signature states, employees and organizational structure across company systems.", challenge: "Different signature providers and business systems exposed incompatible states and payloads. Historical and pending records also had to be reconciled in bulk without exhausting memory or degrading the production service.", result: "I developed a multi-provider abstraction with typed signature-provider and global-status enums, plus scheduled Artisan commands for backfill and mass reconciliation. Batch processing synchronizes contract and employee state while bidirectional services maintain positions, areas, divisions, cost centers and regional management structures.", impact: "The middleware provides one consistent contract status to consuming systems, recovers historical gaps safely and reduces coupling to the particular response format of each signature provider.", highlights: ["Standardized Webdox and Confirmalo states behind a provider-independent contract model.", "Developed scheduled reconciliation and backfill commands with memory-safe batch processing.", "Migrated dispersed constants and magic strings to native typed PHP 8 enums.", "Maintained bidirectional synchronization of employees and organizational structure."] },
+  "CORP-03": { title: "ARCOPRIME // WORKFLOW ENGINE", desc: "A configurable platform for designing, publishing, executing and supervising business workflows composed of triggers, actions, rules and external connections.", challenge: "Cross-system processes needed an auditable execution model capable of preserving payloads, controlling failures and continuing scheduled operation even when an individual action failed.", result: "I led the frontend and backend team and contributed as principal developer to an engine with webhook and scheduled triggers, priority queues, execution states, step history, retries, failure propagation and connection management. I also deployed its AWS infrastructure on RDS, S3 and EC2 behind Nginx.", impact: "The platform turns dispersed automations into observable and reusable workflows, giving operations a clear run history and giving developers controlled retries, testable steps and safer external integrations.", highlights: ["Led technical planning, task assignment, engineering guidance and delivery follow-up.", "Implemented supervised executions with states, step history, retries and failure controls.", "Worked on webhooks, schedules, email templates and authenticated external connections.", "Provisioned RDS, S3, EC2, Docker and Nginx, including IAM users and scoped permissions."] },
+  "CORP-04": { title: "CONTRATACIÓN RED // MODERNIZATION & INTEGRATIONS", desc: "A critical hiring and contract-change platform that connects employee data, organizational validation, document generation, legal electronic signature and downstream workflows.", challenge: "Signature-provider outages or quota limits could interrupt contract processing, while position, schedule and workplace changes required coordinated validation against SAP and Temporis without losing legal traceability.", result: "As principal developer, I integrated Confirmalo and built an automatic contingency flow that redirects eligible Webdox requests when failures or operational limits occur. I also implemented position, schedule or Temporis-unit and workplace-transfer flows with SAP and Temporis validation, role-based access and auditable automatic approval after 48 business hours.", impact: "The multi-provider design preserves hiring continuity without manual contract recreation, while the contract-change module centralizes high-criticality HR operations and their audit trail.", highlights: ["Built the Webdox-to-Confirmalo contingency and automatic contract resend process.", "Implemented position, Temporis-unit and workplace-transfer workflows with SAP and Temporis validation.", "Added role restrictions and auditable automatic approval after 48 business hours.", "Redesigned complex tables into a card-grid interface with inline validation.", "Reduced technical debt and code smells using SonarQube and SonarLint feedback."] },
+  "CORP-05": { title: "IDEA UNO // GLOBAL SERVICES API", desc: "An internal API hub that centralizes news, social-network, messaging and other reusable capabilities consumed by multiple company products.", challenge: "Each product risked implementing the same providers, token handling and content transformations independently, multiplying maintenance work and producing inconsistent behavior across integrations.", result: "As principal developer, I exposed shared REST services for multi-provider news and categories, LinkedIn feeds, Instagram data and Google Chat spaces and messages. I implemented OAuth flows, token refresh, scheduled commands, content normalization and cache strategies.", impact: "The hub provides one maintained integration layer for common capabilities, reduces duplicated implementations and allows provider changes, authentication and automation rules to evolve in one place.", highlights: ["Built a news API with providers, categories, RSS aggregation and reusable query models.", "Implemented LinkedIn feed normalization, media handling and token lifecycle flows.", "Developed Instagram refresh processes and Google Chat spaces and messaging capabilities.", "Centralized caching, scheduled automation and shared integration behavior for other products."] }
 };
 
 const CYBERWARE_EN = [
@@ -41,7 +41,7 @@ const CYBERWARE_EN = [
 const PORTFOLIO_DATA = {
   profile: {
     name: "IGNACIO VELIZ",
-    role: "Líder Técnico · Full-Stack Developer",
+    role: "Full-Stack Developer",
     level: 50,
     streetCred: 50,
     affiliation: "4+ Años // IDEA UNO",
@@ -50,12 +50,16 @@ const PORTFOLIO_DATA = {
     location: "Santiago, Chile",
     totalRam: 16,
     bio: [
-      "Desarrollo y lidero soluciones empresariales full-stack, integraciones y automatizaciones, con especialización en Laravel, React, Docker y CI/CD. Cuento con más de 4 años de experiencia en desarrollo de software y proyectos realizados en Flask y .NET.",
-      "He liderado y participado en proyectos reales internos y externos en IDEA UNO, fortaleciendo mis habilidades técnicas, de liderazgo y trabajo colaborativo con Jira y Confluence. Actualmente finalizo mis estudios de Ingeniería en Informática en DUOC UC (modalidad vespertina), complementando formación académica con experiencia práctica en producción."
+      "Soy desarrollador full-stack y llevo más de 4 años creando y mejorando soluciones para empresas. Mi experiencia principal está en Laravel, aunque también he desarrollado proyectos con React, Python y .NET, y he trabajado con AWS, Docker y procesos de CI/CD para llevar las aplicaciones desde el desarrollo hasta producción.",
+      "Durante este tiempo he participado en el desarrollo y evolución de sistemas que forman parte de operaciones reales. Parte importante de mi trabajo ha sido modernizar proyectos heredados, reducir tareas manuales, mejorar procesos internos y conectar servicios que necesitan intercambiar información de manera estable y segura.",
+      "También trabajo directamente con clientes y usuarios para entender sus necesidades, analizar requerimientos y convertirlos en soluciones concretas. A partir del estado actual del sistema y de su evolución esperada, participo en la definición del alcance, la propuesta técnica y la estimación del trabajo necesario.",
+      "Con el tiempo también he asumido la coordinación de equipos frontend y backend, organizando tareas, tomando decisiones técnicas y acompañando el avance de los proyectos, pero sin alejarme del código. En mi trabajo incorporo herramientas de inteligencia artificial para investigar, analizar código, documentar y agilizar tareas repetitivas, manteniendo siempre la revisión técnica y las decisiones de implementación bajo mi responsabilidad. Me gusta entender bien el problema antes de construir, ordenar lo que ya existe y dejar soluciones claras, mantenibles y preparadas para seguir creciendo."
     ],
     bioEn: [
-      "I build and lead full-stack business solutions, integrations and automation, specializing in Laravel, React, Docker and CI/CD. I have more than 4 years of software-development experience, including production work with Flask and .NET.",
-      "I have led and contributed to real internal and client projects at IDEA UNO, combining hands-on engineering with planning, task assignment and collaboration through Jira and Confluence. I am currently completing an evening degree in Computer Engineering at DUOC UC."
+      "I am a full-stack developer with more than four years of experience creating and improving solutions for businesses. My main experience is with Laravel, although I have also built projects with React, Python and .NET and worked with AWS, Docker and CI/CD processes to take applications from development into production.",
+      "During this time, I have contributed to the development and evolution of systems used in real business operations. An important part of my work has been modernizing legacy projects, reducing manual tasks, improving internal processes and connecting services that need to exchange information reliably and securely.",
+      "I also work directly with clients and users to understand their needs, analyze requirements and turn them into concrete solutions. Based on the system's current state and expected evolution, I contribute to defining scope, shaping the technical approach and estimating the work required.",
+      "Over time, I have also taken on the coordination of frontend and backend teams, organizing tasks, making technical decisions and supporting project delivery while remaining involved in the code. I incorporate AI tools into my workflow to support research, code analysis, documentation and repetitive tasks, while keeping technical review and implementation decisions under my responsibility. I like to understand the problem before building, bring order to what already exists and leave behind solutions that are clear, maintainable and ready to grow."
     ],
     attributes: [
       { name: "DESARROLLO BACKEND (Laravel / Flask / .NET)", score: "20 / 20", percent: 100 },
@@ -134,16 +138,21 @@ const PORTFOLIO_DATA = {
       id: "OWN-01",
       period: { start: "2026-03-17", end: "actual", label: "MAR 2026 — ACTUAL" },
       title: "STREAMIXOR // PLATAFORMA PARA COMUNIDADES DE TWITCH",
+      client: "INDEPENDIENTE",
+      projectName: "STREAMIXOR",
+      projectNameEn: "STREAMIXOR",
       category: "personal",
       threat: "PROYECTO PROPIO // FULL-STACK & REAL-TIME",
-      desc: "Plataforma autohospedada para operar comunidades de Twitch. Reúne administración de audiencia, gamificación y herramientas para transmisiones en un solo producto controlado desde una interfaz web.",
-      challenge: "Los streamers suelen depender de servicios separados para moderación, recompensas, juegos, overlays e interacciones por voz, lo que fragmenta la operación y duplica configuraciones.",
-      result: "Diseñé una arquitectura modular con API, bot, workers y frontend React conectados mediante eventos en tiempo real. La solución centraliza economía virtual, juegos, overlays para OBS y síntesis de voz local, manteniendo el despliegue bajo control del creador.",
+      desc: "Plataforma autohospedada que unifica la administración de audiencia, economía virtual, juegos, overlays para OBS e interacciones de voz local para comunidades de Twitch.",
+      challenge: "La operación de un stream suele quedar repartida entre servicios independientes, con configuraciones duplicadas, poco control sobre los datos y una coordinación frágil entre chat, overlays y procesos en segundo plano.",
+      result: "Diseñé una arquitectura modular con servicios FastAPI, bot de Twitch, workers y panel React conectados mediante WebSockets y Redis Streams. Incluye revocación de accesos, validación de sesiones, healthchecks y recuperación de eventos interrumpidos.",
+      impact: "Entrega al creador un entorno operativo controlable en lugar de varias herramientas desconectadas, con colaboración en tiempo real, operación autohospedada y mecanismos de recuperación ante fallos.",
       stack: ["FastAPI", "React", "TypeScript", "MariaDB", "Redis", "Docker", "Twitch API", "Piper TTS"],
       highlights: [
-        "Diseñé el producto y su arquitectura de extremo a extremo, desde el modelo de datos hasta la interfaz operativa.",
-        "Implementé eventos en tiempo real para Twitch y OBS mediante WebSockets y Redis Streams.",
-        "Preparé CI/CD, pruebas automatizadas, healthchecks, respaldos y recuperación para una operación autohospedada."
+        "Diseñé el producto, su modelo de dominio y la arquitectura operativa de extremo a extremo.",
+        "Implementé Twitch EventSub, canales OBS en tiempo real, economía virtual, juegos y TTS local con Piper.",
+        "Agregué pruebas automatizadas para WebSockets, permisos, revocación, cargas de archivos y comportamiento de la economía.",
+        "Preparé CI/CD, healthchecks, respaldos y recuperación para la operación autohospedada."
       ],
       demoUrl: "",
       repoUrl: "https://github.com/markawaii/cl_streamixor_app"
@@ -152,15 +161,20 @@ const PORTFOLIO_DATA = {
       id: "OWN-02",
       period: { start: "2026-10-14", end: "actual", label: "OCT 2026 — ACTUAL" },
       title: "RAMIFICA // CLIENTE GIT DE ESCRITORIO",
+      client: "INDEPENDIENTE",
+      projectName: "RAMIFICA",
+      projectNameEn: "RAMIFICA",
       category: "personal",
       threat: "PROYECTO PROPIO // TAURI & RUST",
-      desc: "Cliente de escritorio nativo que facilita comprender el trabajo diario con Git y el historial de un repositorio en español, sin sustituir ni ocultar el comportamiento real de Git.",
-      challenge: "El staging, la sincronización de ramas y la resolución de conflictos suelen depender de comandos o herramientas densas que dificultan anticipar qué cambiará antes de ejecutar una acción.",
-      result: "Construí una aplicación con Tauri y Rust que ejecuta operaciones Git reales y presenta estado, historial, ramas, diferencias y conflictos en una interfaz guiada. Su editor resuelve conflictos por bloques en flujos de merge, rebase, cherry-pick y revert.",
+      desc: "Cliente de escritorio nativo en español para inspeccionar repositorios y ejecutar operaciones Git reales mediante una interfaz guiada, sin ocultar el modelo de Git.",
+      challenge: "El staging, la sincronización de ramas y la resolución de conflictos suelen depender de comandos o herramientas densas. Esto dificulta anticipar consecuencias y recuperarse con seguridad cuando una operación queda interrumpida.",
+      result: "Construí una aplicación con Tauri y Rust, junto con una interfaz TypeScript, para visualizar estado, diffs, historial, ramas, etiquetas y operaciones remotas. Permite previsualizar merges y resolver conflictos por bloques en merge, rebase, cherry-pick y revert.",
+      impact: "Hace más comprensible el estado de Git y las consecuencias de una operación, manteniendo repositorios reales, confirmaciones explícitas y rutas seguras para continuar o abortar conflictos.",
       stack: ["Tauri", "Rust", "TypeScript", "Git CLI", "Keyring nativo", "GitHub Actions"],
       highlights: [
         "Diseñé y desarrollé el producto completo: interfaz TypeScript y capa nativa en Rust.",
-        "Implementé staging, commits, historial, fetch, pull seguro, push y navegación visual de ramas.",
+        "Implementé staging, commits, historial, fetch, pull seguro, push, etiquetas y navegación visual de ramas.",
+        "Construí detección, resolución por archivo y continuación o aborto de conflictos con pruebas automatizadas.",
         "Protegí las credenciales remotas mediante el llavero del sistema y preparé builds multiplataforma."
       ],
       demoUrl: "",
@@ -170,16 +184,21 @@ const PORTFOLIO_DATA = {
       id: "CORP-01",
       period: { start: "2024-10-01", end: "actual", label: "OCT 2024 — ACTUAL" },
       title: "ARCOPRIME // GESTOR DE PLANTILLAS",
+      client: "ARCOPRIME",
+      projectName: "GESTOR DE PLANTILLAS",
+      projectNameEn: "TEMPLATE MANAGER",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
-      desc: "Plataforma empresarial para crear y mantener plantillas reutilizables y generar documentos estandarizados a partir de datos de negocio validados.",
-      challenge: "La generación de documentos se realizaba a través de SAP y podía tomar demasiado tiempo frente al volumen operativo de la empresa y la extensión de los archivos procesados. Era necesario agilizar el flujo sin perder validación ni consistencia.",
-      result: "Como desarrollador principal, implementé y evolucioné un flujo centralizado para administrar plantillas, validar información y generar documentos de forma asíncrona. También levanté su infraestructura en AWS con MariaDB sobre RDS, almacenamiento documental en S3 y servicios contenerizados en EC2 detrás de Nginx.",
-      stack: ["PHP", "Laravel", "JavaScript", "MariaDB", "AWS RDS", "AWS S3", "AWS EC2", "AWS IAM", "Docker", "Nginx", "Procesamiento documental"],
+      desc: "Plataforma documental legal para generar contratos y anexos de forma masiva desde plantillas reutilizables, datos empresariales validados y reglas dinámicas, reduciendo la dependencia de los tiempos de SAP.",
+      challenge: "Los documentos extensos y multipágina debían combinar datos de afiliación, remuneraciones, instalaciones, jornadas y cláusulas legales sin omitir campos obligatorios ni romper el formato corporativo.",
+      result: "Como desarrollador principal, implementé validación estricta y reemplazo de tags dinámicos, reglas de negocio y un pipeline DOM a PDF optimizado, con saltos de página limpios, tipografía corporativa y tratamiento de firmas e imágenes. Los archivos se almacenan en Amazon S3 y se entregan mediante enlaces presignados temporales.",
+      impact: "La plataforma centraliza las reglas documentales, agiliza la preparación de contratos y anexos y entrega un pipeline seguro y trazable desde los datos de negocio hasta el despacho a firma electrónica.",
+      stack: ["PHP", "Laravel", "JavaScript", "MariaDB", "Motor de tags", "PDF multipágina", "AWS RDS", "AWS S3", "URLs presignadas", "AWS EC2", "AWS IAM", "Docker", "Nginx"],
       highlights: [
-        "Asumí la evolución funcional y backend principal del producto.",
-        "Implementé reglas de plantillas, validación de tags obligatorios y flujos de procesamiento documental.",
-        "Levanté el despliegue con RDS, S3, EC2, Docker y Nginx, además de crear usuarios IAM y configurar permisos de acceso."
+        "Construí el motor de fusión de tags dinámicos y validación de campos obligatorios.",
+        "Optimicé el renderizado PDF multipágina, saltos, tablas, firmas e imágenes.",
+        "Implementé almacenamiento documental en S3 y entrega mediante URLs presignadas temporales.",
+        "Levanté RDS, S3, EC2, Docker y Nginx, además de usuarios IAM con permisos acotados."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -188,16 +207,21 @@ const PORTFOLIO_DATA = {
       id: "CORP-02",
       period: { start: "2024-01-01", end: "actual", label: "ENE 2024 — ACTUAL" },
       title: "ARCOPRIME // MIDDLEWARE DE INTEGRACIONES",
+      client: "ARCOPRIME",
+      projectName: "MIDDLEWARE DE INTEGRACIONES",
+      projectNameEn: "INTEGRATION MIDDLEWARE",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // PROYECTO HEREDADO",
-      desc: "Capa de integración heredada que conecta contratos, fichas de colaboradores y operaciones de recursos humanos entre distintos sistemas empresariales.",
-      challenge: "La información crítica circulaba por una base madura en producción y con múltiples dependencias, por lo que cada cambio debía conservar compatibilidad y continuidad operacional.",
-      result: "Mantuve y modernicé progresivamente el middleware, fortaleciendo servicios que sincronizan contratos, estructuras organizacionales y datos de colaboradores. También levanté su operación contenerizada en AWS con MariaDB sobre RDS, S3, EC2 y Nginx.",
-      stack: ["PHP", "Laravel", "APIs REST", "MariaDB", "AWS RDS", "AWS S3", "AWS EC2", "AWS IAM", "Docker", "Nginx", "Integraciones empresariales"],
+      desc: "Núcleo de integración y conciliación que mantiene una visión común de contratos, estados de firma, colaboradores y estructura organizacional entre los sistemas de la compañía.",
+      challenge: "Los proveedores de firma y sistemas empresariales entregaban estados y payloads distintos. Además, los registros históricos y pendientes debían conciliarse masivamente sin agotar memoria ni degradar el servicio productivo.",
+      result: "Desarrollé una abstracción multi-proveedor mediante enums tipados para proveedor y estado global de firma, junto con comandos Artisan programados de backfill y conciliación masiva. El procesamiento por lotes sincroniza contratos y colaboradores, mientras los servicios bidireccionales mantienen cargos, áreas, divisiones, centros de costo y jefaturas zonales.",
+      impact: "El middleware entrega un estado contractual consistente a los sistemas consumidores, recupera brechas históricas de forma segura y reduce el acoplamiento al formato particular de cada proveedor de firma.",
+      stack: ["PHP 8", "Laravel", "Enums nativos", "Artisan CLI", "Procesamiento por lotes", "APIs REST", "MariaDB", "AWS RDS", "AWS S3", "AWS EC2", "AWS IAM", "Docker", "Nginx"],
       highlights: [
-        "Analicé y evolucioné de forma segura una base Laravel heredada en producción.",
-        "Trabajé en sincronización de contratos y colaboradores con servicios internos y externos de RR. HH.",
-        "Levanté y mantuve el despliegue con RDS, S3, EC2, Docker y Nginx, además de crear usuarios IAM y configurar permisos de acceso."
+        "Estandaricé estados de Webdox y Confirmalo bajo un modelo contractual independiente del proveedor.",
+        "Desarrollé comandos programados de conciliación y backfill con procesamiento por lotes.",
+        "Migré constantes dispersas y strings mágicos a enums nativos tipados de PHP 8.",
+        "Mantuve la sincronización bidireccional de colaboradores y estructura organizacional."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -206,16 +230,21 @@ const PORTFOLIO_DATA = {
       id: "CORP-03",
       period: { start: "2025-07-01", end: "actual", label: "JUL 2025 — ACTUAL" },
       title: "ARCOPRIME // MOTOR DE WORKFLOWS",
+      client: "ARCOPRIME",
+      projectName: "MOTOR DE WORKFLOWS",
+      projectNameEn: "WORKFLOW ENGINE",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // LÍDER TÉCNICO",
-      desc: "Plataforma configurable para modelar, ejecutar y supervisar procesos empresariales que combinan reglas, integraciones, tareas programadas y procesamiento asíncrono.",
-      challenge: "La organización necesitaba orquestar procesos que atraviesan varios servicios, manteniendo visibles y administrables el estado de ejecución, el historial y los fallos.",
-      result: "Lideré al equipo frontend y backend y participé como desarrollador principal de un motor con colas, estados, historial de ejecuciones, webhooks, programaciones y conexiones externas. También levanté su infraestructura en AWS con MariaDB sobre RDS, S3 y servicios contenerizados en EC2 detrás de Nginx.",
+      desc: "Plataforma configurable para diseñar, publicar, ejecutar y supervisar workflows empresariales compuestos por disparadores, acciones, reglas y conexiones externas.",
+      challenge: "Los procesos entre sistemas requerían un modelo de ejecución auditable que preservara datos de entrada, controlara fallos y mantuviera las programaciones siguientes incluso cuando una acción individual fallara.",
+      result: "Lideré al equipo frontend y backend y participé como desarrollador principal de un motor con disparadores webhook y programados, colas prioritarias, estados, historial por paso, reintentos, propagación de fallos y administración de conexiones. También desplegué su infraestructura sobre RDS, S3 y EC2 detrás de Nginx.",
+      impact: "Convierte automatizaciones dispersas en workflows observables y reutilizables, entregando historial operativo y ofreciendo al equipo reintentos controlados, pasos comprobables e integraciones externas más seguras.",
       stack: ["Laravel", "React", "TypeScript", "MariaDB", "Redis", "Laravel Horizon", "AWS RDS", "AWS S3", "AWS EC2", "AWS IAM", "Docker", "Nginx"],
       highlights: [
-        "Lideré planificación técnica, asignación de tareas y seguimiento de entregas frontend y backend.",
-        "Implementé ejecuciones supervisadas con colas, estados, historial y controles operativos.",
-        "Levanté el despliegue con RDS, S3, EC2, Docker y Nginx, además de crear usuarios IAM y configurar permisos de acceso."
+        "Lideré planificación, asignación de tareas, acompañamiento técnico y seguimiento de entregas.",
+        "Implementé ejecuciones supervisadas con estados, historial por paso, reintentos y control de fallos.",
+        "Trabajé en webhooks, programaciones, plantillas de correo y conexiones externas autenticadas.",
+        "Levanté RDS, S3, EC2, Docker y Nginx, además de usuarios IAM con permisos acotados."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -224,16 +253,22 @@ const PORTFOLIO_DATA = {
       id: "CORP-04",
       period: { start: "2025-01-01", end: "actual", label: "ENE 2025 — ACTUAL" },
       title: "CONTRATACIÓN RED // MODERNIZACIÓN E INTEGRACIONES",
+      client: "ARCOPRIME",
+      projectName: "CONTRATACIÓN RED",
+      projectNameEn: "CONTRATACIÓN RED",
       category: "enterprise",
       threat: "CLIENTE: ARCOPRIME // DESARROLLADOR PRINCIPAL",
-      desc: "Plataforma de contratación que acompaña el proceso desde los datos del candidato hasta la generación documental, la firma digital y la ejecución de workflows posteriores.",
-      challenge: "El sistema heredado debía conectarse de forma confiable con firma digital y workflows, mientras su pipeline y la deuda técnica dificultaban publicar cambios con seguridad.",
-      result: "Como desarrollador principal, integré el flujo de contratación con el proveedor de firma y la plataforma de workflows, reforcé el CI/CD entre desarrollo, QA y producción y mejoré la estabilidad y mantenibilidad del código.",
-      stack: ["Python", "Flask", "React", "JavaScript", "Firma digital", "Workflows", "CI/CD"],
+      desc: "Plataforma crítica de contratación y cambios contractuales que conecta datos de colaboradores, validación organizacional, generación documental, firma electrónica legal y workflows posteriores.",
+      challenge: "Las caídas o límites operativos del proveedor de firma podían detener contratos, mientras los cambios de cargo, turno o instalación exigían validar información coordinada con SAP y Temporis sin perder trazabilidad legal.",
+      result: "Como desarrollador principal, integré Confirmalo y construí un flujo automático de contingencia que deriva solicitudes elegibles desde Webdox cuando existen fallos o límites operativos. También desarrollé cambios de cargo, turno o unidad Temporis y traspasos de instalación con validaciones SAP y Temporis, perfiles de acceso y aprobación automática auditable después de 48 horas hábiles.",
+      impact: "La arquitectura multi-proveedor mantiene la continuidad del proceso sin recrear contratos manualmente, mientras el módulo contractual centraliza operaciones críticas de RR. HH. y su trazabilidad de auditoría.",
+      stack: ["Python", "Flask", "React", "JavaScript", "Confirmalo", "Webdox", "SAP", "Temporis", "Workflows", "SonarQube", "SonarLint", "CI/CD"],
       highlights: [
-        "Conecté etapas de contratación con servicios de firma digital y workflows.",
-        "Mejoré el pipeline de entrega y la promoción entre ambientes.",
-        "Reduje deuda técnica y estabilicé flujos críticos del sistema heredado."
+        "Construí la contingencia y el reenvío automático de contratos desde Webdox hacia Confirmalo.",
+        "Implementé cambios de cargo, unidad Temporis y traspaso de instalación con validaciones SAP y Temporis.",
+        "Agregué restricciones por perfil y aprobación automática auditable después de 48 horas hábiles.",
+        "Rediseñé datatables complejas como Card Grid con validación inline y sin saltos de layout.",
+        "Reduje deuda técnica y code smells utilizando métricas de SonarQube y SonarLint."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -242,16 +277,21 @@ const PORTFOLIO_DATA = {
       id: "CORP-05",
       period: { start: "2022-10-01", end: "2023-12-31", label: "OCT 2022 — DIC 2023" },
       title: "IDEA UNO // API GLOBAL DE SERVICIOS",
+      client: "IDEA UNO",
+      projectName: "API GLOBAL DE SERVICIOS",
+      projectNameEn: "GLOBAL SERVICES API",
       category: "enterprise",
       threat: "PROYECTO INTERNO: IDEA UNO // DESARROLLADOR PRINCIPAL",
-      desc: "Hub interno de APIs que entrega capacidades compartidas a distintos productos de la empresa desde una única capa de integración mantenible y reutilizable.",
-      challenge: "Las fuentes de noticias, redes sociales y mensajería podían terminar implementadas varias veces en distintos proyectos, aumentando el mantenimiento y las inconsistencias.",
-      result: "Como desarrollador principal, centralicé esos servicios mediante APIs REST, incluyendo agregación de noticias e integraciones con Instagram, LinkedIn y Google Chat, con flujos reutilizables de autenticación y automatización.",
+      desc: "Hub interno de APIs que centraliza noticias, redes sociales, mensajería y otras capacidades reutilizables consumidas por distintos productos de la empresa.",
+      challenge: "Cada producto podía implementar por separado los mismos proveedores, ciclos de tokens y transformaciones de contenido, multiplicando el mantenimiento y generando comportamientos inconsistentes.",
+      result: "Como desarrollador principal, expuse servicios REST compartidos para noticias de múltiples proveedores y categorías, feeds de LinkedIn, datos de Instagram y espacios y mensajes de Google Chat. Implementé OAuth, renovación de tokens, comandos programados, normalización de contenido y estrategias de caché.",
+      impact: "El hub entrega una sola capa mantenida para capacidades comunes, reduce implementaciones duplicadas y permite evolucionar proveedores, autenticación y reglas de automatización desde un punto central.",
       stack: ["PHP", "Laravel", "APIs REST", "API de noticias", "OAuth", "Instagram", "LinkedIn", "Google Chat", "Docker"],
       highlights: [
-        "Construí una API de noticias con agregación RSS, múltiples proveedores y consultas por categoría.",
-        "Centralicé servicios comunes para evitar implementaciones duplicadas entre productos.",
-        "Implementé integraciones sociales y de mensajería mediante OAuth y procesos automatizados."
+        "Construí una API de noticias con proveedores, categorías, agregación RSS y modelos de consulta reutilizables.",
+        "Implementé normalización de feeds, manejo multimedia y ciclo de tokens para LinkedIn.",
+        "Desarrollé renovación de Instagram y capacidades de espacios y mensajería para Google Chat.",
+        "Centralicé caché, automatizaciones programadas y comportamiento compartido para otros productos."
       ],
       demoUrl: "",
       repoUrl: ""
@@ -579,13 +619,20 @@ function animateContainerTexts(containerEl, customSelector = null) {
   if (!containerEl) return;
   const selector = customSelector || VIEW_TYPEWRITER_SELECTOR;
   const nodes = containerEl.querySelectorAll(selector);
+  let summaryDelayMs = 320;
+
   nodes.forEach((el, idx) => {
     if (el.classList.contains("no-typewriter")) return;
     const isProfessionalSummary = el.closest("#bio-paragraphs") !== null;
-    const duration = isProfessionalSummary
-      ? Math.min(7200, Math.max(4200, (el.dataset.twText ?? el.textContent).trim().length * 14))
-      : null;
-    typeElementText(el, Math.min(idx * 65, 520), duration);
+    if (isProfessionalSummary) {
+      const textLength = (el.dataset.twText ?? el.textContent).trim().length;
+      const duration = Math.min(2900, Math.max(1800, textLength * 7));
+      typeElementText(el, summaryDelayMs, duration);
+      summaryDelayMs += duration + 130;
+      return;
+    }
+
+    typeElementText(el, Math.min(idx * 65, 520));
   });
 
   // Efecto de datos corruptos desencriptándose para los chips de tecnologías (.stack-chip)
@@ -665,7 +712,9 @@ function renderProfileAndHUD() {
   const bioContainer = document.getElementById("bio-paragraphs");
   if (bioContainer) {
     const bio = en ? profile.bioEn : profile.bio;
-    bioContainer.innerHTML = `<p class="profile-summary-lead">${bio.join(" ")}</p>`;
+    bioContainer.innerHTML = bio
+      .map((paragraph, index) => `<p class="profile-summary-lead${index === 0 ? " is-intro" : ""}">${paragraph}</p>`)
+      .join("");
   }
 
   const timelineContainer = document.getElementById("experience-timeline");
@@ -862,12 +911,28 @@ function renderProjectFolders() {
             ${projects.map((project) => {
               const copy = getLocalizedProject(project);
               const visibleStack = project.stack.slice(0, 3);
+              const ownerLabel = project.category === "enterprise"
+                ? (currentLanguage === "en" ? "CLIENT" : "CLIENTE")
+                : (currentLanguage === "en" ? "OWNERSHIP" : "AUTORÍA");
+              const ownerName = project.category === "enterprise"
+                ? project.client
+                : (currentLanguage === "en" ? "PERSONAL PROJECT" : "PROYECTO PERSONAL");
+              const projectName = currentLanguage === "en" ? project.projectNameEn : project.projectName;
               return `
                 <article class="project-folder">
                   <button type="button" class="project-folder-tab" data-project-details="${project.id}" aria-label="${currentLanguage === "en" ? "View details for" : "Ver detalles de"} ${copy.title}">
                     <span class="folder-tab-edge" aria-hidden="true"></span>
-                    <span class="folder-code">${project.id}</span>
-                    <span class="folder-name">${copy.title}</span>
+                    <span class="folder-meta">
+                      <span class="folder-code">${project.id}</span>
+                      <span class="folder-owner">
+                        <span class="folder-field-label">${ownerLabel}</span>
+                        <strong>${ownerName}</strong>
+                      </span>
+                    </span>
+                    <span class="folder-project">
+                      <span class="folder-field-label">${currentLanguage === "en" ? "PROJECT" : "PROYECTO"}</span>
+                      <span class="folder-name">${projectName}</span>
+                    </span>
                     <span class="folder-footer">
                       <span class="folder-stack" aria-label="${currentLanguage === "en" ? "Key technologies" : "Tecnologías principales"}">
                         ${visibleStack.map((tech) => `<span>${tech}</span>`).join("")}
@@ -1007,6 +1072,7 @@ function openProjectDetailsModal(projectId) {
   setModalText("project-modal-summary", copy.desc);
   setModalText("project-modal-challenge", copy.challenge);
   setModalText("project-modal-result", copy.result);
+  setModalText("project-modal-impact", copy.impact);
   document.getElementById("project-modal-highlights").innerHTML = copy.highlights
     .map((item) => `<li>${item}</li>`)
     .join("");
@@ -2388,6 +2454,11 @@ function initSystemControls() {
     setStableText(document.getElementById("profile-experience-label"), en ? "EXPERIENCE" : "EXPERIENCIA");
     setStableText(document.getElementById("profile-specialty-label"), en ? "SPECIALTY" : "ESPECIALIDAD");
     setStableText(document.getElementById("profile-education-label"), en ? "EDUCATION" : "FORMACIÓN");
+    setStableText(document.getElementById("profile-focus-label"), en ? "HOW I WORK" : "FORMA DE TRABAJO");
+    setStableText(document.getElementById("profile-focus-client"), en ? "Direct client collaboration" : "Contacto directo con clientes");
+    setStableText(document.getElementById("profile-focus-requirements"), en ? "Requirements analysis" : "Análisis de requerimientos");
+    setStableText(document.getElementById("profile-focus-estimates"), en ? "Technical estimates" : "Estimaciones técnicas");
+    setStableText(document.getElementById("profile-focus-ai"), en ? "AI-assisted development" : "IA aplicada al desarrollo");
     setStableText(document.getElementById("profile-projects-cta"), en ? "VIEW PROJECTS →" : "VER PROYECTOS →");
     setStableText(document.getElementById("profile-cv-cta"), en ? "DOWNLOAD CV (PDF) [↗]" : "DESCARGAR CV (PDF) [↗]");
     setStableText(document.getElementById("profile-summary-heading"), en ? "PROFESSIONAL SUMMARY" : "RESUMEN PROFESIONAL");
@@ -2397,8 +2468,9 @@ function initSystemControls() {
     document.getElementById("project-modal-summary-label").innerHTML = en ? "<b>01</b> PROJECT OVERVIEW" : "<b>01</b> DE QUÉ TRATA";
     document.getElementById("project-modal-challenge-label").innerHTML = en ? "<b>02</b> PROBLEM TO SOLVE" : "<b>02</b> PROBLEMA A RESOLVER";
     document.getElementById("project-modal-result-label").innerHTML = en ? "<b>03</b> IMPLEMENTED SOLUTION" : "<b>03</b> SOLUCIÓN IMPLEMENTADA";
-    document.getElementById("project-modal-highlights-label").innerHTML = en ? "<b>04</b> MY CONTRIBUTION" : "<b>04</b> MI PARTICIPACIÓN";
-    document.getElementById("project-modal-tech-label").innerHTML = en ? "<b>05</b> TECHNOLOGIES & CAPABILITIES" : "<b>05</b> TECNOLOGÍAS Y CAPACIDADES";
+    document.getElementById("project-modal-impact-label").innerHTML = en ? "<b>04</b> OUTCOME & IMPACT" : "<b>04</b> RESULTADO E IMPACTO";
+    document.getElementById("project-modal-highlights-label").innerHTML = en ? "<b>05</b> MY CONTRIBUTION" : "<b>05</b> MI PARTICIPACIÓN";
+    document.getElementById("project-modal-tech-label").innerHTML = en ? "<b>06</b> TECHNOLOGIES & CAPABILITIES" : "<b>06</b> TECNOLOGÍAS Y CAPACIDADES";
     const kickerCopy = en
       ? ["01 // PROFESSIONAL DOSSIER", "02 // CAREER PROGRESSION", "03 // REPOSITORIES & SYSTEMS", "04 // TECHNICAL CAPABILITIES", "07 // DEVELOPMENT & QA UTILITIES", "05 // OPTIONAL SECRET DIRECTORY", "06 // COMMUNICATIONS"]
       : ["01 // EXPEDIENTE PROFESIONAL", "02 // EVOLUCIÓN PROFESIONAL", "03 // REPOSITORIOS & SISTEMAS", "04 // CAPACIDADES TÉCNICAS", "07 // UTILIDADES PARA DESARROLLO Y QA", "05 // DIRECTORIO SECRETO OPCIONAL", "06 // COMUNICACIONES"];
@@ -2644,7 +2716,6 @@ let bwState = {
   autoDecrypting: false,
   autoTimers: [],
   matchedSteps: 0,
-  showHint: false,
   solved: false
 };
 
@@ -2660,7 +2731,6 @@ function initBlackwallSection() {
 
   const closeBtn = document.getElementById("bw-modal-close-btn");
   const resetBtn = document.getElementById("bw-modal-reset-btn");
-  const hintBtn = document.getElementById("bw-modal-hint-btn");
   const autoBtn = document.getElementById("bw-modal-autodecrypt-btn");
   const modalOverlay = document.getElementById("blackwall-breach-modal");
 
@@ -2676,15 +2746,6 @@ function initBlackwallSection() {
       if (bwState.autoDecrypting) return;
       sfx.click();
       if (bwState.activeFileId) setupBlackwallMatrixForFile(bwState.activeFileId);
-    });
-  }
-
-  if (hintBtn) {
-    hintBtn.addEventListener("click", () => {
-      if (bwState.autoDecrypting) return;
-      sfx.click();
-      bwState.showHint = !bwState.showHint;
-      renderBlackwallModalUI();
     });
   }
 
@@ -2812,7 +2873,7 @@ function renderBlackwallCards(newlyUnlockedId = null) {
       openBlackwallModal(btn.dataset.bwAutoDirect);
       setTimeout(() => {
         runBlackwallAutoDecryptAnimation();
-      }, 180);
+      }, 80);
     });
   });
 }
@@ -2855,11 +2916,10 @@ function runBlackwallAutoDecryptAnimation() {
   bwState.autoTargetCoord = null;
   // El modo automático recorre la misma interfaz que el manual: muestra únicamente
   // el eje activo, la celda apuntada y cada selección incorporándose al búfer.
-  bwState.showHint = false;
   bwState.autoDecrypting = true;
   renderBlackwallModalUI();
 
-  const stepInterval = 760;
+  const stepInterval = 390;
 
   bwState.solutionPath.forEach((stepNode, idx) => {
     // Fase 1: Apuntar al nodo y previsualizar el cruce Fila/Columna
@@ -2868,13 +2928,13 @@ function runBlackwallAutoDecryptAnimation() {
       bwState.hoverCoord = { r: stepNode.r, c: stepNode.c };
       bwState.autoTargetCoord = { r: stepNode.r, c: stepNode.c };
       renderBlackwallModalUI();
-    }, idx * stepInterval + 120);
+    }, idx * stepInterval + 55);
 
     // Fase 2: Acoplar el byte en el búfer y cambiar de eje (Fila <-> Columna)
     const tPick = setTimeout(() => {
       bwState.autoTargetCoord = null;
       handleBlackwallMatrixPick(stepNode.r, stepNode.c, true);
-    }, idx * stepInterval + 560);
+    }, idx * stepInterval + 265);
 
     bwState.autoTimers.push(tAim, tPick);
   });
@@ -2901,7 +2961,6 @@ function setupBlackwallMatrixForFile(fileId) {
   bwState.hoverCoord = null;
   bwState.autoTargetCoord = null;
   bwState.matchedSteps = 0;
-  bwState.showHint = false;
   bwState.solved = false;
 
   // Inicializar grilla 5x5 aleatoria
@@ -3004,20 +3063,18 @@ function renderBlackwallModalUI() {
 
   ensureBwModalMatrixDOM();
 
-  const axisPillEl = document.getElementById("bw-modal-axis-pill");
   const bufCountEl = document.getElementById("bw-modal-buffer-count");
   const bufSlotsEl = document.getElementById("bw-modal-buffer-slots");
   const seqNodesEl = document.getElementById("bw-modal-sequence-nodes");
-  const stepGuideEl = document.getElementById("bw-modal-step-guide");
+  const autoBtn = document.getElementById("bw-modal-autodecrypt-btn");
 
-  if (axisPillEl) {
-    axisPillEl.textContent = bwState.solved
-      ? "✓ ARCHIVO DESENCRIPTADO"
-      : bwState.autoDecrypting
-      ? `⚡ AUTO-DESENCRIPTANDO ${bwState.matchedSteps + 1}/${file.sequence.length}`
-      : `PASO ${bwState.matchedSteps + 1}/${file.sequence.length}: BUSCA [${
-          file.sequence[bwState.matchedSteps]
-        }] EN ${bwState.mode === "row" ? `FILA ${bwState.activeIndex + 1}` : `COLUMNA ${bwState.activeIndex + 1}`}`;
+  if (autoBtn) {
+    autoBtn.textContent = bwState.autoDecrypting
+      ? `DESENCRIPTANDO ${Math.min(bwState.matchedSteps + 1, file.sequence.length)}/${file.sequence.length}`
+      : bwState.solved
+      ? "ARCHIVO DESENCRIPTADO"
+      : "AUTO-DESENCRIPTAR";
+    autoBtn.disabled = bwState.autoDecrypting || bwState.solved;
   }
 
   // Búfer de memoria
@@ -3042,27 +3099,6 @@ function renderBlackwallModalUI() {
         `;
       })
       .join(`<span style="color: var(--text-muted); font-family: var(--font-mono);">→</span>`);
-  }
-
-  // Serie de pasos en tabla alineada de 4 columnas (1 sola línea fija por paso, CERO saltos)
-  if (stepGuideEl) {
-    stepGuideEl.innerHTML = file.sequence
-      .map((hex, idx) => {
-        const isDone = idx < bwState.matchedSteps;
-        const isCurrent = idx === bwState.matchedSteps && !bwState.solved;
-        const expectedAxis =
-          idx === 0 ? "EJE: FILA 1 (Superior)" : idx % 2 === 1 ? "EJE: COLUMNA Vertical" : "EJE: FILA Horizontal";
-        const statusLabel = isDone ? "✓ LISTO" : isCurrent ? "◄ ACTIVO" : "PENDIENTE";
-        return `
-          <div class="bw-step-item ${isDone ? "completed" : ""} ${isCurrent ? "active" : ""}">
-            <span class="bw-step-col-num">PASO ${idx + 1}</span>
-            <span class="bw-step-col-hex">[${hex}]</span>
-            <span class="bw-step-col-axis">${expectedAxis}</span>
-            <span class="bw-step-col-state">${statusLabel}</span>
-          </div>
-        `;
-      })
-      .join("");
   }
 
   // Actualizar las 25 celdas en sitio (CERO recreación de DOM = CERO saltos visuales)
@@ -3091,19 +3127,15 @@ function renderBlackwallModalUI() {
       }
     }
 
-    const hintStepObj = bwState.showHint
-      ? bwState.solutionPath.find((p) => p.r === r && p.c === c && p.step > bwState.matchedSteps)
-      : null;
-
     cell.classList.toggle("active-axis", Boolean(isSelectable));
     cell.classList.toggle("auto-targeting", Boolean(isAutoTargeting));
     cell.classList.toggle("next-axis-preview", Boolean(isNextAxisPreview));
     cell.classList.toggle("used", Boolean(isUsed));
-    cell.classList.toggle("hint-target", Boolean(hintStepObj));
 
     cell.disabled = !isSelectable || bwState.autoDecrypting;
+    cell.setAttribute("aria-label", `${bwState.grid[r][c]}, fila ${r + 1}, columna ${c + 1}${isSelectable ? ", disponible" : ""}`);
     valSpan.textContent = isUsed ? "--" : bwState.grid[r][c];
-    badgeSpan.textContent = hintStepObj ? `#${hintStepObj.step}` : "";
+    badgeSpan.textContent = "";
   });
 }
 
@@ -3170,7 +3202,6 @@ function handleBlackwallMatrixPick(r, c, fromAuto = false) {
     setTimeout(() => {
       if (bwState.activeFileId) {
         setupBlackwallMatrixForFile(bwState.activeFileId);
-        bwState.showHint = true;
         renderBlackwallModalUI();
       }
     }, 900);
@@ -3187,7 +3218,7 @@ function completeBlackwallFileUnlock(file) {
   setTimeout(() => {
     closeBlackwallModal();
     renderBlackwallCards(file.id);
-  }, 850);
+  }, 420);
 }
 
 
